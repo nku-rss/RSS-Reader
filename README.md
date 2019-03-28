@@ -1,15 +1,13 @@
-#Proposal
+# Proposal
 
-----
-[[toc]]
 ## 1. Project title
-
-![图片描述#10%](/tfl/pictures/201903/tapd_50733270_1553331101_49.png/)   !18 RSS Reader!
+ RSS Reader!
 ## 2. Team Profile
-||张宇哲||1612917||
-|| 薛旭 ||1612904||
-|| 薛超 ||1612902 ||
-|| 张博健 ||1612914 ||
+| ------ | ------ |
+|张宇哲|1612917|
+| 薛旭 |1612904|
+|薛超|1612902 |
+| 张博健 |1612914 |
 
 ## 3. Proposed project description
 
@@ -38,20 +36,12 @@
 >4.作为微信小程序，兼容手机手势操作，为用户提供更加流畅的体验。
 >5.实现RSS源头管理，不仅能够主动添加，还具有优秀blog推荐。当您对于已添加的blog不满意时，可以手动删除。
 
-![程序雏形](/tfl/pictures/201903/tapd_50733270_1553329484_44.png)
 
-## 4. Project mind mapping
-
-![图片描述](/tfl/pictures/201903/tapd_50733270_1553330161_56.png)
-
-
-## 5. Plan of work and product ownership
+## 4. Plan of work and product ownership
 * 栏目界面
 	* RSS源信息编辑、删除（张宇哲）
 	* RSS源添加（张博健）
 * 博文界面
 	* 单个博文的解析与渲染（薛超）
 	* 博文列表界面的呈现（薛旭）
-
-
 ​​
