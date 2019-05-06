@@ -10,5 +10,8 @@
     "navigationBarTitleText": "Wafer Quick Start",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-button": "/miniprogram_npm/vant-weapp/button/index"
+  }
 }

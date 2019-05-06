@@ -36,4 +36,6 @@
             <text>快速增加 CGI</text>
         </navigator>
     </view>
+
+    <view><van-button  type="primary">anniu</van-button></view>
 </view>
