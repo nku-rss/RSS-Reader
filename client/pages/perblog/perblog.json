@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "van-swipe-cell": "../../dist/swipe-cell/index",
+    "van-cell-group": "../../dist/cell-group/index",
+    "van-cell": "../../dist/cell/index",
+    "van-tabbar": "../../dist/tabbar/index",
+    "van-row": "../../dist/row/index",
+    "van-col": "../../dist/col/index",
+    "van-dialog": "../../dist/dialog/index",
+    "van-tabbar-item": "../../dist/tabbar-item/index"
+  }
+}

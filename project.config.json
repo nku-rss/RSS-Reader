@@ -3,7 +3,15 @@
 	"svr": "server/",
 	"miniprogramRoot": "client/",
 	"qcloudRoot": "server/",
-	"setting": {},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"nodeModules": false,
+		"autoAudits": false
+	},
 	"appid": "wxd6d13bea90233e82",
 	"projectname": "NKU%20RSS",
 	"simulatorType": "wechat",

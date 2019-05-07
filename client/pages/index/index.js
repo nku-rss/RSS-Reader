@@ -2,15 +2,34 @@
 var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
 var util = require('../../utils/util.js')
-
+import Dialog from '../../dist/dialog/dialog';
 Page({
     data: {
         userInfo: {},
         logged: false,
         takeSession: false,
-        requestResult: ''
+        requestResult: '',
+        active: 0
     },
-
+  onChange(event) {
+    console.log(event.detail);
+  },
+  onClose(event) {
+    const { position, instance } = event.detail;
+    switch (position) {
+      case 'left':
+      case 'cell':
+        instance.close();
+        break;
+      case 'right':
+        Dialog.confirm({
+          message: '确定删除吗？'
+        }).then(() => {
+          instance.close();
+        }); 
+        break;
+    }
+  },
     // 用户登录示例
     bindGetUserInfo: function () {
         if (this.data.logged) return

@@ -1,0 +1,41 @@
+.demo-swipe-cell {
+  user-select: none;
+}
+
+.van-swipe-cell__left, .van-swipe-cell__right {
+  display: inline-block;
+  width: 65px;
+  height: 44px;
+  font-size: 15px;
+  line-height: 44px;
+  color: #fff;
+  text-align: center;
+  background-color: #f44;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  display: block;
+  width: 160rpx;
+  height: 160rpx;
+  margin: 20rpx;
+  margin-top: 50rpx;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.text-avatar {
+  overflow: hidden;
+  display: block;
+  width: 280rpx;
+  height: 160rpx;
+  margin-top: 110rpx;
+}
