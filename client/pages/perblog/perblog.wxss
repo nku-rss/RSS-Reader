@@ -1,5 +1,8 @@
-.demo-swipe-cell {
-  user-select: none;
+
+page{
+width:100%;
+height:100%;
+overflow: hidden;
 }
 
 .van-swipe-cell__left, .van-swipe-cell__right {
@@ -12,21 +15,33 @@
   text-align: center;
   background-color: #f44;
 }
-
+.backimage{
+  width:100%;
+  height:100%;
+  overflow: hidden;
+  background-image: url(http://img2.imgtn.bdimg.com/it/u=1940385278,716544096&fm=11&gp=0.jpg);
+  background-size: cover;                           
+}
 .userinfo {
+  opacity: 0.6;
   display: flex;
   flex-direction: column;
   align-content: center;
   text-align: center;
+  border-radius: 90%;
+  background-color:white;
+  width: 540rpx;
+  margin: 40rpx;
 }
 
 .userinfo-avatar {
   overflow: hidden;
   display: block;
-  width: 160rpx;
-  height: 160rpx;
+  width: 90rpx;
+  height: 90rpx;
   margin: 20rpx;
-  margin-top: 50rpx;
+  margin-top: 70rpx;
+  margin-left: 60rpx;
   border-radius: 50%;
   border: 2px solid #fff;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
@@ -38,4 +53,7 @@
   width: 280rpx;
   height: 160rpx;
   margin-top: 110rpx;
+}
+.river-view{
+
 }

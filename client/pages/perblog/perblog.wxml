@@ -1,58 +1,49 @@
+<view class="backimage">
+  <view class='container'>
+    <van-row class="userinfo">
+      <van-col span="8">
+        <image class="userinfo-avatar" src='../../img/1.jpg'></image>
+      </van-col>
+      <van-col span="10">
+        <text class="text-avatar">RiverXue的博客</text>
+      </van-col>
+    </van-row>
+  </view>
 
-<van-row class="userinfo">
-  <van-col span="8" >
-  <image class="userinfo-avatar" src='../../img/1.jpg'></image>
-  </van-col>
-  <van-col span="10"><text class="text-avatar">RiverXue的博客</text></van-col>
-</van-row>
+  <van-row class="river-view">
+    <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose">
+      <van-cell-group >
+        <van-cell title="博文1" value=">" label="详细内容" />
+      </van-cell-group>
+      <view slot="right">收藏</view>
+    </van-swipe-cell>
+  </van-row>
 
-<van-row>
-<van-col span="8" >
-  <view class="divLine"></view>
-  </van-col>
-</van-row>
-<van-row>
-<van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose">
-  <van-cell-group>
-    <van-cell title="博文1" value=">"/>
-  </van-cell-group>
-  <view slot="right">收藏</view>
-</van-swipe-cell>
-</van-row>
+  <van-row class="river-view">
+    <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose">
+      <van-cell-group>
+        <van-cell title="博文2" value=">" label="详细内容" />
+      </van-cell-group>
+      <view slot="right">收藏</view>
+    </van-swipe-cell>
+  </van-row>
 
-<van-row>
-<van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose">
-  <van-cell-group>
-    <van-cell title="博文2" value=">" />
-  </van-cell-group>
-  <view slot="right">收藏</view>
-</van-swipe-cell>
-</van-row>
+  <van-row class="river-view">
+    <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose">
+      <van-cell-group>
+        <van-cell title="博文3" value=">" label="详细内容" />
+      </van-cell-group>
+      <view slot="right">收藏</view>
+    </van-swipe-cell>
+  </van-row>
 
-<van-row>
-<van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose">
-  <van-cell-group>
-    <van-cell title="博文3" value=">" />
-  </van-cell-group>
-  <view slot="right">收藏</view>
-</van-swipe-cell>
-</van-row>
+  <van-row class="river-view">
+    <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose">
+      <van-cell-group>
+        <van-cell title="博文4" value=">" label="详细内容" />
+      </van-cell-group>
+      <view slot="right">收藏</view>
+    </van-swipe-cell>
+  </van-row>
+</view>
 
-<van-row>
-<van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose">
-  <van-cell-group>
-    <van-cell title="博文4" value=">" />
-  </van-cell-group>
-  <view slot="right">收藏</view>
-</van-swipe-cell>
-</van-row>
-
-  <van-tabbar
-  active="{{ active }}"
-  active-color="#07c160"
-  bind:change="onChange"
->
-  <van-tabbar-item icon="star-o">收藏</van-tabbar-item>
-  <van-tabbar-item icon="add-o">添加</van-tabbar-item>
-  <van-tabbar-item icon="setting-o">设置</van-tabbar-item>
-</van-tabbar>
