@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "van-tab": "../../dist/tab/index",
+    "van-tabs": "../../dist/tabs/index",
+    "van-tabbar": "../../dist/tabbar/index",
+    "van-tabbar-item": "../../dist/tabbar-item/index",
+    "van-swipe-cell": "../../dist/swipe-cell/index",
+    "van-cell": "../../dist/cell/index",
+    "van-cell-group": "../../dist/cell-group/index",
+    "van-icon": "../../dist/icon/index"
+  },
+  
+  "backgroundColor": "#403F3C"
+}

@@ -1,0 +1,60 @@
+<!-- client/pages/allPost/allPost.wxml -->
+<van-tabs animated type="card" bind:click="onClick" active="0" tab-class="tab-class" nav-class="nav-class" tab-active-class="tab-active-class">
+  <van-tab title="博文" class="test">
+    
+    <view class="rss-posts">
+      <view class="myview" wx:for="12345678">
+        <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
+          <view slot="left">{{'选择'+item}}</view>
+          <van-cell-group  border="{{false}}">
+            <van-cell is-link url="../article/article" link-type="navigateTo" custom-class="one-rss" title="{{'博文' + item}}" value="{{'内容' + item}}" size="large" label="{{'描述信息' + item}}"  border="{{false}}" />
+          </van-cell-group>
+          <view slot="right">{{'删除'+item}}</view>
+        </van-swipe-cell>
+      </view>
+    </view>
+
+
+        <view  wx:if="{{idx}}"   >
+      <van-tabbar active="{{ active }}" size="large" bind:change="onChange"   >
+        <van-tabbar-item  >
+          <!-- <image  src="star-o" mode="aspectFit" />
+          <image slot="icon-active" src="star" mode="aspectFit" /> -->
+          <van-icon slot="icon" color="rgb(73, 72, 69)" name="star" />
+          <van-icon slot="icon-active"  color="rgb(100, 99, 97)"  name="star" />
+        </van-tabbar-item>
+        <van-tabbar-item  >
+          <van-icon slot="icon" color="rgb(73, 72, 69)" name="star" />
+          <van-icon slot="icon-active"  color="rgb(100, 99, 97)"  name="star" />
+        </van-tabbar-item>
+        <van-tabbar-item >
+          <van-icon slot="icon" color="rgb(73, 72, 69)" name="star" />
+          <van-icon slot="icon-active"  color="rgb(100, 99, 97)"  name="star" />
+        </van-tabbar-item>
+      </van-tabbar>
+      <!-- <van-tabbar active="{{ active }}" bind:change="onChange">
+        <van-tabbar-item icon="home-o">标签</van-tabbar-item>
+        <van-tabbar-item icon="search" dot>标签</van-tabbar-item>
+        <van-tabbar-item icon="friends-o" info="5">标签</van-tabbar-item>
+        <van-tabbar-item icon="setting-o" info="20">标签</van-tabbar-item>
+      </van-tabbar> -->
+    </view> 
+  </van-tab>
+
+  <van-tab title="栏目">
+    
+    <view class="rss-posts">
+      <view class="myview" wx:for="12345678">
+        <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
+          <view slot="left">{{'选择'+item}}</view>
+          <van-cell-group  border="{{false}}">
+            <van-cell custom-class="one-rss" title="{{'博文' + item}}" value="{{'内容' + item}}" size="large" label="{{'描述信息' + item}}"  border="{{false}}" />
+          </van-cell-group>
+          <view slot="right">{{'删除'+item}}</view>
+        </van-swipe-cell>
+      </view>
+    </view>
+
+
+  </van-tab>
+</van-tabs>

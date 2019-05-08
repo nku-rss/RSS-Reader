@@ -1,16 +1,29 @@
 {
   "pages": [
-        "pages/index/index",
-    "pages/rssColumn/rssColumn",
-    "pages/perblog/perblog"
-    
+    "pages/posts/posts",
+    "pages/blog/blog",
+    "pages/edit/edit",
+    "pages/article/article",
+    "pages/index/index"
+
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#403F3C",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "Wafer Quick Start",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "RSS Reader",
+	  "navigationBarBackgroundColor": "#403f3c",
+	  "navigationBarTextStyle": "white"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-tab": "dist/tab/index",
+    "van-tabs": "dist/tabs/index",
+    "van-tabbar": "dist/tabbar/index",
+    "van-tabbar-item": "dist/tabbar-item/index",
+    "van-swipe-cell": "dist/swipe-cell/index",
+    "van-cell": "dist/cell/index",
+    "van-cell-group": "dist/cell-group/index",
+    "van-icon": "dist/icon/index"
+  }
+
 }

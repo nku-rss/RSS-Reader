@@ -1,5 +1,3 @@
-<import src="../../wxParse/wxParse.wxml"/> 
-
 <view class="container">
   <view class='title'>这里是标题{{title}}</view>
   <view class='info-box'>
@@ -23,6 +21,7 @@
     <view class='ori-link'>
       <view>长按链接选择复制后，可在浏览器中打开</view>
       <text selectable='true'>{{linkSrc}}</text>
+      <!-- <navigator url="../customizeRss/customizeRss">fdfdfdsfdfd</navigator> -->
     </view>
   </view>
 </view>

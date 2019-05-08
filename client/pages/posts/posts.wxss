@@ -1,0 +1,79 @@
+/* client/pages/allPost/allPost.wxss */
+/* 三级rgb颜色 rgb(64, 63, 60) #403F3C rgb(73, 72, 69)  rgb(100, 99, 97)  #f44*/
+
+page {
+  padding-top: 3%;
+  background-color: rgb(64, 63, 60);
+}
+
+.myview{
+  margin-top:25rpx;
+}
+
+.nav-class {
+  margin: 0 20%;
+   z-index: 100;
+  border-radius: 25rpx;
+  border: 0rpx !important;
+}
+
+
+.tab-class {
+  background-color: rgb(73, 72, 69) !important;
+  color: white !important;
+  /* border: 2px solid white; */
+  border-radius: 15rpx;
+  border: 0rpx !important;
+}
+
+.tab-active-class {
+  /*background-color: rgb(64, 63, 60);*/
+  background-color: rgb(100, 99, 97) !important;
+  color: white;
+  border: 0rpx !important;
+}
+
+.one-rss {
+  /* margin: 10rpx; */
+  background-color: rgb(73, 72, 69) !important;
+}
+
+.rss-posts {
+  margin: 50rpx 0rpx 150rpx 0rpx;
+}
+
+.van-tabs__scroll--card {
+  border: 0px !important;
+  background-color: rgb(64, 63, 60);
+  border-radius: 0rpx !important;
+}
+
+.van-swipe-cell {
+  border-radius: 25rpx;
+}
+
+.van-swipe-cell__left,
+.van-swipe-cell__right {
+  display: inline-block;
+  width: 65px;
+  height: 44px;
+  font-size: 15px;
+  line-height: 44px;
+  color: #fff;
+  text-align: center;
+  background-color: rgb(100, 99, 97);
+}
+
+.van-tabbar-item {
+  
+  /* border: 5px  blue solid !important; */
+  background-color:rgb(64, 63, 60) ;
+}
+
+.van-tabbar {
+  /* border: 5px  red solid !important; */
+  padding: 0% 20%;
+  background-color: rgb(64, 63, 60) !important;
+  width: 60% !important;
+  height: 50px !important;
+}
