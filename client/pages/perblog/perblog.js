@@ -2,6 +2,7 @@ Page({
   onClose(event) {
     const { position, instance } = event.detail;
     switch (position) {
+      case 'left':
       case 'cell':
         instance.close();
         break;
@@ -14,6 +15,4 @@ Page({
         break;
     }
   }
-  
-}
-);
+});

@@ -1,11 +1,5 @@
 {
     "usingComponents": {
-      "van-button": "../../dist/button/index",
-      "van-swipe-cell": "../../dist/swipe-cell/index",
-      "van-cell-group": "../../dist/cell-group/index",
-      "van-cell": "../../dist/cell/index",
-      "van-tabbar": "../../dist/tabbar/index",
-      "van-tabbar-item": "../../dist/tabbar-item/index"
-      
+      "van-button": "../../dist/button/index"
     }
-} 
+}
