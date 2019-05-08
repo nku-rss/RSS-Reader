@@ -1,0 +1,75 @@
+<!--pages/customizeRss/customizeRss.wxml-->
+<p1>自定义源</p1>
+
+<view class="customize">
+<van-cell-group>
+  <van-field
+    value="{{ username }}"
+    required
+    clearable
+    label="源地址"
+    placeholder="请输入源地址"
+  />
+
+  <van-field
+    value="{{ password }}"
+    type="password"
+    label="源名称"
+    placeholder="请输入源名称"
+    required
+  />
+
+  <van-field
+    value="{{ password }}"
+    type="password"
+    label="源描述"
+    placeholder="请输入源描述"
+  />
+
+  <van-field
+    value="{{ password }}"
+    type="password"
+    label="源logo"
+    placeholder="请输入源logo"
+    required
+  />
+
+  <van-field
+    value="{{ password }}"
+    type="password"
+    label="源官网链接"
+    placeholder="请输入源官网链接"
+    required
+  />
+</van-cell-group>
+</view>
+
+<van-cell-group>
+  <van-field
+    value="{{  }}"
+    center
+    clearable
+    label="源logo展示"
+    border="{{ false }}"
+    use-button-slot
+  >
+    <van-button slot="button" size="small" type="primary">使用默认</van-button>
+  </van-field>
+</van-cell-group>
+
+<p2>
+温馨提示：
+</p2>
+<p2>
+目前自定义源仅存在于微信缓存中，清除缓存会丢失自定义源。
+</p2>
+
+<view class="cusbutton1">
+  <van-button type="primary" size="large" onclick="">
+    添 加</van-button>
+</view>
+
+<view class="cusbutton2">
+  <van-button type="default" size="large" onclick="">
+  取 消</van-button>
+</view>
