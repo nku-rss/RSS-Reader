@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/index/index",
+  
     "pages/perBlog/perBlog",
     "pages/rssColumn/rssColumn"
 
