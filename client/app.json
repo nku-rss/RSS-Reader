@@ -1,15 +1,17 @@
 {
   "pages": [
     "pages/perblog/perblog",
-    "pages/index/index",
-    "pages/addCgi/addCgi"
+    "pages/index/index"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "NKU RSS",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "NKU CSS",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
   },
   "sitemapLocation": "sitemap.json"
 }

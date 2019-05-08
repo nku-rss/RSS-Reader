@@ -23,15 +23,15 @@ overflow: hidden;
   background-size: cover;                           
 }
 .userinfo {
-  opacity: 0.6;
   display: flex;
   flex-direction: column;
   align-content: center;
+  align-items: center;
   text-align: center;
   border-radius: 90%;
   background-color:white;
   width: 540rpx;
-  margin: 40rpx;
+  margin: 100rpx;
 }
 
 .userinfo-avatar {
