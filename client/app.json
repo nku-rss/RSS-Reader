@@ -1,15 +1,15 @@
 {
   "pages": [
-    "pages/index/index",
+        "pages/index/index",
     "pages/rssColumn/rssColumn",
-    "pages/perBlog/perblog"
+    "pages/perblog/perblog"
+    
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "Wafer Quick Start",
-    "navigationStyle": "custom",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"

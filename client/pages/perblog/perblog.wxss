@@ -6,7 +6,8 @@ page {
 
 .one-rss {
   margin-top: 20rpx;
-  background-color: rgb(73, 72, 69) !important;
+  background-color: rgb(128, 126, 122) !important;
+  border-radius: 5px 0px 26px 5px;
 }
 
 .add-rss {
@@ -15,9 +16,6 @@ page {
   right: 50%;
 }
 
-.rss-sources {
-  margin-top: 20rpx;
-}
 
 .nav-class {
   margin: 0 20%;
@@ -29,7 +27,7 @@ page {
 .tab-class {
   background-color: rgb(73, 72, 69) !important;
   color: white !important;
-  border-radius: 25px 0px 0px 25px;
+  border-radius: -25px 0px 5px 5px;
   border: 0rpx !important;
 }
 
@@ -40,15 +38,7 @@ page {
   border: 0rpx !important;
 }
 
-.van-tabs__scroll--card {
-  border: 0px !important;
-  background-color: rgb(64, 63, 60);
-  border-radius: 0rpx !important;
-}
 
-.tab-view{
-  margin-top: 20rpx;
-}
 .van-swipe-cell__left, .van-swipe-cell__right {
   display: inline-block;
   width: 65px;
@@ -58,6 +48,34 @@ page {
   color: #fff;
   text-align: center;
   background-color: orange;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(64, 63, 60);
+  width: 540rpx;
+  height: 180rpx;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  display: block;
+  width: 90rpx;
+  height: 90rpx;
+  margin-top: 60rpx;
+  margin-left: 40rpx;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.text-avatar {
+  overflow: hidden;
+  display: block;
+  width: 280rpx;
+  height: 160rpx;
+  margin-top: 110rpx;
+  color: white;
 }
 
 
