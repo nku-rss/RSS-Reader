@@ -15,13 +15,12 @@
   <!--富文本转换库使用 end  -->
 </view>
 
-<view class="zan-popup {{ showPopup ? 'zan-popup--show' : ''}}">
-  <view class="zan-popup__mask" bindtap="togglePopup"></view>
-  <view class="zan-popup__container rss-item-popup__container">
-    <view class='ori-link'>
-      <view>长按链接选择复制后，可在浏览器中打开</view>
-      <text selectable='true'>{{linkSrc}}</text>
-      <!-- <navigator url="../customizeRss/customizeRss">fdfdfdsfdfd</navigator> -->
-    </view>
-  </view>
-</view>
+<van-popup
+  show="{{ show }}"
+  position="top"
+  overlay="{{ false }}"
+  bind:close="onClose"
+>
+  <view>长按链接选择复制后，可在浏览器中打开</view>
+  <text selectable='true'>{{linkSrc}}</text>
+</van-popup>
