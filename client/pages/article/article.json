@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "NKURSS"
+  "navigationBarTitleText": "NKURSS",
+  "usingComponents": {
+    "van-popup": "../../dist/popup/index"
+  }
 }
