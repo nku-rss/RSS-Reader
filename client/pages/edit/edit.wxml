@@ -1,75 +1,43 @@
-<!--pages/customizeRss/customizeRss.wxml-->
-<p1>自定义源</p1>
-
-<view class="customize">
-<van-cell-group>
-  <van-field
-    value="{{ username }}"
-    required
-    clearable
-    label="源地址"
-    placeholder="请输入源地址"
-  />
-
-  <van-field
-    value="{{ password }}"
-    type="password"
-    label="源名称"
-    placeholder="请输入源名称"
-    required
-  />
-
-  <van-field
-    value="{{ password }}"
-    type="password"
-    label="源描述"
-    placeholder="请输入源描述"
-  />
-
-  <van-field
-    value="{{ password }}"
-    type="password"
-    label="源logo"
-    placeholder="请输入源logo"
-    required
-  />
-
-  <van-field
-    value="{{ password }}"
-    type="password"
-    label="源官网链接"
-    placeholder="请输入源官网链接"
-    required
-  />
-</van-cell-group>
+<form bindsubmit="addTo">
+<view class="rss-description">
+    <label class="input-prefix">源地址:</label>
+    <view class=".space"></view>
+    <view class=".space"></view>
+    <input placeholder="your.favorite.blog.org/rss" placeholder-class="custom-placeholder" name="address"/>
+    <view class='line'></view>
 </view>
 
-<van-cell-group>
-  <van-field
-    value="{{  }}"
-    center
-    clearable
-    label="源logo展示"
-    border="{{ false }}"
-    use-button-slot
-  >
-    <van-button slot="button" size="small" type="primary">使用默认</van-button>
-  </van-field>
-</van-cell-group>
-
-<p2>
-温馨提示：
-</p2>
-<p2>
-目前自定义源仅存在于微信缓存中，清除缓存会丢失自定义源。
-</p2>
-
-<view class="cusbutton1">
-  <van-button type="primary" size="large" onclick="">
-    添 加</van-button>
+<view class="rss-description">
+    <label class="input-prefix">源名称:</label>
+    <view class=".space"></view>
+    <view class=".space"></view>
+    <input placeholder="Grumpy Cat" placeholder-class="custom-placeholder" name="name"/>
+    <view class='line'></view>
 </view>
 
-<view class="cusbutton2">
-  <van-button type="default" size="large" onclick="">
-  取 消</van-button>
+<view class="rss-description">
+    <label class="input-prefix">源描述:</label>
+    <view class=".space"></view>
+    <view class=".space"></view>
+    <input placeholder="猫猫猫猫猫🐱猫猫猫猫猫" placeholder-class="custom-placeholder" name="decribe"/>
+    <view class='line'></view>
 </view>
+
+<view class="rss-description">
+    <label class="input-prefix">LOGO:</label>
+    <view class=".space"></view>
+    <view class=".space"></view>
+    <input placeholder="your.favorite.blog.org/favicon.ico" placeholder-class="custom-placeholder" name="logo"/>
+    <view class='line'></view>
+</view>
+
+<view class="rss-description">
+    <label class="input-prefix">博客链接:</label>
+    <view class=".space"></view>
+    <view class=".space"></view>
+    <input placeholder="your.favorite.blog.org" placeholder-class="custom-placeholder" name="source"/>
+    <view class='line'></view>
+</view>
+<button class="" formType="submit">添 加</button>
+<button class="" bindtap="addCancel">取 消</button>
+</form>
