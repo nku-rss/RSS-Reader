@@ -7,7 +7,8 @@
     "van-swipe-cell": "../../dist/swipe-cell/index",
     "van-cell": "../../dist/cell/index",
     "van-cell-group": "../../dist/cell-group/index",
-    "van-icon": "../../dist/icon/index"
+    "van-icon": "../../dist/icon/index",
+    "van-button": "../../dist/button/index"
   },
   
   "backgroundColor": "#403F3C"

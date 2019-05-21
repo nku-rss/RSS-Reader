@@ -1,53 +1,8 @@
 
-/* client/pages/allPost/allPost.wxss */
-/* 三级rgb颜色 rgb(64, 63, 60) #403F3C rgb(73, 72, 69)  rgb(100, 99, 97)  #f44*/
-
 page {
-  padding-top: 3%;
   background-color: rgb(64, 63, 60);
 }
 
-.myview{
-  margin-top:25rpx;
-}
-
-.nav-class {
-  margin: 0 20%;
-   z-index: 100;
-  border-radius: 25rpx;
-  border: 0rpx !important;
-}
-
-
-.tab-class {
-  background-color: rgb(73, 72, 69) !important;
-  color: white !important;
-  /* border: 2px solid white; */
-  border-radius: 15rpx;
-  border: 0rpx !important;
-}
-
-.tab-active-class {
-  /*background-color: rgb(64, 63, 60);*/
-  background-color: rgb(100, 99, 97) !important;
-  color: white;
-  border: 0rpx !important;
-}
-
-.one-rss {
-  /* margin: 10rpx; */
-  background-color: rgb(73, 72, 69) !important;
-}
-
-.rss-posts {
-  margin: 50rpx 0rpx 150rpx 0rpx;
-}
-
-.van-tabs__scroll--card {
-  border: 0px !important;
-  background-color: rgb(64, 63, 60);
-  border-radius: 0rpx !important;
-}
 
 .van-swipe-cell {
   border-radius: 25rpx;
@@ -65,44 +20,57 @@ page {
   background-color: rgb(100, 99, 97);
 }
 
-.van-tabbar-item {
-  
-  /* border: 5px  blue solid !important; */
-  background-color:rgb(64, 63, 60) ;
+.one-rss {
+  /* margin: 10rpx; */
+  background-color: rgb(73, 72, 69) !important;
 }
 
-.van-tabbar {
-  /* border: 5px  red solid !important; */
-  padding: 0% 20%;
-  background-color: rgb(64, 63, 60) !important;
-  width: 60% !important;
-  height: 50px !important;
+.myview{
+  margin-top:25rpx;
 }
-.userinfo {
+
+.rss-posts {
+  margin: 50rpx 0rpx 25rpx 0rpx;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10%;
+}
+
+.blog-avatar {
   display: flex;
-  flex-direction: column;
-  background-color: rgb(64, 63, 60);
-  width: 540rpx;
-  height: 180rpx;
+  position: fixed;
+  top: 0rpx;
+  width: 100%;
+  /*height: 120rpx;*/
+  /*background-color: red;*/
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
 }
 
-.userinfo-avatar {
-  overflow: hidden;
-  display: block;
-  width: 90rpx;
-  height: 90rpx;
-  margin-top: 60rpx;
-  margin-left: 40rpx;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+.blog-icon {
 }
 
-.text-avatar {
-  overflow: hidden;
-  display: block;
-  width: 280rpx;
-  height: 160rpx;
-  margin-top: 110rpx;
-  color: white;
+.blog-icon-image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.blog-name {
+  color: rgb(242, 240, 236);
+  font-size: large;
+  margin-left: 20rpx;
+}
+
+/*文字显示*/
+.van-cell__title {
+  color: rgb(242, 240, 236);
+}
+
+.van-cell__label {
+  color: rgb(202, 200, 196) !important;
+}
+
+.van-cell__value {
+  color: rgb(202, 200, 196) !important;
 }

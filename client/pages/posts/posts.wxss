@@ -6,13 +6,13 @@ page {
   background-color: rgb(64, 63, 60);
 }
 
-.myview{
+.cell-with-margin{
   margin-top:25rpx;
 }
 
 .nav-class {
   margin: 0 20%;
-   z-index: 100;
+    z-index: 100;
   border-radius: 25rpx;
   border: 0rpx !important;
 }
@@ -64,16 +64,63 @@ page {
   background-color: rgb(100, 99, 97);
 }
 
-.van-tabbar-item {
-  
-  /* border: 5px  blue solid !important; */
-  background-color:rgb(64, 63, 60) ;
+.add-rss {
+  position: fixed;
+  top: 18rpx;
+  right: 20rpx;
+  z-index: 100;
 }
 
-.van-tabbar {
-  /* border: 5px  red solid !important; */
-  padding: 0% 20%;
-  background-color: rgb(64, 63, 60) !important;
-  width: 60% !important;
-  height: 50px !important;
+.add-rss-button {
+  border: 0rpx !important;
+}
+
+.unread-star-buttons {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0rpx;
+  background-color: rgb(64, 63, 60);
+  width: 100%;
+}
+
+.tabbar-button {
+  background-color: rgb(64, 63, 60);
+  border: 0px !important;
+  color: white;
+}
+
+button::after{ border: none; }
+
+.button-hover {
+  color: grey;
+}
+
+.tabbar-view-1 {
+  position: absolute;
+  left: 20%;
+}
+
+.tabbar-view-2 {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tabbar-view-3 {
+  position: absolute;
+  right: 20%;
+}
+
+/*文字显示*/
+.van-cell__title {
+    color: rgb(242, 240, 236);
+}
+
+.van-cell__label {
+    color: rgb(202, 200, 196) !important;
+}
+
+.van-cell__value {
+    color: rgb(202, 200, 196) !important;
 }

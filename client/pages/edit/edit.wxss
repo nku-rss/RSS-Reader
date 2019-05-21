@@ -1,10 +1,20 @@
-/* pages/customizeRss/customizeRss.wxss */
 page {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding-top: 3%;
-    background-color: rgb(242, 240, 236);
+    /*background-color: rgb(222, 220, 216);*/
+    background-color: rgb(64, 63, 60);
+}
+
+.rss-form {
+    margin-top: 5%;
+    margin-left: 4%;
+    margin-right: 4%;
+    padding: 3%;
+    border-radius: 20px;
+    /*background-color: rgb(242, 240, 236);*/
+    background-color: rgb(222, 220, 216);
 }
 
 .rss-description {
@@ -15,7 +25,7 @@ page {
 .input-prefix {
     color: rgb(64, 63, 60);
     font-weight: bold;
-    font-size: smaller;
+    font-size: large;
 }
 
 .line {
@@ -26,9 +36,46 @@ page {
 }
 
 .space {
-    height: 2rpx;
+    height: 4rpx;
 }
 .custom-placeholder {
     color: silver;
     font-size: medium;
+}
+
+.favicon-view {
+
+}
+
+.favicon {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+
+.cancel-ok-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.ok-button-view {
+    position: fixed;
+    bottom: 3%;
+    right: 25%;
+}
+
+.cancel-button-view {
+    position: fixed;
+    bottom: 3%;
+    left: 25%
+}
+
+.rss-button {
+    border-radius: 50px;
+    background-color: rgb(202, 200, 196);
+    /*height: 150rpx;*/
+    /*width: 150rpx;*/
+    border: 0px !important;
 }

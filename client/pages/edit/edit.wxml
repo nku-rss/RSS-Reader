@@ -1,43 +1,60 @@
 <form bindsubmit="addTo">
-<view class="rss-description">
-    <label class="input-prefix">源地址:</label>
-    <view class=".space"></view>
-    <view class=".space"></view>
-    <input placeholder="your.favorite.blog.org/rss" placeholder-class="custom-placeholder" name="address"/>
-    <view class='line'></view>
-</view>
+    <view class="favicon-view">
+        <image class="favicon" src="https://user-images.githubusercontent.com/31076337/58075941-80c59f00-7bdb-11e9-86c0-6c6b8b2de3f7.png"></image>
+    </view>
 
-<view class="rss-description">
-    <label class="input-prefix">源名称:</label>
-    <view class=".space"></view>
-    <view class=".space"></view>
-    <input placeholder="Grumpy Cat" placeholder-class="custom-placeholder" name="name"/>
-    <view class='line'></view>
-</view>
+    <view class="rss-form">
+        <view class="rss-description">
+            <label class="input-prefix">源地址:</label>
+            <view class=".space"></view>
+            <view class=".space"></view>
+            <input placeholder="your.favorite.blog.org/rss" placeholder-class="custom-placeholder"/>
+            <view class='line'></view>
+        </view>
 
-<view class="rss-description">
-    <label class="input-prefix">源描述:</label>
-    <view class=".space"></view>
-    <view class=".space"></view>
-    <input placeholder="猫猫猫猫猫🐱猫猫猫猫猫" placeholder-class="custom-placeholder" name="decribe"/>
-    <view class='line'></view>
-</view>
+        <view class="rss-description">
+            <label class="input-prefix">源名称:</label>
+            <view class=".space"></view>
+            <view class=".space"></view>
+            <input placeholder="Grumpy Cat" placeholder-class="custom-placeholder"/>
+            <view class='line'></view>
+        </view>
 
-<view class="rss-description">
-    <label class="input-prefix">LOGO:</label>
-    <view class=".space"></view>
-    <view class=".space"></view>
-    <input placeholder="your.favorite.blog.org/favicon.ico" placeholder-class="custom-placeholder" name="logo"/>
-    <view class='line'></view>
-</view>
+        <view class="rss-description">
+            <label class="input-prefix">源描述:</label>
+            <view class=".space"></view>
+            <view class=".space"></view>
+            <input placeholder="猫猫猫猫猫🐱猫猫猫猫猫" placeholder-class="custom-placeholder"/>
+            <view class='line'></view>
+        </view>
 
-<view class="rss-description">
-    <label class="input-prefix">博客链接:</label>
-    <view class=".space"></view>
-    <view class=".space"></view>
-    <input placeholder="your.favorite.blog.org" placeholder-class="custom-placeholder" name="source"/>
-    <view class='line'></view>
-</view>
-<button class="" formType="submit">添 加</button>
-<button class="" bindtap="addCancel">取 消</button>
+        <view class="rss-description">
+            <label class="input-prefix">LOGO:</label>
+            <view class=".space"></view>
+            <view class=".space"></view>
+            <input placeholder="your.favorite.blog.org/favicon.ico" placeholder-class="custom-placeholder"/>
+            <view class='line'></view>
+        </view>
+
+        <view class="rss-description">
+            <label class="input-prefix">博客链接:</label>
+            <view class=".space"></view>
+            <view class=".space"></view>
+            <input placeholder="your.favorite.blog.org" placeholder-class="custom-placeholder"/>
+            <view class='line'></view>
+        </view>
+    </view>
+
+    <view class="cancel-ok-buttons">
+        <view class="cancel-button-view">
+            <button bindtap="addCancel" class="rss-button">
+                <van-icon name="cross" />
+            </button>
+        </view>
+        <view class="ok-button-view">
+            <button formType="submit" class="rss-button">
+                <van-icon name="success" />
+            </button>
+        </view>
+    </view>
 </form>
