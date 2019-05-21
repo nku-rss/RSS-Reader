@@ -1,18 +1,18 @@
 {
   "pages": [
-    "pages/posts/posts",
+    "pages/demo/demo",
     "pages/blog/blog",
+    "pages/posts/posts",
     "pages/edit/edit",
     "pages/article/article",
     "pages/index/index"
-
   ],
   "window": {
     "backgroundColor": "#403F3C",
     "backgroundTextStyle": "light",
     "navigationBarTitleText": "RSS Reader",
-	  "navigationBarBackgroundColor": "#403f3c",
-	  "navigationBarTextStyle": "white"
+    "navigationBarBackgroundColor": "#403f3c",
+    "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
@@ -25,5 +25,4 @@
     "van-cell-group": "dist/cell-group/index",
     "van-icon": "dist/icon/index"
   }
-
 }

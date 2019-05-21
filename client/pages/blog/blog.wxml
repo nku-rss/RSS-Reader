@@ -9,32 +9,16 @@
       </van-col>
     </van-row>
       <view>
-        <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose">
-          <van-cell id="blogpage" custom-class="one-rss"  title="博文1" size="large" label="描述信息" icon="star-o" is-link />
-          <view slot="right">收藏</view>
+          <view class="rss-posts">
+      <view class="myview" wx:for="12345678">
+        <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
+          <view slot="left">{{'选择'+item}}</view>
+          <van-cell-group  border="{{false}}">
+            <van-cell is-link url="../article/article" link-type="navigateTo" custom-class="one-rss" title="{{'博文' + item}}" value="{{'内容' + item}}" size="large" label="{{'描述信息' + item}}"  border="{{false}}" />
+          </van-cell-group>
+          <view slot="right">{{'删除'+item}}</view>
         </van-swipe-cell>
-
-
-        <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose">
-          <van-cell custom-class="one-rss" title="博文2"  size="large" label="描述信息"icon="star-o" is-link />
-          <view slot="right">收藏</view>
-        </van-swipe-cell>
-
-        <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose">
-          <van-cell custom-class="one-rss" title="博文3"  size="large" label="描述信息"icon="star-o" is-link />
-          <view slot="right">收藏</view>
-        </van-swipe-cell>
-
-        <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose">
-          <van-cell custom-class="one-rss" title="博文4"  size="large" label="描述信息"icon="star-o" is-link />
-          <view slot="right">收藏</view>
-        </van-swipe-cell>
-
-        <van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose">
-          <van-cell custom-class="one-rss" title="博文5"  size="large" label="描述信息"icon="star-o" is-link />
-          <view slot="right">收藏</view>
-        </van-swipe-cell>
-
-
+      </view>
+    </view>
       </view>
 </view>

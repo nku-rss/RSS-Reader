@@ -1,0 +1,11 @@
+<!--client/pages/demo/demo.wxml-->
+<view>{{title}}</view>
+<view>{{title_detail}}</view>
+<view>{{summary}}</view>
+<view>{{summary_detail}}</view>
+<view>{{published}}</view>
+<view>{{published_parsed}}</view>
+<view>{{links}}</view>
+<view>{{link}}</view>
+<view>{{id}}</view>
+<view>{{guidislink}}</view>
