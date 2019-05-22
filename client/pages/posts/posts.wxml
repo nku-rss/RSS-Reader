@@ -4,7 +4,18 @@
     <van-tab title="博文" class="test">
 
         <view class="rss-posts">
-            <view class="cell-with-margin" wx:for="12345678">
+            <view class="cell-with-margin" wx:for="{{rssSources}}">
+                <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
+                    <view slot="left">{{'选择'+index}}</view>
+                    <van-cell-group border="{{false}}">
+                        <van-cell is-link url="../article/article" link-type="navigateTo" custom-class="one-rss"
+                                  title="{{'博文' + index}}" value="{{'内容' + item.rssUrl}}" size="large" label="{{'描述信息' + item.rssDescribe}}"
+                                  border="{{false}}"/>
+                    </van-cell-group>
+                    <view slot="right">{{'删除'+index}}</view>
+                </van-swipe-cell>
+            </view>
+            <!-- <view class="cell-with-margin" wx:for="12345678">
                 <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
                     <view slot="left">{{'选择'+item}}</view>
                     <van-cell-group border="{{false}}">
@@ -14,7 +25,7 @@
                     </van-cell-group>
                     <view slot="right">{{'删除'+item}}</view>
                 </van-swipe-cell>
-            </view>
+            </view> -->
         </view>
 
 
