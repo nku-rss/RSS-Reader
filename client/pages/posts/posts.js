@@ -6,6 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    skin: "skin-grey",
+    bkColor: "rgb(64, 63, 60)",
+    
     starPosts: [],
     rssSources: [],
     lastTime: "",

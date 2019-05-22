@@ -1,4 +1,5 @@
 <!-- client/pages/allPost/allPost.wxml -->
+<view class="page" style="background-color: {{bkColor}}" id="{{skin}}">
 <van-tabs animated type="card" bind:click="onClick" active="0" tab-class="tab-class" nav-class="nav-class"
           tab-active-class="tab-active-class">
     <van-tab title="博文" class="test">
@@ -73,4 +74,5 @@
     <button class="add-rss-button" bindtap="goToEdit" plain>
         <van-icon name="plus" color="white"/>
     </button>
+</view>
 </view>
