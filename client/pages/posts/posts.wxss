@@ -1,126 +1,151 @@
-/* client/pages/allPost/allPost.wxss */
-/* 三级rgb颜色 rgb(64, 63, 60) #403F3C rgb(73, 72, 69)  rgb(100, 99, 97)  #f44*/
-
 page {
+  /*BACKGROUND*/
+  --grey-page-bk: rgb(64, 63, 60);
+  --grey-tab: rgb(73, 72, 69);
+  --grey-tab-active: rgb(100, 99, 97);
+  --grey-tab-title: rgb(242, 240, 236);
+  --grey-cell-bk:  rgb(73, 72, 69);
+  --grey-cell-swipe-left: rgb(100, 99, 97);
+  --grey-cell-swipe-right: rgb(100, 99, 97);
+  --grey-tabbar-bk: rgb(64, 63, 60);
+  --grey-tabbar-button-bk: rgb(64, 63, 60);
+  /*TEXT*/
+  --grey-cell-title: rgb(242, 240, 236);
+  --grey-cell-label: rgb(202, 200, 196);
+  --grey-cell-value: rgb(202, 200, 196);
+  --grey-cell-swipe-title: rgb(202, 200, 196);
+}
+
+.page {
   padding-top: 3%;
-  background-color: rgb(64, 63, 60);
+  background-color: var(--grey-page-bk);
 }
 
-.cell-with-margin{
-  margin-top:25rpx;
-}
-
-.nav-class {
+#skin-grey .nav-class {
   margin: 0 20%;
-    z-index: 100;
+  z-index: 100;
   border-radius: 25rpx;
   border: 0rpx !important;
 }
 
+#skin-grey .cell-with-margin{
+  margin-top:25rpx;
+}
 
-.tab-class {
-  background-color: rgb(73, 72, 69) !important;
-  color: white !important;
-  /* border: 2px solid white; */
+#skin-grey .tab-class {
+  background-color: var(--grey-tab) !important;
+  color: var(--grey-tab-title) !important;
   border-radius: 15rpx;
   border: 0rpx !important;
 }
 
-.tab-active-class {
-  /*background-color: rgb(64, 63, 60);*/
-  background-color: rgb(100, 99, 97) !important;
-  color: white;
+#skin-grey .tab-active-class {
+  background-color: var(--grey-tab-active) !important;
+  color: var(--grey-tab-title) !important;
   border: 0rpx !important;
 }
 
-.one-rss {
-  /* margin: 10rpx; */
-  background-color: rgb(73, 72, 69) !important;
+#skin-grey .one-rss {
+  background-color: var(--grey-cell-bk) !important;
 }
 
-.rss-posts {
+#skin-grey .rss-posts {
   margin: 50rpx 0rpx 150rpx 0rpx;
 }
 
-.van-tabs__scroll--card {
+#skin-grey .van-tabs__scroll--card {
   border: 0px !important;
-  background-color: rgb(64, 63, 60);
+  background-color: var(--grey-page-bk);
   border-radius: 0rpx !important;
 }
 
-.van-swipe-cell {
+#skin-grey .van-swipe-cell {
   border-radius: 25rpx;
 }
 
-.van-swipe-cell__left,
-.van-swipe-cell__right {
+#skin-grey .van-swipe-cell__left {
   display: inline-block;
   width: 65px;
-  height: 44px;
+  /*height: 44px;*/
   font-size: 15px;
   line-height: 44px;
-  color: #fff;
+  color: var(--grey-cell-swipe-title);
   text-align: center;
-  background-color: rgb(100, 99, 97);
+  background-color: var(--grey-cell-swipe-left);
 }
 
-.add-rss {
+#skin-grey .van-swipe-cell__right {
+  display: inline-block;
+  width: 65px;
+  /*height: 44px;*/
+  font-size: 15px;
+  line-height: 44px;
+  color: var(--grey-cell-swipe-title);
+  text-align: center;
+  background-color: var(--grey-cell-swipe-right);
+}
+
+#skin-grey .add-rss {
   position: fixed;
   top: 18rpx;
   right: 20rpx;
   z-index: 100;
 }
 
-.add-rss-button {
+#skin-grey .add-rss-button {
   border: 0rpx !important;
 }
 
-.unread-star-buttons {
+#skin-grey .unread-star-buttons {
   display: flex;
   flex-direction: row;
   position: fixed;
   bottom: 0rpx;
-  background-color: rgb(64, 63, 60);
+  background-color: var(--grey-page-bk);
   width: 100%;
 }
 
-.tabbar-button {
-  background-color: rgb(64, 63, 60);
+#skin-grey .tabbar-button {
+  background-color: var(--grey-page-bk);
   border: 0px !important;
-  color: white;
+  color: var(--grey-cell-label);
 }
 
-button::after{ border: none; }
-
-.button-hover {
-  color: grey;
+button::after {
+  border: none;
 }
 
-.tabbar-view-1 {
+#skin-grey .button-hover {
+  color: var(--grey-page-bk);
+}
+
+#skin-grey .tabbar-view-1 {
   position: absolute;
   left: 20%;
 }
 
-.tabbar-view-2 {
+#skin-grey .tabbar-view-2 {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.tabbar-view-3 {
+#skin-grey .tabbar-view-3 {
   position: absolute;
   right: 20%;
 }
 
-/*文字显示*/
-.van-cell__title {
-    color: rgb(242, 240, 236);
+
+#skin-grey .van-cell__title {
+  color: var(--grey-cell-title);
 }
 
-.van-cell__label {
-    color: rgb(202, 200, 196) !important;
+#skin-grey .van-cell__label {
+  color: var(--grey-cell-label) !important;
 }
 
-.van-cell__value {
-    color: rgb(202, 200, 196) !important;
+#skin-grey .van-cell__value {
+  color: var(--grey-cell-value) !important;
 }
+
+
