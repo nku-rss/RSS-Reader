@@ -16,7 +16,7 @@ Page({
   onLoad: function (options) {
     let that =this;
     wx.request({
-      url: 'http://127.0.0.1:8000/rssread',
+      url: 'http://nkurss.potatobrother.cn:8080/rssread/rssread1',
       method: 'GET',
       header: {
         "content-type": "application/x-www-form-urlencoded"

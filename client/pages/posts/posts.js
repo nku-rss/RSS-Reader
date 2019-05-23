@@ -12,6 +12,9 @@ Page({
     starPosts: [],
     rssSources: [],
     lastTime: "",
+    allPosts:[],
+    segment:0,
+
 
     active: 0,
     idx: true,
@@ -26,14 +29,13 @@ Page({
   },
   
   onClose(event) {
-    var that= this;
+    let that= this;
     const { position, instance } = event.detail;
-    console.log('inter ',event);
     console.log(position,'  ',instance);
     switch (position) {
       case 'left':
 
-        var onePost = {
+        let onePost = {
           rssUrl:"rssyuandishi",
           index: event.currentTarget.dataset.info
         };
@@ -92,9 +94,9 @@ Page({
    * 收藏新博文
    */
   addStar(onePost){
-    var that = this;
-    var hasStared = false;
-    for(var i =0;i<that.data.starPosts.length;i++){
+    let that = this;
+    let hasStared = false;
+    for(let i =0;i<that.data.starPosts.length;i++){
       if(that.data.starPosts[i][1] == onePost[1]){
         hasStared = true;
         break;
@@ -121,42 +123,12 @@ Page({
   },
 
   addSource(oneRssSource){
-    var that = this;
+    let that = this;
     that.data.rssSources.push(oneRssSource);
     wx.setStorageSync('rssSourcesKey', that.data.rssSources);
     that.setData({
       rssSources: that.data.rssSources
     })
-    // wx.showToast({
-    //   title: '收藏成功！',
-    //   icon: 'none',
-    // })
-    
-    // var hasAdded = false;
-    // for (var i = 0; i < that.data.starPosts.length; i++) {
-    //   if (that.data.starPosts[i][1] == onePost[1]) {
-    //     hasAdded = true;
-    //     break;
-    //   }
-    // }
-    // if (hasAdded) {
-    //   wx.showToast({
-    //     title: '此文章已经被收藏！',
-    //     icon: 'none',
-    //   })
-    // }
-    // else {
-    //   that.data.starPosts.push(onePost);
-    //   wx.setStorageSync('starPostsKey', that.data.starPosts);
-    //   that.setData({
-    //     ['that.data.starPosts']: that.data.starPosts
-    //   })
-    //   wx.showToast({
-    //     title: '收藏成功！',
-    //     icon: 'none',
-    //   })
-    // }
-    console.log(that.data.rssSources);
   },
 
 
@@ -164,33 +136,57 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
+    let that = this;
     that.data.rssSources = wx.getStorageSync('rssSourcesKey');
     that.data.starPosts = wx.getStorageSync('starPostsKey');
+    wx.request({
+      url:'http://nkurss.potatobrother.cn:8080/rssread/rssread1',
+      method: 'GET',
+      data: {
+        rssSources:that.data.rssSources,
+      },
+      header: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      success: function (res) {
+        console.log(res)
+        if(res.data.articles){
+          that.setData({
+            allPosts: res.data.posts
+          })
+          console.log("success");
+        }
+        console.log(that.data.allPosts)
+      },
+      fail: function (res) {
+        console.log('fail');
+      },
+      complete: function (res) {
+        console.log('complete');
+      }
+    })
+
     if(!that.data.starPosts){
       that.data.starPosts=[]; 
     } 
     if (!that.data.rssSources) {
       that.data.rssSources = [];
-      for (var i = 0; i < 10; i++){
-        var oneRssSource = {
-          rssUrl: '源地址' + i,
-          rssName: '源名称' + i,
-          rssDescribe: '源描述' + i,
-          rssLogo: '源logo' + i,
-          webUrl: '源网址' + i
-        };
-        that.data.rssSources.push(oneRssSource);
-      }   
+      let oneRssSource = {
+        rssUrl: 'https://zhihu.com/rss',
+        rssName: '源名称' + i,
+        rssDescribe: '源描述' + i,
+        rssLogo: '源logo' + i,
+        webUrl: '源网址' + i
+      };
+      that.data.rssSources.push(oneRssSource); 
     }
-    
     that.setData({
       starPosts:that.data.starPosts,
       rssSources:that.data.rssSources
     })
+    wx.setStorageSync('starPostsKey', that.data.starPosts)
+    wx.setStorageSync('rssSourcesKey', that.data.rssSources)
 
-    console.log("onload ",that.data.starPosts," ",that.data.rssSources);
-    
   },
 
   
