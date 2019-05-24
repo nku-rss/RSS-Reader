@@ -1,13 +1,11 @@
 <!-- 引入富文本转换库 -->
 <import src="../../wxParse/wxParse.wxml"/> 
-
 <view class="container">
-  <view class='title'>这里是标题{{title}}</view>
+  <view class='title'>{{title}}</view>
   <view class='info-box'>
     <image class='avatar' mode='aspectFit' src='{{favicon}}'></image>
-    <text>这里是作者{{author}}</text>
-    <text>这里是日期{{pubDate}}</text>
-    <text class='ori-link-txt' bindtap="wxParseTagATap" data-src='{{link}}' wx:if='{{!!link}}'>原文链接</text>
+    <text>{{author}}</text>
+    <text>{{published}}</text>
   </view>
   <!-- <view class='ori-link'>原文链接：<text selectable='true'>{{link}}</text></view> -->
 
@@ -17,12 +15,3 @@
   </view>
   <!--富文本转换库使用 end  -->
 </view>
-
-
-
-<van-popup class="src_container" show="{{ showPopup }}" bind:close="togglePopup"> 
-    <view class='ori-link'>
-      <view>长按链接选择复制后，可在浏览器中打开</view>
-      <text selectable='true'>{{linkSrc}}</text>
-    </view>
-</van-popup>
