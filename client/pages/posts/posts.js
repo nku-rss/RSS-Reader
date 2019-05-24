@@ -173,10 +173,10 @@ Page({
       that.data.rssSources = [];
       let oneRssSource = {
         rssUrl: 'https://zhihu.com/rss',
-        rssName: '源名称' + i,
-        rssDescribe: '源描述' + i,
-        rssLogo: '源logo' + i,
-        webUrl: '源网址' + i
+        rssName: '源名称',
+        rssDescribe: '源描述',
+        rssLogo: '源logo',
+        webUrl: '源网址'
       };
       that.data.rssSources.push(oneRssSource); 
     }

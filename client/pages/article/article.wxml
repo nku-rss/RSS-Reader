@@ -1,3 +1,6 @@
+<!-- 引入富文本转换库 -->
+<import src="../../wxParse/wxParse.wxml"/> 
+
 <view class="container">
   <view class='title'>这里是标题{{title}}</view>
   <view class='info-box'>
@@ -15,12 +18,11 @@
   <!--富文本转换库使用 end  -->
 </view>
 
-<van-popup
-  show="{{ show }}"
-  position="top"
-  overlay="{{ false }}"
-  bind:close="onClose"
->
-  <view>长按链接选择复制后，可在浏览器中打开</view>
-  <text selectable='true'>{{linkSrc}}</text>
+
+
+<van-popup class="src_container" show="{{ showPopup }}" bind:close="togglePopup"> 
+    <view class='ori-link'>
+      <view>长按链接选择复制后，可在浏览器中打开</view>
+      <text selectable='true'>{{linkSrc}}</text>
+    </view>
 </van-popup>

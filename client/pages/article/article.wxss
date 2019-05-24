@@ -29,7 +29,7 @@
   color: deepskyblue;
 }
 
-.rss-item-popup__container {
+.src_container {
   padding:12px 24px;
-  width:70vw;
+  width:30vw;
 }
