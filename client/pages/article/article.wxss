@@ -4,6 +4,10 @@
   margin: 0 5px;
 }
 
+.container {
+  padding: 10px 15px;
+}
+
 .info-box {
   font-size: 24rpx;
   color: #666;
@@ -31,5 +35,5 @@
 
 .src_container {
   padding:12px 24px;
-  width:30vw;
+  width:80px;
 }
