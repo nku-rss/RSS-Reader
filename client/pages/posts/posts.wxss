@@ -96,6 +96,17 @@ page {
   border: 0rpx !important;
 }
 
+#skin-grey .change-skin {
+  position: fixed;
+  top: 18rpx;
+  left: 22rpx;
+  z-index: 100;
+}
+
+#skin-grey .change-skin-button {
+  border: 0rpx !important;
+}
+
 #skin-grey .unread-star-buttons {
   display: flex;
   flex-direction: row;

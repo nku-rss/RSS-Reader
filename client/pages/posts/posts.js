@@ -125,6 +125,12 @@ Page({
     })
   },
 
+  goToTheme() {
+    wx.navigateTo({
+      url: '/pages/theme/theme',
+    })
+  },
+
   /**
    * 收藏新博文
    */
