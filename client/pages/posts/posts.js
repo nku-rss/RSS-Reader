@@ -182,6 +182,13 @@ Page({
     // 设置Tabbar
     that.setTabbarState();
 
+    // 设置navbar颜色
+    wx.setNavigationBarColor( {
+          frontColor: "#ffffff",
+          backgroundColor: that.data.navBkColor,
+        }
+    )
+
     that.data.rssSources = wx.getStorageSync('rssSourcesKey');
     that.data.starPosts = wx.getStorageSync('starPostsKey');
     wx.request({
@@ -247,6 +254,14 @@ Page({
    */
   onShow: function () {
 
+    var that = this;
+
+    // 设置导航栏颜色
+    wx.setNavigationBarColor( {
+          frontColor: "#ffffff",
+          backgroundColor: that.data.navBkColor,
+        }
+    )
   },
 
   /**
