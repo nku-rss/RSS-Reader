@@ -182,12 +182,23 @@ Page({
     // 设置Tabbar
     that.setTabbarState();
 
+    // --------------------换肤用OPEN----------------
+
+    var app = getApp();
     // 设置navbar颜色
     wx.setNavigationBarColor( {
           frontColor: "#ffffff",
-          backgroundColor: that.data.navBkColor,
+          backgroundColor: app.globalData.navBkColor,
         }
-    )
+    );
+
+    that.setData({
+      skin: app.globalData.skin,
+      bkColor: app.globalData.bkColor,
+      navBkColor: app.globalData.navBkColor,
+    });
+
+    // --------------------换肤用CLOSE----------------
 
     that.data.rssSources = wx.getStorageSync('rssSourcesKey');
     that.data.starPosts = wx.getStorageSync('starPostsKey');
@@ -256,12 +267,23 @@ Page({
 
     var that = this;
 
-    // 设置导航栏颜色
+    // --------------------换肤用OPEN----------------
+
+    var app = getApp();
+    // 设置navbar颜色
     wx.setNavigationBarColor( {
           frontColor: "#ffffff",
-          backgroundColor: that.data.navBkColor,
+          backgroundColor: app.globalData.navBkColor,
         }
-    )
+    );
+
+    that.setData({
+      skin: app.globalData.skin,
+      bkColor: app.globalData.bkColor,
+      navBkColor: app.globalData.navBkColor,
+    });
+
+    // --------------------换肤用CLOSE----------------
   },
 
   /**

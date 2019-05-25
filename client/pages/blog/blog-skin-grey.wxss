@@ -1,0 +1,76 @@
+@import "../../themes/skin-grey.wxss";
+
+.page {
+    height: 2000rpx;
+}
+
+#skin-grey .van-swipe-cell {
+    /*border-radius: 25rpx;*/
+}
+
+#skin-grey .van-swipe-cell__left,
+#skin-grey .van-swipe-cell__right {
+    display: inline-block;
+    width: 65px;
+    height: 44px;
+    font-size: 15px;
+    line-height: 44px;
+    color: #fff;
+    text-align: center;
+    background-color: var(--grey-cell-swipe-left);
+}
+
+#skin-grey .one-rss {
+    /* margin: 10rpx; */
+    background-color: var(--grey-cell-bk) !important;
+}
+
+#skin-grey .cell-with-margin {
+    margin-top:25rpx;
+}
+
+#skin-grey .rss-posts {
+    margin: 50rpx 0rpx 25rpx 0rpx;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 10%;
+}
+
+#skin-grey .blog-avatar {
+    display: flex;
+    position: fixed;
+    top: 0rpx;
+    width: 100%;
+    /*height: 120rpx;*/
+    /*background-color: red;*/
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+
+#skin-grey .blog-icon {
+}
+
+#skin-grey .blog-icon-image {
+    width: 30rpx;
+    height: 30rpx;
+}
+
+#skin-grey .blog-name {
+    color: var(--grey-blog-name);
+    font-size: large;
+    margin-left: 20rpx;
+}
+
+/*文字显示*/
+#skin-grey .van-cell__title {
+    color: var(--grey-cell-title) !important;
+}
+
+#skin-grey .van-cell__label {
+    color: var(--grey-cell-label) !important;
+}
+
+#skin-grey .van-cell__value {
+    color: var(--grey-cell-value) !important;
+}
