@@ -1,0 +1,17 @@
+page {
+    /*BACKGROUND*/
+    --black-page-bk: rgb(0, 0, 0);
+    --black-tab: rgb(0, 0, 0);
+    --black-tab-active: rgb(0, 0, 0);
+    --black-cell-bk:  rgb(0, 0, 0);
+    --black-cell-swipe-left: rgb(0, 0, 0);
+    --black-cell-swipe-right: rgb(0, 0, 0);
+    --black-tabbar-bk: rgb(0, 0, 0);
+    --black-tabbar-button-bk: rgb(0, 0, 0);
+    /*TEXT*/
+    --black-tab-title: rgb(255, 255, 255);
+    --black-cell-title: rgb(255, 255, 255);
+    --black-cell-label: rgb(255, 255, 255);
+    --black-cell-value: rgb(255, 255, 255);
+    --black-cell-swipe-title: rgb(255, 255, 255);
+}
