@@ -8,11 +8,7 @@
     "pages/index/index"
   ],
   "window": {
-    "backgroundColor": "#403F3C",
-    "backgroundTextStyle": "light",
-    "navigationBarTitleText": "RSS Reader",
-    "navigationBarBackgroundColor": "#403f3c",
-    "navigationBarTextStyle": "white"
+    "navigationBarTitleText": "RSS Reader"
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {

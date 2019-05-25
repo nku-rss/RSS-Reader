@@ -1,78 +1,88 @@
 <!-- client/pages/allPost/allPost.wxml -->
 <view class="page" style="background-color: {{bkColor}}" id="{{skin}}">
-<van-tabs animated type="card" bind:click="onClick" active="0" tab-class="tab-class" nav-class="nav-class"
-          tab-active-class="tab-active-class">
-    <van-tab title="博文" class="test">
+    <van-tabs animated type="card" bind:click="onClick" active="0" tab-class="tab-class" nav-class="nav-class"
+              tab-active-class="tab-active-class">
+        <van-tab title="博文" class="test">
 
-        <view class="rss-posts">
-            <view class="cell-with-margin" wx:for="{{rssSources}}">
-                <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
-                    <view slot="left">{{'选择'+index}}</view>
-                    <van-cell-group border="{{false}}">
-                        <van-cell is-link url="../article/article" link-type="navigateTo" custom-class="one-rss"
-                                  title="{{'博文' + index}}" value="{{'内容' + item.rssUrl}}" size="large" label="{{'描述信息' + item.rssDescribe}}"
-                                  border="{{false}}"/>
-                    </van-cell-group>
-                    <view slot="right">{{'删除'+index}}</view>
-                </van-swipe-cell>
-            </view>
-            <!-- <view class="cell-with-margin" wx:for="12345678">
-                <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
-                    <view slot="left">{{'选择'+item}}</view>
-                    <van-cell-group border="{{false}}">
-                        <van-cell is-link url="../article/article" link-type="navigateTo" custom-class="one-rss"
-                                  title="{{'博文' + item}}" value="{{'内容' + item}}" size="large" label="{{'描述信息' + item}}"
-                                  border="{{false}}"/>
-                    </van-cell-group>
-                    <view slot="right">{{'删除'+item}}</view>
-                </van-swipe-cell>
-            </view> -->
-        </view>
-
-
-        <view wx:if="{{idx}}">
-            <view class="unread-star-buttons">
-                <view class="tabbar-view-1">
-                    <button class="tabbar-button">
-                        <van-icon name="star-o" />
-                    </button>
+            <view class="rss-posts">
+                <view class="cell-with-margin" wx:for="{{rssSources}}">
+                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
+                        <view slot="left">{{'选择'+index}}</view>
+                        <van-cell-group border="{{false}}">
+                            <van-cell is-link url="../article/article" link-type="navigateTo" custom-class="one-rss"
+                                      title="{{'博文' + index}}" value="{{'内容' + item.rssUrl}}" size="large"
+                                      label="{{'描述信息' + item.rssDescribe}}"
+                                      border="{{false}}"/>
+                        </van-cell-group>
+                        <view slot="right">{{'删除'+index}}</view>
+                    </van-swipe-cell>
                 </view>
-                <view class="tabbar-view-2">
-                    <button class="tabbar-button">
-                        <van-icon name="star-o" />
-                    </button>
-                </view>
-                <view class="tabbar-view-3">
-                    <button class="tabbar-button">
-                        <van-icon name="star" />
-                    </button>
+                <!-- <view class="cell-with-margin" wx:for="12345678">
+                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
+                        <view slot="left">{{'选择'+item}}</view>
+                        <van-cell-group border="{{false}}">
+                            <van-cell is-link url="../article/article" link-type="navigateTo" custom-class="one-rss"
+                                      title="{{'博文' + item}}" value="{{'内容' + item}}" size="large" label="{{'描述信息' + item}}"
+                                      border="{{false}}"/>
+                        </van-cell-group>
+                        <view slot="right">{{'删除'+item}}</view>
+                    </van-swipe-cell>
+                </view> -->
+            </view>
+
+        </van-tab>
+
+        <van-tab title="栏目">
+
+            <view class="rss-posts">
+                <view class="cell-with-margin" wx:for="12345678">
+                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
+                        <view slot="left">{{'选择'+item}}</view>
+                        <van-cell-group border="{{false}}">
+                            <van-cell is-link url="../blog/blog" custom-class="one-rss" title="{{'栏目' + item}}"
+                                      value="{{'内容' + item}}" size="large"
+                                      label="{{'描述信息' + item}}" border="{{false}}"/>
+                        </van-cell-group>
+                        <view slot="right">{{'删除'+item}}</view>
+                    </van-swipe-cell>
                 </view>
             </view>
-        </view>
-    </van-tab>
 
-    <van-tab title="栏目">
 
-        <view class="rss-posts">
-            <view class="cell-with-margin" wx:for="12345678">
-                <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
-                    <view slot="left">{{'选择'+item}}</view>
-                    <van-cell-group border="{{false}}">
-                        <van-cell is-link url="../blog/blog" custom-class="one-rss" title="{{'栏目' + item}}" value="{{'内容' + item}}" size="large"
-                                  label="{{'描述信息' + item}}" border="{{false}}"/>
-                    </van-cell-group>
-                    <view slot="right">{{'删除'+item}}</view>
-                </van-swipe-cell>
+        </van-tab>
+    </van-tabs>
+
+
+    <view wx:if="{{idx}}">
+        <view class="unread-star-buttons">
+            <view class="tabbar-view-1">
+                <button class="tabbar-button" bindtap="clickStar">
+                    <van-icon name="{{tabbarIconState[0]}}"/>
+                </button>
+            </view>
+            <view class="tabbar-view-2">
+                <button class="tabbar-button" bindtap="clickBrowse">
+                    <van-icon name="{{tabbarIconState[1]}}"/>
+                </button>
+            </view>
+            <view class="tabbar-view-3">
+                <button class="tabbar-button" bindtap="clickCoupon">
+                    <van-icon name="{{tabbarIconState[2]}}"/>
+                </button>
             </view>
         </view>
+    </view>
 
+    <view class="add-rss">
+        <button class="add-rss-button" bindtap="goToEdit" plain>
+            <van-icon name="plus" color="white"/>
+        </button>
+    </view>
 
-    </van-tab>
-</van-tabs>
+    <view class="change-skin">
+        <button class="change-skin-button" bindtap="goToTheme" plain>
+            <van-icon name="setting" color="white"/>
+        </button>
+    </view>
 
-<view class="add-rss">
-    <button class="add-rss-button" bindtap="goToEdit" plain>
-        <van-icon name="plus" color="white"/>
-    </button>
-</view>
 </view>

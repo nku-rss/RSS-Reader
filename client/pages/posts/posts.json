@@ -9,7 +9,5 @@
     "van-cell-group": "../../dist/cell-group/index",
     "van-icon": "../../dist/icon/index",
     "van-button": "../../dist/button/index"
-  },
-  
-  "backgroundColor": "#403F3C"
+  }
 }

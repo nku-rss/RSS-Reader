@@ -1,0 +1,14 @@
+
+<!--    <view class="skin-dark" bindtap="chooseBlackTheme">-->
+<!--    </view>-->
+
+<!--    <view class="skin-grey" bindtap="chooseGreyTheme">-->
+<!--    </view>-->
+
+    <button bindtap="chooseBlackTheme">
+        black
+    </button>
+
+    <button bindtap="chooseGreyTheme">
+        grey
+    </button>

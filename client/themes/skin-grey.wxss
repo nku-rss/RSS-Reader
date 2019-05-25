@@ -1,0 +1,20 @@
+page {
+    /*BACKGROUND*/
+    --grey-page-bk: rgb(64, 63, 60);
+    --grey-tab: rgb(73, 72, 69);
+    --grey-tab-active: rgb(100, 99, 97);
+    --grey-tab-title: rgb(242, 240, 236);
+    --grey-cell-bk:  rgb(73, 72, 69);
+    --grey-cell-swipe-left: rgb(100, 99, 97);
+    --grey-cell-swipe-right: rgb(100, 99, 97);
+    --grey-tabbar-bk: rgb(64, 63, 60);
+    --grey-tabbar-button-bk: rgb(64, 63, 60);
+    --grey-edit-form-bk: rgb(222, 220, 216);
+    /*TEXT*/
+    --grey-cell-title: rgb(242, 240, 236);
+    --grey-cell-label: rgb(202, 200, 196);
+    --grey-cell-value: rgb(202, 200, 196);
+    --grey-cell-swipe-title: rgb(202, 200, 196);
+    --grey-edit-label-title: rgb(64, 63, 60);
+    --grey-edit-placeholder: silver;
+}
