@@ -6,8 +6,16 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // -----------这部分是属于样式的OPEN---------------
+
     skin: "skin-grey",
     bkColor: "rgb(64, 63, 60)",
+    navBkColor: "#403f3c",
+    tabbarIconStateNum: [0, 1, 0],
+    tabbarIconState: ["star", "browsing-history", "coupon"], // 0, 1, 2
+
+
+    // -----------这部分是属于样式的CLOSE---------------
     
     starPosts: [],
     rssSources: [],
@@ -21,6 +29,33 @@ Page({
     icon: {
       normal: '//img.yzcdn.cn/icon-normal.png',
       active: '//img.yzcdn.cn/icon-active.png'
+    }
+  },
+
+
+  setTabbarState() {
+    var that = this;
+
+    var activeIndex = 0;
+
+    for(var i = 0; i < 3; i++) {
+      if(that.data.tabbarIconStateNum[i] == 1) {
+        activeIndex = i;
+      }
+    }
+
+    if(activeIndex === 0) {
+      this.setData({
+        tabbarIconState: ["star", "browsing-history-o", "coupon-o"]
+      })
+    } else if(activeIndex === 1) {
+      this.setData({
+        tabbarIconState: ["star-o", "browsing-history", "coupon-o"]
+      })
+    } else if(activeIndex === 2) {
+      this.setData({
+        tabbarIconState: ["star-o", "browsing-history-o", "coupon"]
+      })
     }
   },
 
@@ -137,6 +172,10 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
+
+    // 设置Tabbar
+    that.setTabbarState();
+
     that.data.rssSources = wx.getStorageSync('rssSourcesKey');
     that.data.starPosts = wx.getStorageSync('starPostsKey');
     wx.request({
@@ -237,5 +276,37 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+
+
+  clickStar: function() {
+
+    var that = this;
+
+    that.data.tabbarIconStateNum = [1, 0, 0];
+
+    that.setTabbarState();
+  },
+
+  clickBrowse: function() {
+
+    var that = this;
+
+    that.data.tabbarIconStateNum = [0, 1, 0];
+
+    that.setTabbarState();
+  },
+
+  clickCoupon: function() {
+
+    var that = this;
+
+    that.data.tabbarIconStateNum = [0, 0, 1];
+
+    that.setTabbarState();
+  },
+
+
+
 })

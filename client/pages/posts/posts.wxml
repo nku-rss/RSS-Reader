@@ -29,26 +29,6 @@
             </view> -->
         </view>
 
-
-        <view wx:if="{{idx}}">
-            <view class="unread-star-buttons">
-                <view class="tabbar-view-1">
-                    <button class="tabbar-button">
-                        <van-icon name="star-o" />
-                    </button>
-                </view>
-                <view class="tabbar-view-2">
-                    <button class="tabbar-button">
-                        <van-icon name="star-o" />
-                    </button>
-                </view>
-                <view class="tabbar-view-3">
-                    <button class="tabbar-button">
-                        <van-icon name="star" />
-                    </button>
-                </view>
-            </view>
-        </view>
     </van-tab>
 
     <van-tab title="栏目">
@@ -69,6 +49,27 @@
 
     </van-tab>
 </van-tabs>
+
+
+    <view wx:if="{{idx}}">
+        <view class="unread-star-buttons">
+            <view class="tabbar-view-1">
+                <button class="tabbar-button" bindtap="clickStar">
+                    <van-icon name="{{tabbarIconState[0]}}"/>
+                </button>
+            </view>
+            <view class="tabbar-view-2">
+                <button class="tabbar-button" bindtap="clickBrowse">
+                    <van-icon name="{{tabbarIconState[1]}}"/>
+                </button>
+            </view>
+            <view class="tabbar-view-3">
+                <button class="tabbar-button" bindtap="clickCoupon">
+                    <van-icon name="{{tabbarIconState[2]}}"/>
+                </button>
+            </view>
+        </view>
+    </view>
 
 <view class="add-rss">
     <button class="add-rss-button" bindtap="goToEdit" plain>
