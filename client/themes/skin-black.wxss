@@ -8,10 +8,16 @@ page {
     --black-cell-swipe-right: rgb(0, 0, 0);
     --black-tabbar-bk: rgb(0, 0, 0);
     --black-tabbar-button-bk: rgb(0, 0, 0);
+    --black-edit-form-bk: rgb(0, 0, 0);
+    --black-edit-button-bk: rgb(0, 0, 0);
     /*TEXT*/
     --black-tab-title: rgb(255, 255, 255);
     --black-cell-title: rgb(255, 255, 255);
     --black-cell-label: rgb(255, 255, 255);
     --black-cell-value: rgb(255, 255, 255);
     --black-cell-swipe-title: rgb(255, 255, 255);
+    --black-edit-label-title: rgb(255, 255, 255);
+    --black-edit-placeholder: rgb(255, 255, 255);
+    --black-edit-form-border: rgb(255, 255, 255);
+    --black-blog-name: rgb(255, 255, 255);
 }

@@ -1,22 +1,24 @@
-<view class="blog-avatar">
-  <view class="blog-icon">
-    <image class="blog-icon-image" src="https://www.bilibili.com/favicon.ico"></image>
-  </view>
-  <view class="blog-name">
-    <label>薛旭的博客</label>
-  </view>
-</view>
+<view view class="page" style="background-color: {{bkColor}}" id="{{skin}}">
+    <view class="blog-avatar">
+        <view class="blog-icon">
+            <image class="blog-icon-image" src="https://www.bilibili.com/favicon.ico"></image>
+        </view>
+        <view class="blog-name">
+            <label>薛旭的博客</label>
+        </view>
+    </view>
 
-<view class="rss-posts">
-  <view class="myview" wx:for="12345678">
-    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
-      <view slot="left">{{'选择'+item}}</view>
-      <van-cell-group border="{{false}}">
-        <van-cell is-link url="../article/article" link-type="navigateTo" custom-class="one-rss"
-                  title="{{'薛旭的博文' + item}}" value="{{'内容' + item}}" size="large" label="{{'描述信息' + item}}"
-                  border="{{false}}"/>
-      </van-cell-group>
-      <view slot="right">{{'删除'+item}}</view>
-    </van-swipe-cell>
-  </view>
+    <view class="rss-posts">
+        <view class="cell-with-margin" wx:for="12345678">
+            <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
+                <view slot="left">{{'选择'+item}}</view>
+                <van-cell-group border="{{false}}">
+                    <van-cell is-link url="../article/article" link-type="navigateTo" custom-class="one-rss"
+                              title="{{'薛旭的博文' + item}}" value="{{'内容' + item}}" size="large" label="{{'描述信息' + item}}"
+                              border="{{false}}"/>
+                </van-cell-group>
+                <view slot="right">{{'删除'+item}}</view>
+            </van-swipe-cell>
+        </view>
+    </view>
 </view>
