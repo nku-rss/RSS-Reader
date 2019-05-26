@@ -6,10 +6,10 @@
 
             <view class="rss-posts">
                 <view class="cell-with-margin" wx:for="{{allPosts}}">
-                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
+                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onSlidePost">
                         <view slot="left">收藏</view>
                         <van-cell-group border="{{false}}">
-                            <van-cell bindtap="goToArticle" id="{{index}}" custom-class="one-rss" title="{{allPosts[index].title}}" value="{{allPosts[index].author}}" size="large" border="{{false}}"/>
+                            <van-cell bindtap="goToArticle" id="{{index}}" custom-class="one-rss" title="{{allPosts[index].post.title}}" value="{{allPosts[index].post.author}}" size="large" border="{{false}}"/>
                         </van-cell-group>
                         <view slot="right">已读</view> 
                     </van-swipe-cell>
@@ -23,15 +23,13 @@
         <van-tab title="栏目">
 
             <view class="rss-posts">
-                <view class="cell-with-margin" wx:for="12345678">
-                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
-                        <view slot="left">{{'选择'+item}}</view>
+                <view class="cell-with-margin" wx:for="{{rssSources}}">
+                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onSlideBlog">
+                        <view slot="left">置顶</view>
                         <van-cell-group border="{{false}}">
-                            <van-cell is-link url="../blog/blog" custom-class="one-rss" title="{{'栏目' + item}}"
-                                      value="{{'内容' + item}}" size="large"
-                                      label="{{'描述信息' + item}}" border="{{false}}"/>
+                            <van-cell is-link url="../blog/blog" custom-class="one-rss" title="{{rssSources[index].rssName}}" size="large" label="{{rssSources[index].rssUrl}}" border="{{false}}"/>
                         </van-cell-group>
-                        <view slot="right">{{'删除'+item}}</view>
+                        <view slot="right">删除Rss</view>
                     </van-swipe-cell>
                 </view>
             </view>

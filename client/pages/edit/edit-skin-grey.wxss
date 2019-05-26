@@ -13,7 +13,7 @@
     margin-left: 4%;
     margin-right: 4%;
     padding: 3%;
-    /*border-radius: 20px;*/
+    border-radius: 20px;
     /*background-color: rgb(242, 240, 236);*/
     background-color: var(--grey-edit-form-bk);
 }

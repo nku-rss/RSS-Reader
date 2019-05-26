@@ -8,7 +8,7 @@
 #skin-grey .nav-class {
     margin: 0 20%;
     z-index: 100;
-    /*border-radius: 25rpx;*/
+    border-radius: 25rpx;
     border: 0rpx !important;
 }
 
@@ -19,7 +19,7 @@
 #skin-grey .tab-class {
     background-color: var(--grey-tab) !important;
     color: var(--grey-tab-title) !important;
-    /*border-radius: 15rpx;*/
+    border-radius: 15rpx;
     border: 0rpx !important;
 }
 
@@ -45,7 +45,7 @@
 }
 
 #skin-grey .van-swipe-cell {
-    /*border-radius: 25rpx;*/
+    border-radius: 25rpx;
 }
 
 #skin-grey .van-swipe-cell__left {

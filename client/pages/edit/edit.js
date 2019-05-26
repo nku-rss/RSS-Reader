@@ -21,23 +21,51 @@ Page({
     console.log(e)
     if(!newRssSource.rssUrl){
       wx.showToast({
-        title: '请输入Rss源！',
+        title: '请输入RSS源！',
         icon:'none'
       })
     }
-    else{
-      let pages = getCurrentPages();
-      let previousPage = pages[pages.length-2];
-      previousPage.setData({
-        newRssSource:newRssSource
+    else if(!newRssSource.rssName){
+      wx.showToast({
+        title: '请输入RSS名称！',
+        icon: 'none'
       })
-      wx.navigateBack({
-        delta: 1,
-        success() {
-          wx.showToast({
-            title: "添加成功！",
-            icon: 'none'
-          })
+    }
+    else{
+      wx.showLoading({
+        title: '正在添加RSS...',
+      });
+      wx.request({
+        url: 'http://nkurss.potatobrother.cn:8080/rssread/testRssSource',
+        data:{
+          rssUrl:newRssSource.rssUrl
+        },
+        success(res){
+          wx.hideLoading();
+          if(res.data.test=='error'){
+            wx.showToast({
+              title: 'RSS源地址有误！',
+              icon :'none'
+            })
+          }
+          else{
+            let pages = getCurrentPages();
+            let previousPage = pages[pages.length - 2];
+            previousPage.setData({
+              newRssSource: newRssSource
+            })
+            wx.navigateBack({
+              delta: 1,
+              success() {
+                wx.showToast({
+                  title: "添加成功！",
+                })
+              }
+            })
+          }
+        },
+        complete(){
+          wx.hideLoading();
         }
       })
     } 

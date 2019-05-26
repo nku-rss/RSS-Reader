@@ -20,7 +20,8 @@ def index(request):
             continue
         print(oneRssUrl)
         oneHtmlSource = feedparser.parse(oneRssUrl)
-        htmlSources.append(oneHtmlSource)
+        if len(oneHtmlSource['entries'])!=0:
+            htmlSources.append(oneHtmlSource)
     posts = []
     for i in range(len(htmlSources)):
         if i>3:
@@ -34,39 +35,39 @@ def index(request):
 
 
 @require_http_methods(["GET"])
-def will_change_index(request):
+def get_all_posts(request):
     rssSources = request.GET.get('rssSources','')
     # rssSources: list of rsspackages
     if not rssSources:
         return JsonResponse({'posts':''})
     rssSources = json.loads(rssSources)
     rssUrls = [x['rssUrl'] for x in rssSources]
-    # xmlSources：list of all rsspackages-xmlsource(each item is a xml with many posts)
+    # htmlSources : many htmlSource
+    # htmlSource : { 'rssUrl':oneRssUrl, 'oneHtmlSource':oneHtmlSource }
+    # oneHtmlSource : { 'feed':feed , 'entries':entries, ...}  
+    # entries : [posts]
+    # posts : { 'id':id, 'title':title, ... } not follow posts
     htmlSources = []
     for oneRssUrl in rssUrls:
         if not oneRssUrl:
             continue
         print(oneRssUrl)
         oneHtmlSource = feedparser.parse(oneRssUrl)
-        htmlSources.append({'rssUrl':oneRssUrl, 'oneHtmlSource':oneHtmlSource})
+        if len(oneHtmlSource['entries'])!=0:
+            htmlSource = {'rssUrl':oneRssUrl, 'oneHtmlSource':oneHtmlSource}
+            htmlSources.append(htmlSource)
     posts = []
     for i in range(len(htmlSources)):
         if i>5:
             break
-        onePost = htmlSources[i]['oneHtmlSource']['entries'][0]
-        posts.append({'rssUrl':htmlSources[i]['rssUrl'],'postId':htmlSources[i]['entries']['id'],'post':onePost})
+        for j in range(len(htmlSources[i]['oneHtmlSource']['entries'])):
+            if j>3:
+                break
+            onePost = htmlSources[i]['oneHtmlSource']['entries'][j]
+            post = {'rssUrl':htmlSources[i]['rssUrl'],'postId':htmlSources[i]['oneHtmlSource']['entries'][j]['id'],'post':onePost}
+            posts.append(post)
     return JsonResponse({'posts':posts})
 
-
-@require_http_methods(["GET"])
-def pre_index(request):
-    rssSources = request.GET.get('rssSources','')    
-    print(rssSources)
-    url = 'https://zhihu.com/rss'
-    feedtext = feedparser.parse(url)
-    entries = feedtext['entries'][2]
-    response = JsonResponse(entries)
-    return response
 
 # rssUrl and postId
 @require_http_methods(["GET"])
@@ -83,3 +84,17 @@ def get_one_post(request):
             onePost = posts[i]
             break;
     return JsonResponse({'onePost':onePost})
+
+
+# rssUrl and postId
+@require_http_methods(["GET"])
+def test_rss_source(request):
+    rssUrl = request.GET.get('rssUrl','')
+    htmlSource = feedparser.parse(rssUrl)
+    if len(htmlSource['entries'])!=0:
+        return JsonResponse({'test':'ok'})
+    else:
+        return JsonResponse({'test':'error'})
+
+
+

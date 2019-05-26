@@ -9,7 +9,7 @@
             <label class="input-prefix">源地址:</label>
             <view class=".space"></view>
             <view class=".space"></view>
-            <input name="rssUrl" placeholder="your.favorite.blog.org/rss" placeholder-class="custom-placeholder"/>
+            <input name="rssUrl" placeholder="your.favorite.blog/rss/xxx.xml" placeholder-class="custom-placeholder"/>
             <view class='line'></view>
         </view>
 
