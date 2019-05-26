@@ -1,4 +1,5 @@
 /* pages/detail/detail.wxss */
+@import "wxParse/wxParse.wxss";
 .title {
   font-size: 48rpx;
   margin: 0 5px;
