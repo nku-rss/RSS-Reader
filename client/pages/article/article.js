@@ -41,15 +41,16 @@ Page({
       url:    'https://nkurss.potatobrother.cn/rssread/onePost',
       method: 'GET',
       data: {
-        rssUrl: that.data.rssUrl,
-        postId: that.data.postId
+        rssUrl: 'https://zilongshanren.com/atom.xml',
+        postId: 'http://zilongshanren.com/blog/2018-09-01-clean-architecture-summary.html'
       },
       header: {
         "content-type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
-        console.log(res)
+        //console.log(res)
         var tempOnePost = res.data.onePost
+        var description_value
         console.log(tempOnePost)
         if (!tempOnePost) {
           console.log("no_matched_post")
@@ -57,11 +58,18 @@ Page({
         else if(tempOnePost=="error_request"){
           console.log("error_request")
         }else{
+          if (tempOnePost.indexOf(summary_detail) > -1){
+            description_value = tempOnePost.summary_detail.value
+          } else if (tempOnePost.indexOf(content) > -1){
+            description_value = tempOnePost.content.value
+          } else {
+            description_value = "读取rss源时发生错误，请切换可读取的rss源"
+          }
           that.setData({
             title: tempOnePost.title,
             author: tempOnePost.author,
             link: tempOnePost.link,
-            description: tempOnePost.summary_detail.value,
+            description: description_value,
             published: tempOnePost.published ? util.formatDate("yyyy-MM-dd HH:mm:ss", tempOnePost.published) : '',
           })
           console.log("success");
@@ -76,24 +84,6 @@ Page({
         console.log('complete');
       }
     })
-    // const favicon = `${rssData.link}/favicon.ico`;
-    // const rssDataItem = rssData.item[id];
-    // const { title, link, pubDate } = rssDataItem;
-    // console.log(rssDataItem);
-    // this.setData({
-    //   title,
-    //   author,
-    //   link,
-    //   description,
-    //   pubDate: pubDate ? util.formatDate("yyyy-MM-dd HH:mm:ss", pubDate) : '', // 日期时间需格式化
-    // });
-
-    // 多种rss返回值数据的简单兼容处理，待优化（TODO）
-    // if (tempOnePost['content:encoded']) {
-    //   // 调用富文本转化方法
-    //   WxParse.wxParse('article', 'html', tempOnePost['content:encoded'], that, 5);
-    //   return;
-    // }
   },
 
   // 链接弹框显隐控制
