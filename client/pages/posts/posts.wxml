@@ -5,29 +5,17 @@
         <van-tab title="博文" class="test">
 
             <view class="rss-posts">
-                <view class="cell-with-margin" wx:for="{{rssSources}}">
+                <view class="cell-with-margin" wx:for="{{allPosts}}">
                     <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
-                        <view slot="left">{{'选择'+index}}</view>
+                        <view slot="left">收藏</view>
                         <van-cell-group border="{{false}}">
-                            <van-cell is-link url="../article/article" link-type="navigateTo" custom-class="one-rss"
-                                      title="{{'博文' + index}}" value="{{'内容' + item.rssUrl}}" size="large"
-                                      label="{{'描述信息' + item.rssDescribe}}"
-                                      border="{{false}}"/>
+                            <van-cell bindtap="goToArticle" id="{{index}}" custom-class="one-rss" title="{{allPosts[index].title}}" value="{{allPosts[index].author}}" size="large" border="{{false}}"/>
                         </van-cell-group>
-                        <view slot="right">{{'删除'+index}}</view>
+                        <view slot="right">已读</view> 
                     </van-swipe-cell>
                 </view>
-                <!-- <view class="cell-with-margin" wx:for="12345678">
-                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
-                        <view slot="left">{{'选择'+item}}</view>
-                        <van-cell-group border="{{false}}">
-                            <van-cell is-link url="../article/article" link-type="navigateTo" custom-class="one-rss"
-                                      title="{{'博文' + item}}" value="{{'内容' + item}}" size="large" label="{{'描述信息' + item}}"
-                                      border="{{false}}"/>
-                        </van-cell-group>
-                        <view slot="right">{{'删除'+item}}</view>
-                    </van-swipe-cell>
-                </view> -->
+                <!--is-link url="'../article/article?rssUrl='+allPosts[index].rssUrl+'&postId='+allPosts[index].postId}}" link-type="navigateTo"
+                bindtap="goToArticle" id="{{index}}"  label="{{allPosts[index].published}}" is-link url="../article/article?onePost={{allPosts[index]}}" link-type="navigateTo" -->
             </view>
 
         </van-tab>

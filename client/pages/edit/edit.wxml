@@ -9,7 +9,7 @@
             <label class="input-prefix">源地址:</label>
             <view class=".space"></view>
             <view class=".space"></view>
-            <input placeholder="your.favorite.blog.org/rss" placeholder-class="custom-placeholder"/>
+            <input name="rssUrl" placeholder="your.favorite.blog.org/rss" placeholder-class="custom-placeholder"/>
             <view class='line'></view>
         </view>
 
@@ -17,7 +17,7 @@
             <label class="input-prefix">源名称:</label>
             <view class=".space"></view>
             <view class=".space"></view>
-            <input placeholder="Grumpy Cat" placeholder-class="custom-placeholder"/>
+            <input name="rssName" placeholder="Grumpy Cat" placeholder-class="custom-placeholder"/>
             <view class='line'></view>
         </view>
 
@@ -25,7 +25,7 @@
             <label class="input-prefix">源描述:</label>
             <view class=".space"></view>
             <view class=".space"></view>
-            <input placeholder="猫猫猫猫猫🐱猫猫猫猫猫" placeholder-class="custom-placeholder"/>
+            <input name="rssDescribe" placeholder="猫猫猫猫猫🐱猫猫猫猫猫" placeholder-class="custom-placeholder"/>
             <view class='line'></view>
         </view>
 
@@ -33,7 +33,7 @@
             <label class="input-prefix">LOGO:</label>
             <view class=".space"></view>
             <view class=".space"></view>
-            <input placeholder="your.favorite.blog.org/favicon.ico" placeholder-class="custom-placeholder"/>
+            <input name="rssLogo"     placeholder="your.favorite.blog.org/favicon.ico" placeholder-class="custom-placeholder"/>
             <view class='line'></view>
         </view>
 
@@ -41,7 +41,7 @@
             <label class="input-prefix">博客链接:</label>
             <view class=".space"></view>
             <view class=".space"></view>
-            <input placeholder="your.favorite.blog.org" placeholder-class="custom-placeholder"/>
+            <input name="webUrl" placeholder="your.favorite.blog.org" placeholder-class="custom-placeholder"/>
             <view class='line'></view>
         </view>
     </view>

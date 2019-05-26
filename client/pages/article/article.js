@@ -11,7 +11,7 @@ const article = '';
 
 Page({
   data: {
-    index: '',
+    postId: '',
     title: '',          // 文章标题
     author: '',         // 文章作者或源名称
     favicon: '',        // 源logo
@@ -25,9 +25,10 @@ Page({
   },
   onLoad: function (options) {
     // 加载页面后，用跨页参数在缓存中查询出具体文字内容
-    this.data.index = options.index;
-    this.data.favicon = options.favicon;
+    this.data.postId = options.postId;
+    // this.data.favicon = options.favicon;
     this.data.rssUrl = options.rssUrl;
+    // console.log("ssssss ",options)
     this.showDetail();
   },
 
@@ -40,8 +41,8 @@ Page({
       url:    'http://nkurss.potatobrother.cn:8080/rssread/onePost',
       method: 'GET',
       data: {
-        rssUrl: 'https://zhihu.com/rss',
-        index: 'http://www.zhihu.com/question/284593685/answer/693527322'
+        rssUrl: that.data.rssUrl,
+        postId: that.data.postId
       },
       header: {
         "content-type": "application/x-www-form-urlencoded"

@@ -9,17 +9,42 @@ Page({
     editSource: [], 
   },
   addTo:function(e) {
-    var that = this;
-    var editSource = [];
-    editSource[0] = e.detail.value.address;
-    editSource[1] = e.detail.value.name;
-    editSource[2] = e.detail.value.decribe;
-    editSource[3] = e.detail.value.logo;
-    editSource[4] = e.detail.value.source;
+    let that = this;
+    let newRssSource = {
+      rssUrl: e.detail.value.rssUrl,
+      rssName: e.detail.value.rssName,
+      rssDescribe: e.detail.value.rssDecribe,
+      rssLogo: e.detail.value.rssLogo,
+      webUrl: e.detail.value.webUrl
+    };
+    console.log(newRssSource);
+    console.log(e)
+    if(!newRssSource.rssUrl){
+      wx.showToast({
+        title: '请输入Rss源！',
+        icon:'none'
+      })
+    }
+    else{
+      let pages = getCurrentPages();
+      let previousPage = pages[pages.length-2];
+      previousPage.setData({
+        newRssSource:newRssSource
+      })
+      wx.navigateBack({
+        delta: 1,
+        success() {
+          wx.showToast({
+            title: "添加成功！",
+            icon: 'none'
+          })
+        }
+      })
+    } 
   },
   addCancel:function(e) {
-    wx.redirectTo({
-      url: '/pages/article/article'
+    wx.navigateBack({
+      delta:1
     })
   },
 
