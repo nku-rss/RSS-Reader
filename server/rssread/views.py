@@ -86,6 +86,21 @@ def get_one_post(request):
     return JsonResponse({'onePost':onePost})
 
 
+@require_http_methods(["GET"])
+def get_one_rss_posts(request):
+    rssUrl = request.GET.get('rssUrl','')
+    if not rssUrl:
+        return JsonResponse({'onePost','error_request'})
+    htmlSource = feedparser.parse(rssUrl)
+    posts = htmlSource['entries']
+    onePost = {}
+    for i in range(len(posts)):
+        if posts[i]['id'] == postId:
+            onePost = posts[i]
+            break;
+    return JsonResponse({'onePost':onePost})
+
+
 # rssUrl and postId
 @require_http_methods(["GET"])
 def test_rss_source(request):
