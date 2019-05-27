@@ -31,7 +31,7 @@ Page({
     // console.log("ssssss ",options)
     this.showDetail();
   },
-
+  
   // 展示文章详情
   showDetail: function () {
     // const rssData = wx.getStorageSync('rssData') || {};
@@ -48,8 +48,10 @@ Page({
         "content-type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
-        console.log(res)
+        //console.log(res)
         var tempOnePost = res.data.onePost
+        var description_value
+        var index = 0
         console.log(tempOnePost)
         if (!tempOnePost) {
           console.log("no_matched_post")
@@ -57,11 +59,24 @@ Page({
         else if(tempOnePost=="error_request"){
           console.log("error_request")
         }else{
+          if (tempOnePost.summary_detail != undefined){
+            description_value = tempOnePost.summary_detail.value
+          } else if (tempOnePost.content != undefined){
+            // description_value = tempOnePost.content[0].value
+            while (tempOnePost.content[index] != undefined) {
+              description_value += tempOnePost.content[index].value
+              index ++
+            }
+          } else if (tempOnePost.description != undefined){
+            description_value = tempOnePost.description
+          } else {
+            description_value = tempOnePost.summary
+          }
           that.setData({
             title: tempOnePost.title,
             author: tempOnePost.author,
             link: tempOnePost.link,
-            description: tempOnePost.summary_detail.value,
+            description: description_value,
             published: tempOnePost.published ? util.formatDate("yyyy-MM-dd HH:mm:ss", tempOnePost.published) : '',
           })
           console.log("success");
@@ -76,24 +91,6 @@ Page({
         console.log('complete');
       }
     })
-    // const favicon = `${rssData.link}/favicon.ico`;
-    // const rssDataItem = rssData.item[id];
-    // const { title, link, pubDate } = rssDataItem;
-    // console.log(rssDataItem);
-    // this.setData({
-    //   title,
-    //   author,
-    //   link,
-    //   description,
-    //   pubDate: pubDate ? util.formatDate("yyyy-MM-dd HH:mm:ss", pubDate) : '', // 日期时间需格式化
-    // });
-
-    // 多种rss返回值数据的简单兼容处理，待优化（TODO）
-    // if (tempOnePost['content:encoded']) {
-    //   // 调用富文本转化方法
-    //   WxParse.wxParse('article', 'html', tempOnePost['content:encoded'], that, 5);
-    //   return;
-    // }
   },
 
   // 链接弹框显隐控制
