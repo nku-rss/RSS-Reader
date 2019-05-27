@@ -41,8 +41,8 @@ Page({
       url:    'https://nkurss.potatobrother.cn/rssread/onePost',
       method: 'GET',
       data: {
-        rssUrl: 'https://zilongshanren.com/atom.xml',
-        postId: 'http://zilongshanren.com/blog/2018-09-01-clean-architecture-summary.html'
+        rssUrl: that.data.rssUrl,
+        postId: that.data.postId
       },
       header: {
         "content-type": "application/x-www-form-urlencoded"
@@ -58,12 +58,14 @@ Page({
         else if(tempOnePost=="error_request"){
           console.log("error_request")
         }else{
-          if (tempOnePost.indexOf(summary_detail) > -1){
+          if (tempOnePost.summary_detail != undefined){
             description_value = tempOnePost.summary_detail.value
-          } else if (tempOnePost.indexOf(content) > -1){
+          } else if (tempOnePost.content != undefined){
             description_value = tempOnePost.content.value
+          } else if (tempOnePost.description != undefined){
+            description_value = tempOnePost.description
           } else {
-            description_value = "读取rss源时发生错误，请切换可读取的rss源"
+            description_value = tempOnePost.summary
           }
           that.setData({
             title: tempOnePost.title,
