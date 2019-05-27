@@ -38,7 +38,7 @@ Page({
     // const author = rssData.title || '';
     let that = this;
     wx.request({
-      url:    'http://nkurss.potatobrother.cn:8080/rssread/onePost',
+      url:    'https://nkurss.potatobrother.cn/rssread/onePost',
       method: 'GET',
       data: {
         rssUrl: that.data.rssUrl,

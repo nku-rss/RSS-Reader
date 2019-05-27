@@ -13,6 +13,8 @@ Page({
     tabbarIconStateNum: [0, 1, 0],
     tabbarIconState: ["star", "browsing-history", "coupon"], // 0, 1, 2
     // -----------这部分是属于样式的CLOSE---------------
+
+    showModal: false, // 对话窗
     
     starPosts: [],
     rssSources: [],
@@ -75,22 +77,46 @@ Page({
         else{
           console.log('nothing');
         }
-        wx.showModal({
-          title: '提示',
-          content: '模态弹窗',
-          success: function (res) {
-              if (res.confirm) {
-                  console.log('用户点击确定');
-                  instance.close();
-              }else{
-                 console.log('用户点击取消');
-              }
 
-          }
-        })
+
+
         break;
     }
   },
+
+  // -------------------------对话窗OPEN-------------------------
+  showModal: function () {
+
+    this.setData({
+
+      showModal: true
+
+    })
+
+  },
+
+  hideModal: function () {
+
+    this.setData({
+
+      showModal: false
+
+    });
+
+  },
+  onCancel: function () {
+
+    this.hideModal();
+
+  },
+
+  onConfirm: function () {
+
+    this.hideModal();
+
+  },
+
+  // -------------------------对话窗CLOSE-------------------------
 
   onSlideBlog(event) {
     let that = this;
@@ -113,19 +139,9 @@ Page({
         else {
           console.log('nothing');
         }
-        wx.showModal({
-          title: '提示',
-          content: '模态弹窗',
-          success: function (res) {
-            if (res.confirm) {
-              console.log('用户点击确定');
-              instance.close();
-            } else {
-              console.log('用户点击取消');
-            }
 
-          }
-        })
+        that.showModal();
+
         break;
     }
   },
@@ -203,7 +219,7 @@ Page({
       title: '正在更新博文...',
     })
     wx.request({
-      url: 'http://nkurss.potatobrother.cn:8080/rssread/allPosts',
+      url: 'https://nkurss.potatobrother.cn/rssread/allPosts',
       method: 'GET',
       data: {
         rssSources: that.data.rssSources,

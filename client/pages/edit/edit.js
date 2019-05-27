@@ -36,7 +36,7 @@ Page({
         title: '正在添加RSS...',
       });
       wx.request({
-        url: 'http://nkurss.potatobrother.cn:8080/rssread/testRssSource',
+        url: 'https://nkurss.potatobrother.cn/rssread/testRssSource',
         data:{
           rssUrl:newRssSource.rssUrl
         },
