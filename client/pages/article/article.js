@@ -31,7 +31,7 @@ Page({
     // console.log("ssssss ",options)
     this.showDetail();
   },
-
+  
   // 展示文章详情
   showDetail: function () {
     // const rssData = wx.getStorageSync('rssData') || {};
@@ -51,6 +51,7 @@ Page({
         //console.log(res)
         var tempOnePost = res.data.onePost
         var description_value
+        var index = 0
         console.log(tempOnePost)
         if (!tempOnePost) {
           console.log("no_matched_post")
@@ -61,7 +62,11 @@ Page({
           if (tempOnePost.summary_detail != undefined){
             description_value = tempOnePost.summary_detail.value
           } else if (tempOnePost.content != undefined){
-            description_value = tempOnePost.content.value
+            // description_value = tempOnePost.content[0].value
+            while (tempOnePost.content[index] != undefined) {
+              description_value += tempOnePost.content[index].value
+              index ++
+            }
           } else if (tempOnePost.description != undefined){
             description_value = tempOnePost.description
           } else {
