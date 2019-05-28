@@ -1,4 +1,4 @@
-<!-- <wxs module="judge">
+<wxs module="judge">
   function judge_star(starPosts,showPosts,index){
     var tempId = showPosts[index].postId;
     for(var i=0;i<starPosts.length;i++){
@@ -9,7 +9,7 @@
 		return false;
 	}
   module.exports.judge_star = judge_star;
-</wxs> -->
+</wxs>
 
 <view class="page" style="background-color: {{bkColor}}" id="{{skin}}">
     <van-tabs animated type="card" bind:click="onClick" active="0" tab-class="tab-class" nav-class="nav-class"
@@ -19,15 +19,15 @@
             <view class="rss-posts">
                 <view class="cell-with-margin" wx:for="{{showPosts}}">
                     <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="{{index}}" async-close bind:close="onSlidePost">
-                        <!-- <view slot="left" wx:if="{{judge.judge_star(starPosts,showPosts,index)}}">取消收藏</view>
-                        <view slot="left" wx:if="{{!judge.judge_star(starPosts,showPosts,index)}}">收藏</view> -->
-                        <view slot="left">收藏</view>
+                        <view slot="left" wx:if="{{judge.judge_star(starPosts,showPosts,index)}}">取消收藏</view>
+                        <view slot="left" wx:if="{{!judge.judge_star(starPosts,showPosts,index)}}">收藏</view>
+                        <!-- <view slot="left">收藏</view> -->
                         <van-cell-group border="{{false}}">
                             <van-cell bindtap="goToArticle" id="{{index}}" custom-class="one-rss" title="{{showPosts[index].post.title}}" label="{{showPosts[index].post.author}}" size="large" border="{{false}}"/>
                         </van-cell-group>
-                        <view slot="right">已读</view>
-                        <!-- <view slot="right" wx:if="{{bottomIndex==1}}">已读</view> 
-                        <view slot="right" wx:if="{{bottomIndex!=1}}"></view>  -->
+                        <!-- <view slot="right">已读</view> -->
+                        <view slot="right" wx:if="{{bottomIndex==1}}">已读</view> 
+                        <view slot="right" wx:if="{{bottomIndex!=1}}"></view> 
                     </van-swipe-cell>
                 </view>
             </view>

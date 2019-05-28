@@ -76,16 +76,18 @@ Page({
     let hasStared = false;
     let tempPostId = that.data.showPosts[tempIndex].postId;
     let i = 0;
-    for (let i=0; i < that.data.starPosts.length; i++) {
+    for (i; i < that.data.starPosts.length; i++) {
       if (that.data.starPosts[i].postId == tempPostId) {
         hasStared = true;
         break;
       }
     }
     if (hasStared) {
-      that.cancelStar(tempIndex);
+      console.log('quxiaoshoucang',i)
+      that.cancelStar(i);
     }
     else {
+      console.log('界面', that.data.bottomIndex, '收藏')
       that.data.starPosts.push(that.data.showPosts[tempIndex]);
       that.setData({
         starPosts: that.data.starPosts
@@ -112,13 +114,13 @@ Page({
       starPosts:tempStarPosts
     });
     wx.setStorageSync(that.data.starPostsKey, that.data.starPosts)
-    console.log('quxiao')
-    if(that.bottomIndex==0){
-      console.log('congzhi')
+    if(that.data.bottomIndex==0){
       that.setData({
         showPosts:that.data.starPosts
       });
     }
+    console.log('界面',that.data.bottomIndex,'取消收藏',tempIndex)
+    console.log(that.data.starPosts)
     wx.showToast({
       title: '取消收藏!',
       icon:'none'
