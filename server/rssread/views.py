@@ -5,37 +5,39 @@ import json
 from django.views.decorators.http import require_http_methods
 # Create your views here.
 
-@require_http_methods(["GET"])
-def index(request):
-    rssSources = request.GET.get('rssSources','')
-    # rssSources: list of rsspackages
-    if not rssSources:
-        return JsonResponse({'posts':''})
-    rssSources = json.loads(rssSources)
-    rssUrls = [x['rssUrl'] for x in rssSources]
-    # xmlSources：list of all rsspackages-xmlsource(each item is a xml with many posts)
-    htmlSources = []
-    for oneRssUrl in rssUrls:
-        if not oneRssUrl:
-            continue
-        print(oneRssUrl)
-        oneHtmlSource = feedparser.parse(oneRssUrl)
-        if len(oneHtmlSource['entries'])!=0:
-            htmlSources.append(oneHtmlSource)
-    posts = []
-    for i in range(len(htmlSources)):
-        if i>3:
-            break
-        for j in range(len(htmlSources[i]['entries'])):
-            if j>3:
-                break
-            onePost = htmlSources[i]['entries'][j]
-            posts.append(onePost)
-    return JsonResponse({'posts':posts})
+# @require_http_methods(["GET"])
+# def index(request):
+#     rssSources = request.GET.get('rssSources','')
+#     # rssSources: list of rsspackages
+#     if not rssSources:
+#         return JsonResponse({'posts':''})
+#     rssSources = json.loads(rssSources)
+#     rssUrls = [x['rssUrl'] for x in rssSources]
+#     # xmlSources：list of all rsspackages-xmlsource(each item is a xml with many posts)
+#     htmlSources = []
+#     for oneRssUrl in rssUrls:
+#         if not oneRssUrl:
+#             continue
+#         print(oneRssUrl)
+#         oneHtmlSource = feedparser.parse(oneRssUrl)
+#         if len(oneHtmlSource['entries'])!=0:
+#             htmlSources.append(oneHtmlSource)
+#     posts = []
+#     for i in range(len(htmlSources)):
+#         if i>3:
+#             break
+#         for j in range(len(htmlSources[i]['entries'])):
+#             if j>3:
+#                 break
+#             onePost = htmlSources[i]['entries'][j]
+#             posts.append(onePost)
+#     return JsonResponse({'posts':posts})
 
 
 @require_http_methods(["GET"])
-def get_all_posts(request):
+def get_new_posts(request):
+    rssNumber = 4
+    postsNumber = 4
     rssSources = request.GET.get('rssSources','')
     # rssSources: list of rsspackages
     if not rssSources:
@@ -58,15 +60,15 @@ def get_all_posts(request):
             htmlSources.append(htmlSource)
     posts = []
     for i in range(len(htmlSources)):
-        if i>5:
+        if i>=rssNumber:
             break
         for j in range(len(htmlSources[i]['oneHtmlSource']['entries'])):
-            if j>3:
+            if j>=postsNumber:
                 break
             onePost = htmlSources[i]['oneHtmlSource']['entries'][j]
-            post = {'rssUrl':htmlSources[i]['rssUrl'],'postId':htmlSources[i]['oneHtmlSource']['entries'][j]['id'],'post':onePost}
+            post = {'rssUrl':htmlSources[i]['rssUrl'],'postId':onePost['id'],'isStared':'no','post':onePost}
             posts.append(post)
-    return JsonResponse({'posts':posts})
+    return JsonResponse({'newPosts':posts})
 
 
 # rssUrl and postId
@@ -88,17 +90,20 @@ def get_one_post(request):
 
 @require_http_methods(["GET"])
 def get_one_rss_posts(request):
+    postsNum = 5
     rssUrl = request.GET.get('rssUrl','')
     if not rssUrl:
         return JsonResponse({'onePost','error_request'})
     htmlSource = feedparser.parse(rssUrl)
     posts = htmlSource['entries']
-    onePost = {}
+    ansPosts = []
     for i in range(len(posts)):
-        if posts[i]['id'] == postId:
-            onePost = posts[i]
-            break;
-    return JsonResponse({'onePost':onePost})
+        if i>=postsNum:
+            break
+        onePost = posts[i]
+        post = {'rssUrl':rssUrl,'postId':onePost['id'],'isStared':'no','post':onePost}
+        ansPosts.append(post)
+    return JsonResponse({'oneRssPosts':ansPosts})
 
 
 # rssUrl and postId

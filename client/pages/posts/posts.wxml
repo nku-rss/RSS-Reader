@@ -1,26 +1,39 @@
+<!-- <wxs module="judge">
+  function judge_star(starPosts,showPosts,index){
+    var tempId = showPosts[index].postId;
+    for(var i=0;i<starPosts.length;i++){
+      if(starPosts[i].postId ==tempId){
+        return true;
+      }
+    }
+		return false;
+	}
+  module.exports.judge_star = judge_star;
+</wxs> -->
+
 <view class="page" style="background-color: {{bkColor}}" id="{{skin}}">
     <van-tabs animated type="card" bind:click="onClick" active="0" tab-class="tab-class" nav-class="nav-class"
               tab-active-class="tab-active-class">
-        <van-tab title="博文" class="test">
 
+        <van-tab title="博文" class="test">
             <view class="rss-posts">
-                <view class="cell-with-margin" wx:for="{{allPosts}}">
-                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onSlidePost">
+                <view class="cell-with-margin" wx:for="{{showPosts}}">
+                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="{{index}}" async-close bind:close="onSlidePost">
+                        <!-- <view slot="left" wx:if="{{judge.judge_star(starPosts,showPosts,index)}}">取消收藏</view>
+                        <view slot="left" wx:if="{{!judge.judge_star(starPosts,showPosts,index)}}">收藏</view> -->
                         <view slot="left">收藏</view>
                         <van-cell-group border="{{false}}">
-                            <van-cell bindtap="goToArticle" id="{{index}}" custom-class="one-rss" title="{{allPosts[index].post.title}}" label="{{allPosts[index].post.author}}" size="large" border="{{false}}"/>
+                            <van-cell bindtap="goToArticle" id="{{index}}" custom-class="one-rss" title="{{showPosts[index].post.title}}" label="{{showPosts[index].post.author}}" size="large" border="{{false}}"/>
                         </van-cell-group>
-                        <view slot="right">已读</view> 
+                        <view slot="right">已读</view>
+                        <!-- <view slot="right" wx:if="{{bottomIndex==1}}">已读</view> 
+                        <view slot="right" wx:if="{{bottomIndex!=1}}"></view>  -->
                     </van-swipe-cell>
                 </view>
-                <!--is-link url="'../article/article?rssUrl='+allPosts[index].rssUrl+'&postId='+allPosts[index].postId}}" link-type="navigateTo"
-                bindtap="goToArticle" id="{{index}}"  label="{{allPosts[index].published}}" is-link url="../article/article?onePost={{allPosts[index]}}" link-type="navigateTo" -->
             </view>
-
         </van-tab>
 
         <van-tab title="栏目">
-
             <view class="rss-posts">
                 <view class="cell-with-margin" wx:for="{{rssSources}}">
                     <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onSlideBlog">

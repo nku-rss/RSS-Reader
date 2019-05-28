@@ -6,6 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    starPostsKey:'starPostsKey',
+    rssSourcesKey:'rssSourcesKey',
+
+
     // -----------这部分是属于样式的OPEN---------------
     skin: "skin-grey",
     bkColor: "rgb(64, 63, 60)",
@@ -16,13 +20,21 @@ Page({
 
     showModal: false, // 对话窗
     
+    hasReadPosts:[],
     starPosts: [],
+    allPosts: [],
+    newPosts:[],
+
+    showPosts:[],
     rssSources: [],
     lastTime: "",
-    allPosts:[],
     segment:0,
     newRssSource:{},
+    isGetting:false,
 
+    bottomIndex:1,
+    leftString:'收藏',
+    rightString:'已读',
 
     active: 0,
     idx: true,
@@ -56,17 +68,77 @@ Page({
     }
   },
   
+  /**
+   * 收藏新博文
+   */
+  addStar(tempIndex) {
+    let that = this;
+    let hasStared = false;
+    let tempPostId = that.data.showPosts[tempIndex].postId;
+    let i = 0;
+    for (let i=0; i < that.data.starPosts.length; i++) {
+      if (that.data.starPosts[i].postId == tempPostId) {
+        hasStared = true;
+        break;
+      }
+    }
+    if (hasStared) {
+      that.cancelStar(tempIndex);
+    }
+    else {
+      that.data.starPosts.push(that.data.showPosts[tempIndex]);
+      that.setData({
+        starPosts: that.data.starPosts
+      })
+      wx.setStorageSync(that.data.starPostsKey, that.data.starPosts);
+      wx.showToast({
+        title: '收藏成功！',
+        icon: 'none',
+      })
+    }
+  },
+
+  cancelStar(tempIndex){
+    let that = this;
+    let i = 0;
+    let tempStarPosts = [];
+    for(i;i<that.data.starPosts.length;i++){
+      if(i == tempIndex){
+        continue
+      }
+      tempStarPosts.push(that.data.starPosts[i]);
+    };
+    that.setData({
+      starPosts:tempStarPosts
+    });
+    wx.setStorageSync(that.data.starPostsKey, that.data.starPosts)
+    console.log('quxiao')
+    if(that.bottomIndex==0){
+      console.log('congzhi')
+      that.setData({
+        showPosts:that.data.starPosts
+      });
+    }
+    wx.showToast({
+      title: '取消收藏!',
+      icon:'none'
+    })
+  },
+
   onSlidePost(event) {
-    let that= this;
-    const { position, instance } = event.detail;
-    console.log("onclose ", event, " --- ",event.currentTarget.dataset.info);
+    let that = this;
+    let tempIndex = event.currentTarget.id;
+    let position = event.detail.position;
+    // const { position, instance } = event.detail;
+    console.log("onclose ", event);
     switch (position) {
       case 'left':
-        let onePost = {
-          rssUrl:"rssyuandishi",
-          postId: event.currentTarget.dataset.info
-        };
-        that.addStar(onePost);
+        if(that.data.bottomIndex==1){
+          that.addStar(tempIndex);
+        }
+        else if (that.data.bottomIndex==0){
+          that.cancelStar(tempIndex);
+        }
       case 'cell':
         break;
       case 'right':
@@ -78,57 +150,20 @@ Page({
           console.log('nothing');
         }
 
-
-
         break;
     }
   },
 
-  // -------------------------对话窗OPEN-------------------------
-  showModal: function () {
-
-    this.setData({
-
-      showModal: true
-
-    })
-
-  },
-
-  hideModal: function () {
-
-    this.setData({
-
-      showModal: false
-
-    });
-
-  },
-  onCancel: function () {
-
-    this.hideModal();
-
-  },
-
-  onConfirm: function () {
-
-    this.hideModal();
-
-  },
-
-  // -------------------------对话窗CLOSE-------------------------
-
   onSlideBlog(event) {
     let that = this;
-    const { position, instance } = event.detail;
+    let tempIndex = event.currentTarget.id;
+    let position = event.detail.position;
+    // const { position, instance } = event.detail;
     console.log("onclose ", event);
     switch (position) {
       case 'left':
-        let onePost = {
-          rssUrl: "rssyuandishi",
-          postId: event.currentTarget.dataset.info
-        };
-        that.addStar(onePost);
+        // let onePost = t
+        // that.addStar(onePost);
       case 'cell':
         break;
       case 'right':
@@ -139,19 +174,45 @@ Page({
         else {
           console.log('nothing');
         }
-
         that.showModal();
-
         break;
     }
   },
+
+
+  // -------------------------对话窗OPEN-------------------------
+  showModal: function () {
+    this.setData({
+      showModal: true
+    })
+  },
+  hideModal: function () {
+    this.setData({
+      showModal: false
+    });
+  },
+  onCancel: function () {
+    this.hideModal();
+  },
+  onConfirm: function () {
+    this.hideModal();
+  },
+  // -------------------------对话窗CLOSE-------------------------
+
+
   onClick(event) {
     if(event.detail.index === 0){
+      if (this.data.isGetting) {
+        wx.showLoading({
+          title: '正在更新博文...',
+        });
+      }
       this.setData({
         idx: true
       })
     }
     else{
+      wx.hideLoading();
       this.setData({
         idx: false
       })
@@ -160,7 +221,7 @@ Page({
 
   goToArticle: function (event) {
     let tempIndex = event.currentTarget.id;
-    let tempPost = this.data.allPosts[tempIndex]
+    let tempPost = this.data.showPosts[tempIndex]
     console.log("toarticle ",tempPost)
     wx.navigateTo({
       url: '../article/article?rssUrl=' + tempPost.rssUrl + '&postId=' + tempPost.postId,
@@ -179,47 +240,22 @@ Page({
     })
   },
 
-  /**
-   * 收藏新博文
-   */
-  addStar(onePost){
-    let that = this;
-    let hasStared = false;
-    for(let i =0;i<that.data.starPosts.length;i++){
-      if(that.data.starPosts[i].postId == onePost.postId){
-        hasStared = true;
-        break;
-      }
-    }
-    if(hasStared){
-      wx.showToast({
-        title: '此文章已经被收藏！',
-        icon: 'none',
-      })
-    }
-    else{
-      that.data.starPosts.push(onePost);
-      wx.setStorageSync('starPostsKey', that.data.starPosts);
-      that.setData({
-        starPosts: that.data.starPosts
-      })
-      wx.showToast({
-        title: '收藏成功！',
-        icon: 'none',
-      })
-    }
-  },
-
-
+  
   /**
    * 获取博文
    */
   getPosts(that){
-    wx.showLoading({
-      title: '正在更新博文...',
-    })
+    that.setData({
+      isGetting:true
+    });
+    if(that.data.idx){
+      wx.showLoading({
+        title: '正在更新博文',
+      });
+    }
+    console.log("gengxin")
     wx.request({
-      url: 'https://nkurss.potatobrother.cn/rssread/allPosts',
+      url: 'https://nkurss.potatobrother.cn/rssread/newPosts',
       method: 'GET',
       data: {
         rssSources: that.data.rssSources,
@@ -228,23 +264,25 @@ Page({
         "content-type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
-        wx.hideLoading();
-        if (res.data.posts) {
+        if (res.data.newPosts) {
           that.setData({
-            allPosts: res.data.posts
+            newPosts: res.data.newPosts,
+            showPosts: res.data.newPosts
           })
           console.log("success");
         }
       },
       fail: function (res) {
-        wx.hideLoading();
         wx.showToast({
-          title: '拉取失败，请检查网络!',
+          title: '更新失败，请检查网络!',
           icon:'none'
         })
       },
       complete(){
         wx.hideLoading();
+        that.setData({
+          isGetting: false
+        });
       }
     })
   },
@@ -273,20 +311,25 @@ Page({
     });
     // --------------------换肤用CLOSE----------------
 
-    that.data.rssSources = wx.getStorageSync('rssSourcesKey');
-    that.data.starPosts = wx.getStorageSync('starPostsKey');
+    that.data.rssSources = wx.getStorageSync(that.data.rssSourcesKey);
+    that.data.starPosts = wx.getStorageSync(that.data.starPostsKey);
     if(that.data.starPosts.length == 0){
       that.data.starPosts=[]; 
     } 
     if (that.data.rssSources.length == 0) {
       that.data.rssSources = [];
+      let oneRssSource={
+        rssUrl:'https://zhihu.com/rss',
+        rssName:'知乎精选'
+      }
+      that.data.rssSources.push(oneRssSource);
     }
     that.setData({
       starPosts:that.data.starPosts,
       rssSources:that.data.rssSources
     })
-    wx.setStorageSync('starPostsKey', that.data.starPosts);
-    wx.setStorageSync('rssSourcesKey', that.data.rssSources);
+    wx.setStorageSync(that.data.starPostsKey, that.data.starPosts);
+    wx.setStorageSync(that.data.rssSourcesKey, that.data.rssSources);
     that.getPosts(that);
   },
 
@@ -324,7 +367,7 @@ Page({
       that.setData({
         rssSources:that.data.rssSources
       });
-      wx.setStorageSync('rssSourcesKey',that.data.rssSources);
+      wx.setStorageSync(that.data.rssSourcesKey,that.data.rssSources);
       that.setData({
         newRssSource:{}
       });
@@ -373,17 +416,44 @@ Page({
     let that = this;
     that.data.tabbarIconStateNum = [1, 0, 0];
     that.setTabbarState();
+    // ------------
+    wx.hideLoading();
+    that.setData({
+      bottomIndex:0,
+      showPosts:that.data.starPosts
+    });
+    console.log("bottom ", that.data.bottomIndex)
+
   },
 
   clickBrowse: function() {
     let that = this;
     that.data.tabbarIconStateNum = [0, 1, 0];
     that.setTabbarState();
+    // ------------
+    if(that.data.isGetting){
+      wx.showLoading({
+        title: '正在更新博文',
+      });
+
+    }
+    that.setData({
+      bottomIndex:1,
+      showPosts:that.data.newPosts
+    });
+    console.log("bottom ",that.data.bottomIndex)
   },
 
   clickCoupon: function() {
     let that = this;
     that.data.tabbarIconStateNum = [0, 0, 1];
     that.setTabbarState();
+    // ------------
+    that.setData({
+      bottomIndex:2,
+      showPosts: that.data.allPosts
+    });
+    console.log("bottom ", that.data.bottomIndex)
+
   },
 })

@@ -17,15 +17,13 @@ Page({
       rssLogo: e.detail.value.rssLogo,
       webUrl: e.detail.value.webUrl
     };
-    console.log(newRssSource);
-    console.log(e)
     if(!newRssSource.rssUrl){
       wx.showToast({
         title: '请输入RSS源！',
         icon:'none'
       })
     }
-    else if(!newRssSource.rssName){
+    else if (!newRssSource.rssName || newRssSource.rssName.length == /^\s*/.exec(newRssSource.rssName)[0].length){
       wx.showToast({
         title: '请输入RSS名称！',
         icon: 'none'
@@ -33,7 +31,7 @@ Page({
     }
     else{
       wx.showLoading({
-        title: '正在添加RSS...',
+        title: '正在添加RSS',
       });
       wx.request({
         url: 'https://nkurss.potatobrother.cn/rssread/testRssSource',
@@ -55,12 +53,7 @@ Page({
               newRssSource: newRssSource
             })
             wx.navigateBack({
-              delta: 1,
-              success() {
-                wx.showToast({
-                  title: "添加成功！",
-                })
-              }
+              delta: 1
             })
           }
         },
