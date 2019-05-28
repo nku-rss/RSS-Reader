@@ -2,7 +2,7 @@
 
 .page {
     padding-top: 3%;
-    height: 2000rpx;
+    /*height: 2000rpx;*/
 }
 
 #skin-grey .nav-class {

@@ -11,7 +11,7 @@
   module.exports.judge_star = judge_star;
 </wxs>
 
-<view class="page" style="background-color: {{bkColor}}" id="{{skin}}">
+<view class="page" style="background-color: {{bkColor}};height:{{pageHeight}}px;" id="{{skin}}">
     <van-tabs animated type="card" bind:click="onClick" active="0" tab-class="tab-class" nav-class="nav-class"
               tab-active-class="tab-active-class">
 

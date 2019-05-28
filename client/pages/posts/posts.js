@@ -16,6 +16,7 @@ Page({
     navBkColor: "#403f3c",
     tabbarIconStateNum: [0, 1, 0],
     tabbarIconState: ["star", "browsing-history", "coupon"], // 0, 1, 2
+    pageHeight: 2000,
     // -----------这部分是属于样式的CLOSE---------------
 
     showModal: false, // 对话窗
