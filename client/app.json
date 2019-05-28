@@ -5,8 +5,7 @@
     "pages/blog/blog",
     "pages/edit/edit",
     "pages/article/article",
-    "pages/index/index",
-    "pages/theme/theme"
+    "pages/index/index"
   ],
   "window": {
     "navigationBarTitleText": "RSS Reader"

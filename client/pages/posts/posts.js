@@ -19,6 +19,7 @@ Page({
     // -----------这部分是属于样式的CLOSE---------------
 
     showModal: false, // 对话窗
+    skinShowModal: false,
     
     hasReadPosts:[],
     starPosts: [],
@@ -181,6 +182,40 @@ Page({
     }
   },
 
+  // ----------------修改皮肤OPEN----------------
+  chooseBlackTheme: function(event) {
+
+    var app = getApp();
+
+    app.globalData.skin = "skin-black";
+    app.globalData.navBkColor = "#000000";
+    app.globalData.bkColor = "#000000";
+    app.globalData.rssFormLogo = "https://user-images.githubusercontent.com/31076337/58367987-bd193800-7f18-11e9-8abc-02edac1d76ee.png";
+
+    this.skinHideModal();
+
+    this.onShow();
+
+
+
+  },
+
+  chooseGreyTheme: function(event) {
+
+    var app = getApp();
+
+    app.globalData.skin = "skin-grey";
+    app.globalData.navBkColor = "#403f3c";
+    app.globalData.bkColor = "rgb(64, 63, 60)";
+    app.globalData.rssFormLogo = "https://user-images.githubusercontent.com/31076337/58075941-80c59f00-7bdb-11e9-86c0-6c6b8b2de3f7.png";
+
+    this.skinHideModal();
+
+    this.onShow();
+
+
+  },
+  // ----------------修改皮肤CLOSE----------------
 
   // -------------------------对话窗OPEN-------------------------
   showModal: function () {
@@ -198,6 +233,24 @@ Page({
   },
   onConfirm: function () {
     this.hideModal();
+  },
+
+  skinHideModal: function () {
+
+    this.setData({
+
+      skinShowModal: false
+
+    });
+
+  },
+
+  skinShowModal: function () {
+    this.setData({
+          skinShowModal: true
+        }
+
+    );
   },
   // -------------------------对话窗CLOSE-------------------------
 

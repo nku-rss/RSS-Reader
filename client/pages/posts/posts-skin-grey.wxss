@@ -197,7 +197,7 @@ button::after {
 
     z-index: 9999;
 
-    background: rgb(64, 63, 60);
+    background: var(--grey-page-bk);
 
     margin: -180rpx 105rpx;
 
@@ -258,4 +258,85 @@ button::after {
 
     border: 0px;
 
+}
+
+/*下面是换肤modal*/
+#skin-grey .skin-modal-mask {
+
+    width: 100%;
+
+    height: 100%;
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    background: #000;
+
+    opacity: 0.5;
+
+    overflow: hidden;
+
+    z-index: 9000;
+
+    color: #fff;
+
+}
+
+#skin-grey .skin-modal-dialog {
+
+    width: 540rpx;
+
+    overflow: hidden;
+
+    position: fixed;
+
+    top: 50%;
+
+    left: 0;
+
+    z-index: 9999;
+
+    background: var(--grey-page-bk);
+
+    margin: -180rpx 105rpx;
+
+    border-radius: 36rpx;
+
+    display: flex;
+
+    flex-direction: row;
+
+    padding: 20rpx;
+
+}
+
+#skin-grey .skin-choose-btn-grey {
+    background-color: var(--grey-page-bk);
+    border: 0px !important;
+    color: grey;
+}
+
+#skin-grey .skin-choose-btn-black {
+    background-color: var(--grey-page-bk);
+    border: 0px !important;
+    color: white;
+}
+
+#skin-grey .skin-choose-btn-yellow {
+    background-color: var(--grey-page-bk);
+    border: 0px !important;
+    color: yellow;
+}
+
+#skin-grey .skin-choose-btn-pink {
+    background-color: var(--grey-page-bk);
+    border: 0px !important;
+    color: pink;
+}
+
+#skin-grey .skin-button-hover {
+    color: var(--grey-page-bk);
 }

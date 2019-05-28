@@ -146,7 +146,192 @@ button::after {
   color: var(--black-cell-value) !important;
 }
 
+/*对话窗*/
 
+#skin-black .modal-mask {
+
+  width: 100%;
+
+  height: 100%;
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  background: #000;
+
+  opacity: 0.5;
+
+  overflow: hidden;
+
+  z-index: 9000;
+
+  color: #fff;
+
+}
+
+#skin-black .modal-dialog {
+
+  width: 540rpx;
+
+  overflow: hidden;
+
+  position: fixed;
+
+  top: 50%;
+
+  left: 0;
+
+  z-index: 9999;
+
+  background: var(--black-page-bk);
+
+  margin: -180rpx 105rpx;
+
+  /*border-radius: 36rpx;*/
+
+  color: white 2rpx solid;
+}
+
+#skin-black .modal-title {
+
+  padding-top: 50rpx;
+
+  font-size: 36rpx;
+
+  color: rgb(242, 240, 236);
+
+  text-align: center;
+
+  margin-bottom: 30rpx;
+
+}
+
+
+#skin-black .modal-footer {
+
+  display: flex;
+
+  flex-direction: row;
+
+  height: 86rpx;
+
+  border-top: 0px;
+
+  font-size: 34rpx;
+
+  line-height: 86rpx;
+
+}
+
+#skin-black .btn-cancel {
+
+  width: 50%;
+
+  color: #666;
+
+  text-align: center;
+
+  border-right: 0px;
+
+}
+
+#skin-black .btn-confirm {
+
+  width: 50%;
+
+  color: #ec5300;
+
+  text-align: center;
+
+  border: 0px;
+
+}
+
+/*下面是换肤modal*/
+#skin-black .skin-modal-mask {
+
+  width: 100%;
+
+  height: 100%;
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  background: #000;
+
+  opacity: 0.5;
+
+  overflow: hidden;
+
+  z-index: 9000;
+
+  color: #fff;
+
+}
+
+#skin-black .skin-modal-dialog {
+
+  width: 540rpx;
+
+  overflow: hidden;
+
+  position: fixed;
+
+  top: 50%;
+
+  left: 0;
+
+  z-index: 9999;
+
+  background: var(--black-page-bk);
+
+  margin: -180rpx 105rpx;
+
+  /*border-radius: 36rpx;*/
+
+  display: flex;
+
+  flex-direction: row;
+
+  padding: 20rpx;
+
+  border: white 2rpx solid;
+
+}
+
+#skin-black .skin-choose-btn-grey {
+  background-color: var(--black-page-bk);
+  border: 0px !important;
+  color: var(--grey-cell-title);
+}
+
+#skin-black .skin-choose-btn-black {
+  background-color: var(--black-page-bk);
+  border: 0px !important;
+  color: white;
+}
+
+#skin-black .skin-choose-btn-yellow {
+  background-color: var(--black-page-bk);
+  border: 0px !important;
+  color: yellow;
+}
+
+#skin-black .skin-choose-btn-pink {
+  background-color: var(--black-page-bk);
+  border: 0px !important;
+  color: pink;
+}
+
+#skin-black .skin-button-hover {
+  color: var(--black-page-bk);
+}
 
 
 

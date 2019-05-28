@@ -81,8 +81,8 @@
     </view>
 
     <view class="change-skin">
-        <button class="change-skin-button" bindtap="goToTheme" plain>
-            <van-icon name="setting" color="white"/>
+        <button class="change-skin-button" bindtap="skinShowModal" plain>
+            <van-icon name="gift" color="white"/>
         </button>
     </view>
 
@@ -108,5 +108,19 @@
         </view>
 
     </view>
+
+<!--    下面是换肤modal-->
+
+    <view class="skin-modal-mask" bindtap="skinHideModal" catchtouchmove="preventTouchMove" wx:if="{{skinShowModal}}"></view>
+
+    <view class="skin-modal-dialog" wx:if="{{skinShowModal}}">
+        <button class="skin-choose-btn-grey" hover-class="skin-button-hover" bindtap="chooseGreyTheme"><van-icon name="gift-o" /></button>
+        <button class="skin-choose-btn-black" hover-class="skin-button-hover" bindtap="chooseBlackTheme"><van-icon name="gift-o" /></button>
+        <button class="skin-choose-btn-yellow" hover-class="skin-button-hover"><van-icon name="gift-o" /></button>
+        <button class="skin-choose-btn-pink" hover-class="skin-button-hover"><van-icon name="gift-o" /></button>
+
+    </view>
+
+
 
 </view>
