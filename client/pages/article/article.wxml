@@ -1,17 +1,20 @@
 <!-- 引入富文本转换库 -->
-<import src="../../wxParse/wxParse.wxml"/> 
-<view class="container">
-  <view class='title'>{{title}}</view>
-  <view class='info-box'>
-    <image class='avatar' mode='aspectFit' src='{{favicon}}'></image>
-    <text>{{author}}</text>
-    <text>{{published}}</text>
-  </view>
-  <!-- <view class='ori-link'>原文链接：<text selectable='true'>{{link}}</text></view> -->
+<import src="../../wxParse/wxParse.wxml"/>
 
-  <!--富文本转换库使用 start  -->
-  <view class="wxParse">
-      <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-  </view>
-  <!--富文本转换库使用 end  -->
+<view class="page" style="background-color: {{bkColor}}" id="{{skin}}">
+    <view class="container">
+        <view class='title'>{{title}}</view>
+        <view class='info-box'>
+            <image class='avatar' mode='aspectFit' src='{{favicon}}'></image>
+            <text class="author">{{author}}</text>
+            <text class="published-time">{{published}}</text>
+        </view>
+        <!-- <view class='ori-link'>原文链接：<text selectable='true'>{{link}}</text></view> -->
+
+        <!--富文本转换库使用 start  -->
+        <view class="wxParse">
+            <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+        </view>
+        <!--富文本转换库使用 end  -->
+    </view>
 </view>

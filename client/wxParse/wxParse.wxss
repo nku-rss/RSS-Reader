@@ -79,9 +79,10 @@ view{
 /*增加video的css样式*/
 .wxParse-strong,.wxParse-s{display: inline}
 .wxParse-a{
-    color: deepskyblue;
+    color: white;
     word-break:break-all;
     overflow:auto;
+    text-decoration: underline;
 }
 
 .wxParse-video{

@@ -11,6 +11,14 @@ const article = '';
 
 Page({
   data: {
+
+    // ------样式设置OPEN-----
+    skin: "skin-grey",
+    bkColor: "rgb(64, 63, 60)",
+    navBkColor: "#403f3c",
+    rssFormLogo: "https://user-images.githubusercontent.com/31076337/58075941-80c59f00-7bdb-11e9-86c0-6c6b8b2de3f7.png",
+    // ------样式设置CLOSE-----
+
     postId: '',
     title: '',          // 文章标题
     author: '',         // 文章作者或源名称
@@ -24,6 +32,29 @@ Page({
     linkSrc: '',        // 链接提示弹框的链接数据
   },
   onLoad: function (options) {
+
+    // --------------------换肤用OPEN----------------
+    var that = this;
+
+
+    var app = getApp();
+    // 设置navbar颜色
+    wx.setNavigationBarColor( {
+          frontColor: "#ffffff",
+          backgroundColor: app.globalData.navBkColor,
+        }
+    )
+
+    that.setData({
+      skin: app.globalData.skin,
+      bkColor: app.globalData.bkColor,
+      navBkColor: app.globalData.navBkColor,
+      rssFormLogo: app.globalData.rssFormLogo
+    })
+
+    // --------------------换肤用CLOSE----------------
+
+
     // 加载页面后，用跨页参数在缓存中查询出具体文字内容
     this.data.postId = options.postId;
     // this.data.favicon = options.favicon;
@@ -34,9 +65,30 @@ Page({
   
   // 展示文章详情
   showDetail: function () {
+
+    // --------------------换肤用OPEN----------------
+    var that = this;
+
+
+    var app = getApp();
+    // 设置navbar颜色
+    wx.setNavigationBarColor( {
+          frontColor: "#ffffff",
+          backgroundColor: app.globalData.navBkColor,
+        }
+    )
+
+    that.setData({
+      skin: app.globalData.skin,
+      bkColor: app.globalData.bkColor,
+      navBkColor: app.globalData.navBkColor,
+      rssFormLogo: app.globalData.rssFormLogo
+    })
+
+    // --------------------换肤用CLOSE----------------
+
     // const rssData = wx.getStorageSync('rssData') || {};
     // const author = rssData.title || '';
-    let that = this;
     wx.request({
       url:    'https://nkurss.potatobrother.cn/rssread/onePost',
       method: 'GET',

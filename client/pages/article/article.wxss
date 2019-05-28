@@ -1,8 +1,9 @@
-/* pages/detail/detail.wxss */
 @import "../../wxParse/wxParse.wxss";
 .title {
-  font-size: 48rpx;
+  font-size: 35rpx;
   margin: 0 5px;
+  color: white;
+  font-weight: bold;
 }
 
 .container {
@@ -21,6 +22,13 @@
   margin-right: 12rpx;
 }
 
+.author {
+  color: white;
+}
+
+.published-time {
+  color: white;
+}
 .info-box text + text {
   margin-left: 12rpx;
 }
@@ -37,4 +45,8 @@
 .src_container {
   padding:12px 24px;
   width:80px;
+}
+
+.wxParse {
+  color: white;
 }
