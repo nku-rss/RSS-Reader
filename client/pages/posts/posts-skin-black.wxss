@@ -59,6 +59,11 @@
   color: var(--black-cell-swipe-title);
   text-align: center;
   background-color: var(--black-cell-swipe-left);
+
+  /*替换成flex 可能有bug，但目前未知*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #skin-black .van-swipe-cell__right {
@@ -70,6 +75,11 @@
   color: var(--black-cell-swipe-title);
   text-align: center;
   background-color: var(--black-cell-swipe-right);
+
+  /*替换成flex 可能有bug，但目前未知*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #skin-black .add-rss {
@@ -333,7 +343,59 @@ button::after {
   color: var(--black-page-bk);
 }
 
+#skin-black .load-modal-mask {
 
+  width: 100%;
+
+  height: 100%;
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  /*background: #000;*/
+
+  /*opacity: 0.5;*/
+
+  overflow: hidden;
+
+  z-index: 9000;
+
+  color: #fff;
+
+}
+
+#skin-black .load-modal-dialog {
+  /*width: 540rpx;*/
+
+  overflow: hidden;
+
+  position: fixed;
+
+  top: 40%;
+
+  left: 50%;
+
+  transform: translate(-50%, 0);
+
+  width: 40rpx;
+
+  z-index: 9999;
+
+  /*background: var(--grey-page-bk);*/
+
+  /*margin: -180rpx 105rpx;*/
+
+  /*border-radius: 36rpx;*/
+
+  display: flex;
+
+  flex-direction: row;
+
+  padding: 20rpx;
+}
 
 
 

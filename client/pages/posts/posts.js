@@ -20,6 +20,7 @@ Page({
 
     showModal: false, // 对话窗
     skinShowModal: false,
+    loadShowModal: false,
     
     hasReadPosts:[],
     starPosts: [],
@@ -252,22 +253,36 @@ Page({
 
     );
   },
+
+  loadHideModal: function() {
+    this.setData({
+      loadShowModal: false
+    });
+  },
+
+  loadShowModal: function() {
+    this.setData({
+      loadShowModal: true
+    });
+  },
   // -------------------------对话窗CLOSE-------------------------
 
 
   onClick(event) {
     if(event.detail.index === 0){
       if (this.data.isGetting) {
-        wx.showLoading({
-          title: '正在更新博文...',
-        });
+        // wx.showLoading({
+        //   title: '正在更新博文...',
+        // });
+        this.loadShowModal()
       }
       this.setData({
         idx: true
       })
     }
     else{
-      wx.hideLoading();
+      // wx.hideLoading();
+      this.loadHideModal();
       this.setData({
         idx: false
       })
@@ -304,9 +319,10 @@ Page({
       isGetting:true
     });
     if(that.data.idx){
-      wx.showLoading({
-        title: '正在更新博文',
-      });
+      // wx.showLoading({
+      //   title: '正在更新博文',
+      // });
+      that.loadShowModal();
     }
     console.log("gengxin")
     wx.request({
@@ -334,7 +350,8 @@ Page({
         })
       },
       complete(){
-        wx.hideLoading();
+        // wx.hideLoading();
+        that.loadHideModal();
         that.setData({
           isGetting: false
         });
@@ -472,7 +489,8 @@ Page({
     that.data.tabbarIconStateNum = [1, 0, 0];
     that.setTabbarState();
     // ------------
-    wx.hideLoading();
+    // wx.hideLoading();
+    that.loadHideModal();
     that.setData({
       bottomIndex:0,
       showPosts:that.data.starPosts
@@ -487,9 +505,11 @@ Page({
     that.setTabbarState();
     // ------------
     if(that.data.isGetting){
-      wx.showLoading({
-        title: '正在更新博文',
-      });
+      // wx.showLoading({
+      //   title: '正在更新博文',
+      // });
+
+      that.loadShowModal();
 
     }
     that.setData({

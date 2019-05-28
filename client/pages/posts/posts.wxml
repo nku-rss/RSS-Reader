@@ -121,6 +121,12 @@
 
     </view>
 
+<!--    下面是加载modal-->
+    <view class="load-modal-mask" catchtouchmove="preventTouchMove" wx:if="{{loadShowModal}}"></view>
+
+    <view class="load-modal-dialog" wx:if="{{loadShowModal}}">
+        <van-loading type="spinner" color="#fff" />
+    </view>
 
 
 </view>
