@@ -1,7 +1,7 @@
 <view view class="page" style="background-color: {{bkColor}}" id="{{skin}}">
     <view class="blog-avatar">
         <view class="blog-icon">
-            <image class="blog-icon-image" src="https://www.bilibili.com/favicon.ico"></image>
+            <image class="blog-icon-image" src="https://user-images.githubusercontent.com/31076337/58075941-80c59f00-7bdb-11e9-86c0-6c6b8b2de3f7.png"></image>
         </view>
         <view class="blog-name">
             <label>薛旭的博客</label>

@@ -19,8 +19,12 @@
             <view class="rss-posts">
                 <view class="cell-with-margin" wx:for="{{showPosts}}">
                     <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="{{index}}" async-close bind:close="onSlidePost">
-                        <view slot="left" wx:if="{{judge.judge_star(starPosts,showPosts,index)}}">取消收藏</view>
-                        <view slot="left" wx:if="{{!judge.judge_star(starPosts,showPosts,index)}}">收藏</view>
+                        <view slot="left" wx:if="{{judge.judge_star(starPosts,showPosts,index)}}">
+                            <van-icon name="star"/>
+                        </view>
+                        <view slot="left" wx:if="{{!judge.judge_star(starPosts,showPosts,index)}}">
+                            <van-icon name="star-o"/>
+                        </view>
                         <!-- <view slot="left">收藏</view> -->
                         <van-cell-group border="{{false}}">
                             <van-cell bindtap="goToArticle" id="{{index}}" custom-class="one-rss" title="{{showPosts[index].post.title}}" label="{{showPosts[index].post.author}}" size="large" border="{{false}}"/>

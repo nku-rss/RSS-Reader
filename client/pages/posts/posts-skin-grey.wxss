@@ -49,7 +49,7 @@
 }
 
 #skin-grey .van-swipe-cell__left {
-    display: inline-block;
+    /*display: inline-block;*/
     width: 65px;
     /*height: 44px;*/
     font-size: 15px;
@@ -57,10 +57,18 @@
     color: var(--grey-cell-swipe-title);
     text-align: center;
     background-color: var(--grey-cell-swipe-left);
+    /*display: table-cell;*/
+    /*vertical-align: middle;*/
+
+    /*替换成flex 可能有bug，但目前未知*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 #skin-grey .van-swipe-cell__right {
-    display: inline-block;
+    /*display: inline-block;*/
     width: 65px;
     /*height: 44px;*/
     font-size: 15px;
@@ -68,6 +76,11 @@
     color: var(--grey-cell-swipe-title);
     text-align: center;
     background-color: var(--grey-cell-swipe-right);
+
+    /*替换成flex 可能有bug，但目前未知*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #skin-grey .add-rss {
