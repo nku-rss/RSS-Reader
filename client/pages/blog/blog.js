@@ -71,10 +71,10 @@ Page({
         starPosts: that.data.starPosts
       })
       wx.setStorageSync(that.data.starPostsKey, that.data.starPosts);
-      wx.showToast({
-        title: '收藏成功！',
-        icon: 'none',
-      })
+      // wx.showToast({
+      //   title: '收藏成功！',
+      //   icon: 'none',
+      // })
     }
   },
 
@@ -85,11 +85,11 @@ Page({
     that.setData({
       starPosts: that.data.starPosts
     });
-    wx.setStorageSync(that.data.starPostsKey, that.data.starPosts)
-    wx.showToast({
-      title: '取消收藏!',
-      icon: 'none'
-    })
+    wx.setStorageSync(that.data.starPostsKey, that.data.starPosts);
+    // wx.showToast({
+    //   title: '取消收藏!',
+    //   icon: 'none'
+    // })
   },
 
 
