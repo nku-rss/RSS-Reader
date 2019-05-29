@@ -8,6 +8,7 @@ Page({
   data: {
     starPostsKey: 'starPostsKey',
     rssSourcesKey: 'rssSourcesKey',
+    hasReadPostsKey: 'hasReadPostsKey',
 
 
     // -----------这部分是属于样式的OPEN---------------
@@ -132,11 +133,18 @@ Page({
         break;
       case 'right':
         if (that.data.bottomIndex == 1) {
+          let tempSimplePost = {
+            rssUrl:that.data.newPosts[tempIndex].rssUrl,
+            postId:that.data.newPosts[tempIndex].postId
+          };
+          that.data.hasReadPosts.push(tempSimplePost);
           that.data.newPosts.splice(tempIndex, 1);
           that.setData({
+            hasReadPosts: that.data.hasReadPosts,
             newPosts: that.data.newPosts,
             showPosts: that.data.newPosts
-          })
+          });
+          wx.setStorageSync(that.data.hasReadPostsKey, that.data.hasReadPosts);
         }
         break;
     }
@@ -360,7 +368,7 @@ Page({
   /**
    * 获取博文
    */
-  getPosts(that){
+  getNewPosts(that){
     that.setData({
       isGetting:true
     });
@@ -433,6 +441,7 @@ Page({
     });
     // --------------------换肤用CLOSE----------------
 
+    that.data.hasReadPosts = wx.getStorageSync(that.data.hasReadPostsKey);
     that.data.rssSources = wx.getStorageSync(that.data.rssSourcesKey);
     that.data.starPosts = wx.getStorageSync(that.data.starPostsKey);
     if(that.data.starPosts.length == 0){
@@ -455,7 +464,7 @@ Page({
     })
     wx.setStorageSync(that.data.starPostsKey, that.data.starPosts);
     wx.setStorageSync(that.data.rssSourcesKey, that.data.rssSources);
-    that.getPosts(that);
+    that.getNewPosts(that);
   },
 
   
@@ -496,7 +505,7 @@ Page({
       that.setData({
         newRssSource:{}
       });
-      that.getPosts(that);
+      that.getNewPosts(that);
     }   
   },
 
