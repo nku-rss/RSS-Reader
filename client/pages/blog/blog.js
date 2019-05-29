@@ -8,12 +8,26 @@ Page({
     navBkColor: "#403f3c",
     // ------样式设置CLOSE-----
 
+    loadShowModal: false,
+
     rssUrl:'',
     rssName:'',
     rssLogo:'',
     showPosts:[],
     starPosts:[],
     
+  },
+
+  loadHideModal: function() {
+    this.setData({
+      loadShowModal: false
+    });
+  },
+
+  loadShowModal: function() {
+    this.setData({
+      loadShowModal: true
+    });
   },
 
   onSlidePost(event) {
@@ -81,9 +95,11 @@ Page({
 
   getPosts() {
     let that = this;
-    wx.showLoading({
-      title: '正在更新博文',
-    });
+    // wx.showLoading({
+    //   title: '正在更新博文',
+    // });
+
+    that.loadShowModal();
     wx.request({
       url: 'https://nkurss.potatobrother.cn/rssread/oneRssPosts',
       method: 'GET',
@@ -109,7 +125,8 @@ Page({
       },
       complete() {
         console.log("complete")
-        wx.hideLoading();
+        // wx.hideLoading();
+        that.loadHideModal();
         that.setData({
           isGetting: false
         });
@@ -180,6 +197,7 @@ Page({
   },
   
   onHide(){
-    wx.hideLoading();
+    // wx.hideLoading();
+    that.loadHideModal();
   }
 });

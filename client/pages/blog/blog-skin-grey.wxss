@@ -10,13 +10,18 @@
 
 #skin-grey .van-swipe-cell__left,
 #skin-grey .van-swipe-cell__right {
-    display: inline-block;
+    /*display: inline-block;*/
     width: 65px;
     font-size: 15px;
     line-height: 44px;
     color: #fff;
     text-align: center;
     background-color: var(--grey-cell-swipe-left);
+
+    /*替换成flex 可能有bug，但目前未知*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #skin-grey .one-rss {
@@ -29,6 +34,7 @@
 }
 
 #skin-grey .rss-posts {
+    padding-top: 20rpx;
     margin: 40rpx 0rpx 25rpx 0rpx;
     margin-left: 5%;
     margin-right: 5%;
@@ -73,4 +79,33 @@
 
 #skin-grey .van-cell__value {
     color: var(--grey-cell-value) !important;
+}
+#skin-grey .load-modal-dialog {
+    /*width: 540rpx;*/
+
+    overflow: hidden;
+
+    position: fixed;
+
+    top: 40%;
+
+    left: 50%;
+
+    transform: translate(-50%, 0);
+
+    width: 40rpx;
+
+    z-index: 9999;
+
+    /*background: var(--grey-page-bk);*/
+
+    /*margin: -180rpx 105rpx;*/
+
+    /*border-radius: 36rpx;*/
+
+    display: flex;
+
+    flex-direction: row;
+
+    padding: 20rpx;
 }

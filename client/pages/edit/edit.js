@@ -6,8 +6,23 @@ Page({
     navBkColor: "#403f3c",
     rssFormLogo: "https://user-images.githubusercontent.com/31076337/58075941-80c59f00-7bdb-11e9-86c0-6c6b8b2de3f7.png",
     // ------样式设置CLOSE-----
+    loadShowModal: false,
+
     editSource: [], 
   },
+
+  loadHideModal: function() {
+    this.setData({
+      loadShowModal: false
+    });
+  },
+
+  loadShowModal: function() {
+    this.setData({
+      loadShowModal: true
+    });
+  },
+
   addTo:function(e) {
     let that = this;
     let newRssSource = {
@@ -30,16 +45,19 @@ Page({
       })
     }
     else{
-      wx.showLoading({
-        title: '正在添加RSS',
-      });
+      // wx.showLoading({
+      //   title: '正在添加RSS',
+      // });
+
+      that.loadShowModal();
       wx.request({
         url: 'https://nkurss.potatobrother.cn/rssread/testRssSource',
         data:{
           rssUrl:newRssSource.rssUrl
         },
         success(res){
-          wx.hideLoading();
+          // wx.hideLoading();
+          that.loadHideModal();
           if(res.data.test=='error'){
             wx.showToast({
               title: 'RSS源地址有误！',
@@ -58,7 +76,8 @@ Page({
           }
         },
         complete(){
-          wx.hideLoading();
+          // wx.hideLoading();
+          that.loadHideModal();
         }
       })
     } 

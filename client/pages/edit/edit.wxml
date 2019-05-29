@@ -25,7 +25,7 @@
             <label class="input-prefix">源描述:</label>
             <view class=".space"></view>
             <view class=".space"></view>
-            <input name="rssDescribe" placeholder="猫猫猫猫猫🐱猫猫猫猫猫" placeholder-class="custom-placeholder"/>
+            <input name="rssDescribe" placeholder="猫猫猫猫猫猫猫猫猫" placeholder-class="custom-placeholder"/>
             <view class='line'></view>
         </view>
 
@@ -59,4 +59,7 @@
         </view>
     </view>
 </form>
+    <view class="load-modal-dialog" wx:if="{{loadShowModal}}">
+        <van-loading type="spinner" color="#000" />
+    </view>
 </view>

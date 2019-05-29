@@ -80,3 +80,33 @@
     /*width: 150rpx;*/
     border: 0px !important;
 }
+
+#skin-grey .load-modal-dialog {
+    /*width: 540rpx;*/
+
+    overflow: hidden;
+
+    position: fixed;
+
+    top: 40%;
+
+    left: 50%;
+
+    transform: translate(-50%, 0);
+
+    width: 40rpx;
+
+    z-index: 9999;
+
+    /*background: var(--grey-page-bk);*/
+
+    /*margin: -180rpx 105rpx;*/
+
+    /*border-radius: 36rpx;*/
+
+    display: flex;
+
+    flex-direction: row;
+
+    padding: 20rpx;
+}

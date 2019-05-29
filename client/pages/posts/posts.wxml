@@ -17,7 +17,7 @@
 
         <van-tab title="博文" class="test">
             <view class="rss-posts">
-                <view class="cell-with-margin" wx:for="{{showPosts}}">
+                <view class="cell-with-margin" wx:for="{{showPosts}}" wx:key="{{index}}">
                     <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="{{index}}" async-close bind:close="onSlidePost">
                         <view slot="left" wx:if="{{judge.judge_star(starPosts,showPosts,index)}}">
                             <van-icon name="star"/>
@@ -30,8 +30,8 @@
                             <van-cell bindtap="goToArticle" id="{{index}}" custom-class="one-rss" title="{{showPosts[index].post.title}}" label="{{showPosts[index].post.author}}" size="large" border="{{false}}"/>
                         </van-cell-group>
                         <!-- <view slot="right">已读</view> -->
-                        <view slot="right" wx:if="{{bottomIndex==1}}">已读</view> 
-                        <view slot="right" wx:if="{{bottomIndex!=1}}"></view> 
+                        <view slot="right" wx:if="{{bottomIndex==1}}"><van-icon name="browsing-history-o" /></view>
+                        <view slot="right" wx:if="{{bottomIndex!=1}}"><van-icon name="browsing-history" /></view>
                     </van-swipe-cell>
                 </view>
             </view>
@@ -39,13 +39,13 @@
 
         <van-tab title="栏目">
             <view class="rss-posts">
-                <view class="cell-with-margin" wx:for="{{rssSources}}">
+                <view class="cell-with-margin" wx:for="{{rssSources}}" wx:key="{{index}}">
                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="{{index}}"async-close bind:close="onSlideBlog">
-                        <view slot="left">置顶</view>
+                        <view slot="left"><van-icon name="arrow-up" /></view>
                         <van-cell-group border="{{false}}">
                             <van-cell bindtap="goToBlog" id="{{index}}" custom-class="one-rss" title="{{rssSources[index].rssName}}" size="large" label="{{rssSources[index].rssUrl}}" border="{{false}}"/>
                         </van-cell-group>
-                        <view slot="right">删除Rss</view>
+                        <view slot="right"><van-icon name="close" /></view>
                     </van-swipe-cell>
                 </view>
             </view>

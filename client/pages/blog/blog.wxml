@@ -22,16 +22,22 @@
     </view>
 
     <view class="rss-posts">
-        <view class="cell-with-margin" wx:for="{{showPosts}}">
+        <view class="cell-with-margin" wx:for="{{showPosts}}" wx:key="{{index}}">
             <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="{{index}}" async-close bind:close="onSlidePost">
-                <view slot="left" wx:if="{{judge.judge_star(starPosts,showPosts,index)}}">取消收藏</view>
-                <view slot="left" wx:if="{{!judge.judge_star(starPosts,showPosts,index)}}">收藏</view>
+                <view slot="left" wx:if="{{judge.judge_star(starPosts,showPosts,index)}}"><van-icon name="star"/></view>
+                <view slot="left" wx:if="{{!judge.judge_star(starPosts,showPosts,index)}}"><van-icon name="star-o"/></view>
                 <van-cell-group border="{{false}}">
                     <van-cell bindtap="goToArticle" id="{{index}}" custom-class="one-rss" title="{{showPosts[index].post.title}}" label="{{showPosts[index].post.author}}" size="large" border="{{false}}"/>
                 </van-cell-group>
-                <view slot="right" wx:if="{{bottomIndex==1}}">已读</view> 
-                <view slot="right" wx:if="{{bottomIndex!=1}}"></view> 
+                <view slot="right" wx:if="{{bottomIndex==1}}"><van-icon name="browsing-history-o" /></view>
+                <view slot="right" wx:if="{{bottomIndex!=1}}"><van-icon name="browsing-history" /></view>
             </van-swipe-cell>
         </view>
     </view>
+
+    <view class="load-modal-dialog" wx:if="{{loadShowModal}}">
+        <van-loading type="spinner" color="#fff" />
+    </view>
+
 </view>
+
