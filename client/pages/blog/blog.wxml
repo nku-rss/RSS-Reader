@@ -1,23 +1,36 @@
+<wxs module="judge">
+  function judge_star(starPosts,showPosts,index){
+    var tempId = showPosts[index].postId;
+    for(var i=0;i<starPosts.length;i++){
+      if(starPosts[i].postId ==tempId){
+        return true;
+      }
+    }
+		return false;
+	}
+  module.exports.judge_star = judge_star;
+</wxs>
+
 <view view class="page" style="background-color: {{bkColor}}" id="{{skin}}">
     <view class="blog-avatar">
         <view class="blog-icon">
             <image class="blog-icon-image" src="https://user-images.githubusercontent.com/31076337/58494836-92dda980-81a8-11e9-9b4f-00c9ab47c957.png"></image>
         </view>
         <view class="blog-name">
-            <label>薛旭的博客</label>
+            <label>{{rssName}}</label>
         </view>
     </view>
 
     <view class="rss-posts">
-        <view class="cell-with-margin" wx:for="12345678">
-            <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose">
-                <view slot="left">{{'选择'+item}}</view>
+        <view class="cell-with-margin" wx:for="{{showPosts}}">
+            <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="{{index}}" async-close bind:close="onSlidePost">
+                <view slot="left" wx:if="{{judge.judge_star(starPosts,showPosts,index)}}">取消收藏</view>
+                <view slot="left" wx:if="{{!judge.judge_star(starPosts,showPosts,index)}}">收藏</view>
                 <van-cell-group border="{{false}}">
-                    <van-cell is-link url="../article/article" link-type="navigateTo" custom-class="one-rss"
-                              title="{{'薛旭的博文' + item}}" value="{{'内容' + item}}" size="large" label="{{'描述信息' + item}}"
-                              border="{{false}}"/>
+                    <van-cell bindtap="goToArticle" id="{{index}}" custom-class="one-rss" title="{{showPosts[index].post.title}}" label="{{showPosts[index].post.author}}" size="large" border="{{false}}"/>
                 </van-cell-group>
-                <view slot="right">{{'删除'+item}}</view>
+                <view slot="right" wx:if="{{bottomIndex==1}}">已读</view> 
+                <view slot="right" wx:if="{{bottomIndex!=1}}"></view> 
             </van-swipe-cell>
         </view>
     </view>

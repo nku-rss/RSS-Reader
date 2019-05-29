@@ -7,4 +7,5 @@ urlpatterns = [
     path('onePost',views.get_one_post),
     path('testRssSource',views.test_rss_source),
     path('oneRssPosts',views.get_one_rss_posts),
+    path('allPosts',views.get_all_posts),
 ]

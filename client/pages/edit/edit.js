@@ -73,8 +73,6 @@ Page({
   onLoad: function (options) {
 // --------------------换肤用OPEN----------------
     var that = this;
-
-
     var app = getApp();
     // 设置navbar颜色
     wx.setNavigationBarColor( {
@@ -82,7 +80,6 @@ Page({
           backgroundColor: app.globalData.navBkColor,
         }
     )
-
     that.setData({
       skin: app.globalData.skin,
       bkColor: app.globalData.bkColor,

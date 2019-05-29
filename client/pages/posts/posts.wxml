@@ -12,7 +12,7 @@
 </wxs>
 
 <view class="page" style="background-color: {{bkColor}};height:{{pageHeight}}px;" id="{{skin}}">
-    <van-tabs animated type="card" bind:click="onClick" active="0" tab-class="tab-class" nav-class="nav-class"
+    <van-tabs type="card" bind:click="onClick" active="0" tab-class="tab-class" nav-class="nav-class"
               tab-active-class="tab-active-class">
 
         <van-tab title="博文" class="test">
@@ -40,10 +40,10 @@
         <van-tab title="栏目">
             <view class="rss-posts">
                 <view class="cell-with-margin" wx:for="{{rssSources}}">
-                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onSlideBlog">
+                   <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="{{index}}"async-close bind:close="onSlideBlog">
                         <view slot="left">置顶</view>
                         <van-cell-group border="{{false}}">
-                            <van-cell is-link url="../blog/blog" custom-class="one-rss" title="{{rssSources[index].rssName}}" size="large" label="{{rssSources[index].rssUrl}}" border="{{false}}"/>
+                            <van-cell bindtap="goToBlog" id="{{index}}" custom-class="one-rss" title="{{rssSources[index].rssName}}" size="large" label="{{rssSources[index].rssUrl}}" border="{{false}}"/>
                         </van-cell-group>
                         <view slot="right">删除Rss</view>
                     </van-swipe-cell>
