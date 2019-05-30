@@ -294,7 +294,7 @@ Page({
       }
       if (that.data.toDeleteRssUrl.length != 0) {
         wx.request({
-          url: 'http://nkurss.potatobrother.cn:8080/rssread/deleteRssSource',
+          url: 'https://nkurss.potatobrother.cn/rssread/deleteRssSource',
           method: 'GET',
           data: {
             rssUrls: that.data.toDeleteRssUrl
@@ -406,7 +406,7 @@ Page({
       rssUrls.push(that.data.rssSources[i].rssUrl);
     }
     wx.request({
-      url: 'http://nkurss.potatobrother.cn:8080/rssread/allPosts',
+      url: 'https://nkurss.potatobrother.cn/rssread/allPosts',
       method: 'GET',
       data: {
         rssUrls: rssUrls,
@@ -423,7 +423,7 @@ Page({
           }
           that.data.allPostsSegment++;
           that.setData({
-            allPostsSegment:that.allPostsSegment,
+            allPostsSegment:that.data.allPostsSegment,
             allPosts:that.data.allPosts,
             showPosts:that.data.allPosts
           })
@@ -470,7 +470,7 @@ Page({
       rssUrls.push(that.data.rssSources[i].rssUrl);
     }
     wx.request({
-      url: 'http://nkurss.potatobrother.cn:8080/rssread/unreadPosts',
+      url: 'https://nkurss.potatobrother.cn/rssread/unreadPosts',
       method: 'GET',
       data: {
         rssUrls: rssUrls,
@@ -559,7 +559,7 @@ Page({
       }
       that.data.rssSources.push(oneRssSource);
       wx.request({
-        url: 'http://nkurss.potatobrother.cn:8080/rssread/testRssSource',
+        url: 'https://nkurss.potatobrother.cn/rssread/testRssSource',
         data:{
           rssUrl:'https://zhihu.com/rss'
         },
