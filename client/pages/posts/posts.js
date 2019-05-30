@@ -565,6 +565,18 @@ Page({
    */
   onShareAppMessage: function () {
 
+    return {
+      title: 'Say a \'Hi\' to RSS',
+      path: 'pages/posts/posts', //这里设定都是以"/page"开头,并拼接好传递的参数
+      imageUrl: '../../img/profile.png',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+
   },
 
 
