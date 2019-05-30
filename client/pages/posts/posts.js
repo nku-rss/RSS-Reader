@@ -294,7 +294,7 @@ Page({
       }
       if (that.data.toDeleteRssUrl.length != 0) {
         wx.request({
-          url: 'https://nkurss.potatobrother.cn/rssread/deleteRssSource',
+          url: 'http://nkurss.potatobrother.cn:8080/rssread/deleteRssSource',
           method: 'GET',
           data: {
             rssUrls: that.data.toDeleteRssUrl
@@ -303,7 +303,7 @@ Page({
             "content-type": "application/x-www-form-urlencoded"
           },
           success: function(res) {
-            let resPosts = res.data.newPosts;
+            let resPosts = res.data.res;
             if (resPosts && resPosts!='error') {
               console.log("success delete rss");
             }
@@ -381,6 +381,7 @@ Page({
 
   
   getMorePosts(){
+    console.log("more ", this.data.bottomIndex)
     if(this.data.bottomIndex==1){
       this.getNewPosts();
     }
@@ -405,7 +406,7 @@ Page({
       rssUrls.push(that.data.rssSources[i].rssUrl);
     }
     wx.request({
-      url: 'https://nkurss.potatobrother.cn/rssread/allPosts',
+      url: 'http://nkurss.potatobrother.cn:8080/rssread/allPosts',
       method: 'GET',
       data: {
         rssUrls: rssUrls,
@@ -415,10 +416,10 @@ Page({
         "content-type": "application/x-www-form-urlencoded"
       },
       success: function(res) {
-        let resPosts = res.data.newPosts;
+        let resPosts = res.data.res;
         if (resPosts && resPosts!='error') {
-          for(let i=0;i<res.data.newPosts.length;i++){
-            that.data.allPosts.push(res.data.newPosts[i])
+          for(let i=0;i<res.data.res.length;i++){
+            that.data.allPosts.push(res.data.res[i])
           }
           that.data.allPostsSegment++;
           that.setData({
@@ -469,7 +470,7 @@ Page({
       rssUrls.push(that.data.rssSources[i].rssUrl);
     }
     wx.request({
-      url: 'https://nkurss.potatobrother.cn/rssread/unreadPosts',
+      url: 'http://nkurss.potatobrother.cn:8080/rssread/unreadPosts',
       method: 'GET',
       data: {
         rssUrls: rssUrls,
@@ -480,10 +481,10 @@ Page({
         "content-type": "application/x-www-form-urlencoded"
       },
       success: function(res) {
-        let resPosts = res.data.newPosts;
+        let resPosts = res.data.res;
         if (resPosts && resPosts!='error') {
-          for(let i=0;i<res.data.newPosts.length;i++){
-            that.data.newPosts.push(res.data.newPosts[i])
+          for(let i=0;i<res.data.res.length;i++){
+            that.data.newPosts.push(res.data.res[i])
           }
           that.data.newPostsSegment++;
           that.setData({
@@ -494,7 +495,7 @@ Page({
           console.log("success get new");
         }
         else{
-          console.log("error get new");
+          console.log("error get new ",res);
         }
       },
       fail: function (res) {
@@ -538,9 +539,9 @@ Page({
     });
     // --------------------换肤用CLOSE----------------
 
-    that.data.hasReadPosts = wx.getStorageSync(that.data.hasReadPostsKey);
-    that.data.rssSources = wx.getStorageSync(that.data.rssSourcesKey);
-    that.data.starPosts = wx.getStorageSync(that.data.starPostsKey);
+    // that.data.hasReadPosts = wx.getStorageSync(that.data.hasReadPostsKey);
+    // that.data.rssSources = wx.getStorageSync(that.data.rssSourcesKey);
+    // that.data.starPosts = wx.getStorageSync(that.data.starPostsKey);
     if(that.data.starPosts.length == 0){
       that.data.starPosts=[]; 
     } 
@@ -558,7 +559,7 @@ Page({
       }
       that.data.rssSources.push(oneRssSource);
       wx.request({
-        url: 'https://nkurss.potatobrother.cn/rssread/testRssSource',
+        url: 'http://nkurss.potatobrother.cn:8080/rssread/testRssSource',
         data:{
           rssUrl:'https://zhihu.com/rss'
         },
@@ -644,13 +645,13 @@ Page({
    */
   onPullDownRefresh: function () {
     console.log("pulldown")
-    if (this.data.idx){
+    if (this.data.bottomIndex==1){
       this.setData({
         newPostsSegment:1
       })
       this.getNewPosts();
     }
-    else{
+    else if(this.data.bottomIndex==2){
       this.setData({
         allPostsSegment:1
       })

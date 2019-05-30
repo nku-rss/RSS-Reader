@@ -17,6 +17,8 @@ def get_unread_posts(request):
     hasReadPostsId = request.GET.get('hasReadPostsId',[])
     if not rssUrls or not segment or not hasReadPostsId:
         return JsonResponse({'res':'error'})
+    rssUrls = json.loads(rssUrls)
+    hasReadPostsId = json.loads(hasReadPostsId)
     allPosts = models.Posts.objects.filter(rss_url__in=rssUrls).order_by('time_stamp')
     resPosts = []
     index = SEGMENT_SIZE*(segment-1)
@@ -49,6 +51,7 @@ def get_all_posts(request):
     segment = int(request.GET.get('segment',0))
     if not rssUrls or not segment:
         return JsonResponse({'res':'error'})
+    rssUrls = json.loads(rssUrls)
     allPosts = models.Posts.objects.filter(rss_url__in=rssUrls).order_by('time_stamp')
     resPosts = []
     index = SEGMENT_SIZE*(segment-1)

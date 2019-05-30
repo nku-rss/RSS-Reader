@@ -89,13 +89,13 @@ def store_all_posts_to_db(url):
             posts.append(post)
     for one in posts:
         tempRecord = models.Posts.objects.create(
-            rss_url=one.rss_url,
-            post_id=one.post_id,
-            post_author=one.post_author,
-            post_title=one.post_title,
-            post_time=one.post_time,
-            post_content=one.post_content,
-            time_stamp=one.time_stamp)
+            rss_url=one['rss_url'],
+            post_id=one['post_id'],
+            post_author=one['post_author'],
+            post_title=one['post_title'],
+            post_time=one['post_time'],
+            post_content=one['post_content'],
+            time_stamp=one['time_stamp'])
         tempRecord.save()
 
 
