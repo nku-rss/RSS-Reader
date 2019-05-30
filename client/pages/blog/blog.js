@@ -37,10 +37,6 @@ Page({
       let ins = that.selectComponent('#showPosts' + i);
       ins.close()
     }
-    for (var i = 0; i < that.data.rssSources.length; i++) {
-      let ins = that.selectComponent('#rssSources' + i);
-      ins.close();
-    }
   },
 
   onSlidePost(event) {
@@ -136,7 +132,7 @@ Page({
           that.data.segment ++;
           that.setData({
             segment:that.data.segment,
-            showPosts:that.data.segment
+            showPosts:that.data.showPosts
           })
           console.log("success get blog posts");
         }

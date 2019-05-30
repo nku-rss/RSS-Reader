@@ -647,13 +647,17 @@ Page({
     console.log("pulldown")
     if (this.data.bottomIndex==1){
       this.setData({
-        newPostsSegment:1
+        newPostsSegment:1,
+        newPosts:[],
+        showPosts:[]
       })
       this.getNewPosts();
     }
     else if(this.data.bottomIndex==2){
       this.setData({
-        allPostsSegment:1
+        allPostsSegment:1,
+        allPosts:[],
+        showPosts:[]
       })
       this.getAllPosts();
     }
