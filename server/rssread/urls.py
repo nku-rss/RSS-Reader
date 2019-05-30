@@ -2,6 +2,7 @@ from django.urls import path
 
 from . import views
 from . import refactor
+from . import dboperate
 
 urlpatterns = [
     # path('newPosts', views.get_new_posts),
@@ -15,4 +16,5 @@ urlpatterns = [
     path('oneRssPosts',refactor.get_one_rss_posts),
     path('allPosts',refactor.get_all_posts),
     path('deleteRssSource',refactor.delete_rss_source),
+    path('refresh',dboperate.start_update),
 ]

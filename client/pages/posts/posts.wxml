@@ -11,7 +11,7 @@
   module.exports.judge_star = judge_star;
 </wxs>
 
-<scroll-view scroll-y scroll-top="{{onReachBottom}}" class="page" style="background-color: {{bkColor}};" id="{{skin}}">
+<scroll-view scroll-y class="page" style="background-color: {{bkColor}};" id="{{skin}}">
   <view class='button-holder-left'>
     <button class="change-skin-button" bindtap="skinShowModal" plain>
       <van-icon name="gift" color="white" />
@@ -48,7 +48,7 @@
             </view>
           </van-swipe-cell>
         </view>
-        <button wx:if="{{ bottomIndex==1 || bottomIndex==2}}" class='load-more-button' bindtap="getMorePosts">
+        <button wx:if="{{ bottomIndex==1 || bottomIndex==2}}" class='load-more-button' bindtap="getMorePosts" border="{{false}}">
           <van-icon name="arrow-down" color="white" />
         </button>
       </view>

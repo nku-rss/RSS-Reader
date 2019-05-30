@@ -1,7 +1,16 @@
 @import "../../themes/skin-black.wxss";
 
-.page {
+/* .page {
     height: 2000rpx;
+} */
+
+.page {
+  padding-top: 3%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 #skin-black .van-swipe-cell {
@@ -62,14 +71,15 @@
 #skin-black .blog-icon-image {
     width: 30rpx;
     height: 30rpx;
+    margin-top:20rpx;
 }
 
 #skin-black .blog-name {
-    color: var(--black-blog-name);
+    color: var(--grey-blog-name);
     font-size: large;
     margin-left: 20rpx;
+    margin-top:20rpx;
 }
-
 /*文字显示*/
 #skin-black .van-cell__title {
     color: var(--black-cell-title) !important;

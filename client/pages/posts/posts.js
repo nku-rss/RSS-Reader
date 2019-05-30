@@ -539,9 +539,9 @@ Page({
     });
     // --------------------换肤用CLOSE----------------
 
-    // that.data.hasReadPosts = wx.getStorageSync(that.data.hasReadPostsKey);
-    // that.data.rssSources = wx.getStorageSync(that.data.rssSourcesKey);
-    // that.data.starPosts = wx.getStorageSync(that.data.starPostsKey);
+    that.data.hasReadPosts = wx.getStorageSync(that.data.hasReadPostsKey);
+    that.data.rssSources = wx.getStorageSync(that.data.rssSourcesKey);
+    that.data.starPosts = wx.getStorageSync(that.data.starPostsKey);
     if(that.data.starPosts.length == 0){
       that.data.starPosts=[]; 
     } 
@@ -574,9 +574,7 @@ Page({
     that.setData({
       starPosts:that.data.starPosts,
       rssSources:that.data.rssSources,
-      hasReadPosts:that.data.hasReadPosts,
-      newPostsSegment:1,
-      allPostsSegment:1
+      hasReadPosts:that.data.hasReadPosts
     })
     wx.setStorageSync(that.data.starPostsKey, that.data.starPosts);
     wx.setStorageSync(that.data.rssSourcesKey, that.data.rssSources);
@@ -607,6 +605,8 @@ Page({
         }
     );
     that.setData({
+      newPostsSegment: 1,
+      allPostsSegment: 1,
       skin: app.globalData.skin,
       bkColor: app.globalData.bkColor,
       navBkColor: app.globalData.navBkColor,
@@ -630,7 +630,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.instanceClose();
   },
 
   /**

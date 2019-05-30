@@ -19,7 +19,7 @@ def get_unread_posts(request):
         return JsonResponse({'res':'error'})
     rssUrls = json.loads(rssUrls)
     hasReadPostsId = json.loads(hasReadPostsId)
-    allPosts = models.Posts.objects.filter(rss_url__in=rssUrls).order_by('time_stamp')
+    allPosts = models.Posts.objects.filter(rss_url__in=rssUrls).order_by('-time_stamp')
     resPosts = []
     index = SEGMENT_SIZE*(segment-1)
     count = 0
@@ -52,7 +52,7 @@ def get_all_posts(request):
     if not rssUrls or not segment:
         return JsonResponse({'res':'error'})
     rssUrls = json.loads(rssUrls)
-    allPosts = models.Posts.objects.filter(rss_url__in=rssUrls).order_by('time_stamp')
+    allPosts = models.Posts.objects.filter(rss_url__in=rssUrls).order_by('-time_stamp')
     resPosts = []
     index = SEGMENT_SIZE*(segment-1)
     count = 0
@@ -80,7 +80,7 @@ def get_one_post(request):
     postId = request.GET.get('postId','')
     if not postId:
         return JsonResponse({'res','error'})
-    post = models.Posts.objects.filter(post_id=postId).order_by('time_stamp')
+    post = models.Posts.objects.filter(post_id=postId).order_by('-time_stamp')
     if not post:
         return JsonResponse({'res':'error'})
     onePost = {
@@ -100,7 +100,7 @@ def get_one_rss_posts(request):
     segment = int(request.GET.get('segment',0))
     if not rssUrl or not segment:
         return JsonResponse({'res':'error'})
-    allPosts = models.Posts.objects.filter(rss_url=rssUrl).order_by('time_stamp')
+    allPosts = models.Posts.objects.filter(rss_url=rssUrl).order_by('-time_stamp')
     resPosts = []
     index = SEGMENT_SIZE*(segment-1)
     count = 0

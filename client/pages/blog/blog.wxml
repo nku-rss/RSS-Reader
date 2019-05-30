@@ -11,7 +11,8 @@
   module.exports.judge_star = judge_star;
 </wxs>
 
-<view view class="page" style="background-color: {{bkColor}}" id="{{skin}}">
+
+<scroll-view scroll-y view class="page" style="background-color: {{bkColor}}" id="{{skin}}">
     <view class="blog-avatar">
         <view class="blog-icon">
             <image class="blog-icon-image" src="https://user-images.githubusercontent.com/31076337/58494836-92dda980-81a8-11e9-9b4f-00c9ab47c957.png"></image>
@@ -20,24 +21,27 @@
             <label>{{rssName}}</label>
         </view>
     </view>
-
+    
     <view class="rss-posts">
         <view class="cell-with-margin" wx:for="{{showPosts}}" wx:key="{{index}}">
-            <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="{{index}}" async-close bind:close="onSlidePost">
+            <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="showPosts{{index}}" async-close bind:close="onSlidePost">
                 <view slot="left" wx:if="{{judge.judge_star(starPosts,showPosts,index)}}"><van-icon name="star"/></view>
                 <view slot="left" wx:if="{{!judge.judge_star(starPosts,showPosts,index)}}"><van-icon name="star-o"/></view>
                 <van-cell-group border="{{false}}">
-                    <van-cell bindtap="goToArticle" id="{{index}}" custom-class="one-rss" title="{{showPosts[index].title}}" label="{{showPosts[index].author}}" size="large" border="{{false}}"/>
+                    <van-cell bindtap="goToArticle" id="goToArticle{{index}}"  custom-class="one-rss" title="{{showPosts[index].title}}" label="{{showPosts[index].author}}" size="large" border="{{false}}"/>
                 </van-cell-group>
                 <view slot="right" wx:if="{{bottomIndex==1}}"><van-icon name="browsing-history-o" /></view>
                 <view slot="right" wx:if="{{bottomIndex!=1}}"><van-icon name="browsing-history" /></view>
             </van-swipe-cell>
         </view>
+        <button class='load-more-button' bindtap="getPosts" border="{{false}}">
+          <van-icon name="arrow-down" color="white" />
+        </button>
     </view>
 
     <view class="load-modal-dialog" wx:if="{{loadShowModal}}">
         <van-loading type="spinner" color="#fff" />
     </view>
 
-</view>
+</scroll-view>
 

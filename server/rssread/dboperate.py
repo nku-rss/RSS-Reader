@@ -99,6 +99,6 @@ def store_all_posts_to_db(url):
         tempRecord.save()
 
 
-if __name__ == "__main__":
+def start_update():
     allUrl = get_rss_from_db()
     store_all_posts_to_db(allUrl)

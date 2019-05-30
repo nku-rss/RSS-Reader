@@ -1,5 +1,7 @@
 Page({
   data: {
+    rssSourcesKey: 'rssSourcesKey',
+
     // ------样式设置OPEN-----
     skin: "skin-grey",
     bkColor: "rgb(64, 63, 60)",
@@ -45,6 +47,16 @@ Page({
       })
     }
     else{
+      let savedRssSources = wx.getStorageSync(that.data.rssSourcesKey);
+      for(var i=0;i<savedRssSources.length;i++){
+        if(newRssSource.rssUrl == savedRssSources[i].rssUrl){
+          wx.showToast({
+            title: '请不要重复添加！',
+            icon: 'none'
+          })
+          return;
+        }
+      }
       // wx.showLoading({
       //   title: '正在添加RSS',
       // });
@@ -58,7 +70,7 @@ Page({
         success(res){
           // wx.hideLoading();
           that.loadHideModal();
-          if(!res.dat.res || res.data.res=='error'){
+          if(!res.data.res || res.data.res=='error'){
             wx.showToast({
               title: 'RSS源地址有误！',
               icon :'none'

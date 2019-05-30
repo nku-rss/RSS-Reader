@@ -31,10 +31,22 @@ Page({
     });
   },
 
-  onSlidePost(event) {
-    console.log("onshow")
+  instanceClose() {
     let that = this;
-    let tempIndex = event.currentTarget.id;
+    for (var i = 0; i < that.data.showPosts.length; i++) {
+      let ins = that.selectComponent('#showPosts' + i);
+      ins.close()
+    }
+    for (var i = 0; i < that.data.rssSources.length; i++) {
+      let ins = that.selectComponent('#rssSources' + i);
+      ins.close();
+    }
+  },
+
+  onSlidePost(event) {
+    let that = this;
+    that.instanceClose();
+    let tempIndex = event.currentTarget.id.replace('showPosts', '');
     const { position, instance } = event.detail;
     switch (position) {
       case 'left':
@@ -68,8 +80,14 @@ Page({
     } 
     else {
       that.data.starPosts.push(that.data.showPosts[tempIndex]);
+      let tempStarPosts = that.data.starPosts;
+      let pages = getCurrentPages();
+      let previousPage = pages[pages.length - 2];
+      previousPage.setData({
+        starPosts: tempStarPosts
+      })
       that.setData({
-        starPosts: that.data.starPosts
+        starPosts: tempStarPosts
       })
       wx.setStorageSync(that.data.starPostsKey, that.data.starPosts);
     }
@@ -77,11 +95,16 @@ Page({
 
   cancelStar(tempIndex) {
     let that = this;
-    let i = 0;
     that.data.starPosts.splice(tempIndex, 1);
+    let tempStarPosts = that.data.starPosts;
+    let pages = getCurrentPages();
+    let previousPage = pages[pages.length - 2];
+    previousPage.setData({
+      starPosts: tempStarPosts
+    })
     that.setData({
-      starPosts: that.data.starPosts
-    });
+      starPosts: tempStarPosts
+    })
     wx.setStorageSync(that.data.starPostsKey, that.data.starPosts);
     // wx.showToast({
     //   title: '取消收藏!',
@@ -107,8 +130,13 @@ Page({
       },
       success: function (res) {
         if (res.data.res && res.data.res!='error') {
+          for (let i = 0; i < res.data.res.length; i++) {
+            that.data.showPosts.push(res.data.res[i])
+          }
+          that.data.segment ++;
           that.setData({
-            showPosts:res.data.res
+            segment:that.data.segment,
+            showPosts:that.data.segment
           })
           console.log("success get blog posts");
         }
@@ -131,7 +159,8 @@ Page({
   },
 
   goToArticle(event) {
-    let tempIndex = event.currentTarget.id;
+    this.instanceClose();
+    let tempIndex = event.currentTarget.id.replace('goToArticle', '');
     let tempPost = this.data.showPosts[tempIndex];
     wx.navigateTo({
       url: '../article/article?rssUrl=' + tempPost.rssUrl + '&postId=' + tempPost.postId,
@@ -184,6 +213,7 @@ Page({
     )
 
     that.setData({
+      segment:1,
       skin: app.globalData.skin,
       bkColor: app.globalData.bkColor,
       navBkColor: app.globalData.navBkColor,
@@ -195,5 +225,6 @@ Page({
   onHide(){
     // wx.hideLoading();
     this.loadHideModal();
+    this.instanceClose();
   }
 });
