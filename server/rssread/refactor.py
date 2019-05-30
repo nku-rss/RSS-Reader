@@ -16,7 +16,7 @@ def get_unread_posts(request):
     hasReadPostsId = request.GET.get('hasReadPostsId',[])
     if not rssUrls or not segment or not hasReadPostsId:
         return JsonResponse({'res':'error'})
-    allPosts = models.Posts.object.filter(rss_url__in=rssUrls).order_by('time_stamp')
+    allPosts = models.Posts.objects.filter(rss_url__in=rssUrls).order_by('time_stamp')
     resPosts = []
     index = SEGMENT_SIZE*(segment-1)
     count = 0
@@ -48,7 +48,7 @@ def get_all_posts(request):
     segment = request.GET.get('segment',0)
     if not rssUrls or not segment:
         return JsonResponse({'res':'error'})
-    allPosts = models.Posts.object.filter(rss_url__in=rssUrls).order_by('time_stamp')
+    allPosts = models.Posts.objectss.filter(rss_url__in=rssUrls).order_by('time_stamp')
     resPosts = []
     index = SEGMENT_SIZE*(segment-1)
     count = 0
@@ -76,7 +76,7 @@ def get_one_post(request):
     postId = request.GET.get('postId','')
     if not postId:
         return JsonResponse({'res','error'})
-    post = models.Posts.object.filter(post_id=postId).order_by('time_stamp')
+    post = models.Posts.objects.filter(post_id=postId).order_by('time_stamp')
     if not post:
         return JsonResponse({'res':'error'})
     onePost = {
@@ -96,7 +96,7 @@ def get_one_rss_posts(request):
     segment = request.GET.get('segment',0)
     if not rssUrl or not segment:
         return JsonResponse({'res':'error'})
-    allPosts = models.Posts.object.filter(rss_url=rssUrl).order_by('time_stamp')
+    allPosts = models.Posts.objects.filter(rss_url=rssUrl).order_by('time_stamp')
     resPosts = []
     index = SEGMENT_SIZE*(segment-1)
     count = 0
@@ -124,11 +124,11 @@ def test_rss_source(request):
     rssUrl = request.GET.get('rssUrl','')
     if not rssUrl:
         return JsonResponse({'res':'error'})
-    hasSaved = models.RssSources.object.filter(rss_url=rssUrl)
+    hasSaved = models.RssSources.objects.filter(rss_url=rssUrl)
     if not hasSaved:
         htmlSource = feedparser.parse(rssUrl)
         if len(htmlSource['entries'])!=0:
-            newRssSource = models.RssSources.object.create(rss_url=rssUrl,user_number=1)
+            newRssSource = models.RssSources.objects.create(rss_url=rssUrl,user_number=1)
             newRssSource.save()
             return JsonResponse({'res':'ok'})
         else:
@@ -144,14 +144,14 @@ def delete_rss_source(request):
     rssUrls = request.GET.get('rssUrls','')
     if not rssUrls:
         return JsonResponse({'res':'error'})
-    hasSaved = models.RssSources.object.filter(rss_url__in=rssUrls)
+    hasSaved = models.RssSources.objects.filter(rss_url__in=rssUrls)
     if not hasSaved:
         return JsonResponse({'res':'error'})
     for i in range(len(hasSaved)):
         if hasSaved[i].user_number==1:
             deleteRssUrl = hasSaved[i].rss_url
             hasSaved[i].delete()
-            models.Posts.object.filter(rss_url=deleteRssUrl).delete()
+            models.Posts.objects.filter(rss_url=deleteRssUrl).delete()
         else:
             hasSaved[i].user_number -=1
             hasSaved[i].save()
