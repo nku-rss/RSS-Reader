@@ -379,6 +379,15 @@ Page({
     })
   },
 
+  
+  getMorePosts(){
+    if(this.data.bottomIndex==1){
+      this.getNewPosts();
+    }
+    else if(this.data.bottomIndex==2){
+      this.getAllPosts();
+    }
+  },
 
   getAllPosts(){
     let that = this;
@@ -440,7 +449,7 @@ Page({
     })
 
   },
-  
+
   /**
    * 获取博文
    */
@@ -548,6 +557,18 @@ Page({
         webUrl:'url'
       }
       that.data.rssSources.push(oneRssSource);
+      wx.request({
+        url: 'https://nkurss.potatobrother.cn/rssread/testRssSource',
+        data:{
+          rssUrl:'https://zhihu.com/rss'
+        },
+        success(res){
+          console.log("success add init rss");
+        },
+        fail:function(res){
+          console.log("fail add init rss");
+        }
+      })
     }
     that.setData({
       starPosts:that.data.starPosts,
@@ -622,6 +643,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    console.log("pulldown")
     if (this.data.idx){
       this.setData({
         newPostsSegment:1
@@ -640,12 +662,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.idx){
-      this.getNewPosts();
-    }
-    else{
-      this.getAllPosts();
-    }
   },
 
   /**
@@ -706,6 +722,13 @@ Page({
     that.setData({
       bottomIndex:2
     });
-    that.getAllPosts();
+    if(that.data.allPosts.length==0){
+      that.getAllPosts();
+    }
+    else{
+      that.setData({
+        showPosts:that.data.allPosts
+      })
+    }
   },
 })

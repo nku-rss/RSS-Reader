@@ -12,7 +12,7 @@ SEGMENT_SIZE = 6
 @require_http_methods(["GET"])
 def get_unread_posts(request):
     rssUrls = request.GET.get('rssUrls',[])
-    segment = request.GET.get('segment',0)
+    segment = int(request.GET.get('segment',0))
     hasReadPostsId = request.GET.get('hasReadPostsId',[])
     if not rssUrls or not segment or not hasReadPostsId:
         return JsonResponse({'res':'error'})
@@ -45,10 +45,10 @@ def get_unread_posts(request):
 @require_http_methods(["GET"])
 def get_all_posts(request):
     rssUrls = request.GET.get('rssUrls',[])
-    segment = request.GET.get('segment',0)
+    segment = int(request.GET.get('segment',0))
     if not rssUrls or not segment:
         return JsonResponse({'res':'error'})
-    allPosts = models.Posts.objectss.filter(rss_url__in=rssUrls).order_by('time_stamp')
+    allPosts = models.Posts.objects.filter(rss_url__in=rssUrls).order_by('time_stamp')
     resPosts = []
     index = SEGMENT_SIZE*(segment-1)
     count = 0
@@ -93,7 +93,7 @@ def get_one_post(request):
 @require_http_methods(["GET"])
 def get_one_rss_posts(request):
     rssUrl = request.GET.get('rssUrl','')
-    segment = request.GET.get('segment',0)
+    segment = int(request.GET.get('segment',0))
     if not rssUrl or not segment:
         return JsonResponse({'res':'error'})
     allPosts = models.Posts.objects.filter(rss_url=rssUrl).order_by('time_stamp')
@@ -156,8 +156,4 @@ def delete_rss_source(request):
             hasSaved[i].user_number -=1
             hasSaved[i].save()
     return JsonResponse({'res':'ok'})
-
-
-# 立即获取
-
 

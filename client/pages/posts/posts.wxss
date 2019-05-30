@@ -1,3 +1,6 @@
 @import "posts-skin-grey.wxss";
 @import "posts-skin-black.wxss";
-
+.load-more-button {
+    margin-top: 20px;
+    background-color: rgba(255,255,255,0);
+}

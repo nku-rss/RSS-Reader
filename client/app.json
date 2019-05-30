@@ -6,10 +6,10 @@
     "pages/article/article"
   ],
   "window": {
-    "navigationBarTitleText": "RSS Reader"
+    "navigationBarTitleText": "RSS Reader",
+    "enablePullDownRefresh": true
   },
   "sitemapLocation": "sitemap.json",
-  "enablePullDownRefresh": true,
   "usingComponents": {
     "van-tab": "dist/tab/index",
     "van-tabs": "dist/tabs/index",
