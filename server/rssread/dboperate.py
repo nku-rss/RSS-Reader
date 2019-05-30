@@ -3,16 +3,18 @@ import re
 import time
 import calendar
 import datetime
-url = []
-url_1 = 'https://gujiaxi.com/feed.xml'
-url_2 = 'https://zilongshanren.com/atom.xml '
-url_3 = 'https://archive.casouri.co.uk/note/index.xml'
-url_4 = 'https://www.zhihu.com/rss'
-url.append(url_1)
-url.append(url_2)
-url.append(url_3)
-url.append(url_4)
-def get_all_posts(url):
+from . import models
+
+
+def get_rss_from_db():
+    allRssSources = models.RssSources.objects.filter()
+    allUrl = []
+    for oneRss in allRssSources:
+        allUrl.append(oneRss.rss_url)
+    return allUrl
+
+
+def store_all_posts_to_db(url):
     """根据url数组获得所有的文章"""
     
     feedtext = []
@@ -85,9 +87,18 @@ def get_all_posts(url):
                         re_value = re.sub('SRC','src',value)
                         post['post_content']=re_value
             posts.append(post)
-    print(len(posts))
-    # for i in range(10):
-    #     print(posts[i]) 
-    #     print('Page========================')
+    for one in posts:
+        tempRecord = models.Posts.objects.create(
+            rss_url=one.rss_url,
+            post_id=one.post_id,
+            post_author=one.post_author,
+            post_title=one.post_title,
+            post_time=one.post_time,
+            post_content=one.post_content,
+            time_stamp=one.time_stamp)
+        tempRecord.save()
 
-get_all_posts(url)
+
+if __name__ == "__main__":
+    allUrl = get_rss_from_db()
+    store_all_posts_to_db(allUrl)

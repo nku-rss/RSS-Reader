@@ -4,6 +4,7 @@ import feedparser
 import json
 from django.views.decorators.http import require_http_methods
 from . import models
+from . import dboperate
 
 SEGMENT_SIZE = 6
 
@@ -130,6 +131,7 @@ def test_rss_source(request):
         if len(htmlSource['entries'])!=0:
             newRssSource = models.RssSources.objects.create(rss_url=rssUrl,user_number=1)
             newRssSource.save()
+            dboperate.store_all_posts_to_db([rssUrl])
             return JsonResponse({'res':'ok'})
         else:
             return JsonResponse({'res':'error'})
