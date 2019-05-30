@@ -19,28 +19,27 @@ Page({
     tabbarIconState: ["star", "browsing-history", "coupon"], // 0, 1, 2
     pageHeight: 2000,
     // -----------这部分是属于样式的CLOSE---------------
-
+    
+    toDeleteIndex: -1,
+    toDeleteRssUrl: [],
     showModal: false, // 对话窗
     skinShowModal: false,
     loadShowModal: false,
 
-    toDeleteIndex: -1,
-    toDeleteRssUrl: [],
-
-    
     hasReadPosts:[],
     starPosts: [],
     allPosts: [],
     newPosts:[],
-
     showPosts:[],
     rssSources: [],
+    newRssSource: {},
+    isGetting: false,
+    bottomIndex: 1,
+
+
     lastTime: "",
     segment:0,
-    newRssSource:{},
-    isGetting:false,
 
-    bottomIndex:1,
 
     active: 0,
     idx: true,
@@ -119,7 +118,8 @@ Page({
 
   onSlidePost(event) {
     let that = this;
-    let tempIndex = event.currentTarget.id;
+    that.instanceClose();
+    let tempIndex = event.currentTarget.id.replace('showPosts', '');
     const { position, instance } = event.detail;
     switch (position) {
       case 'left':
@@ -153,7 +153,8 @@ Page({
 
   onSlideBlog(event) {
     let that = this;
-    let tempIndex = event.currentTarget.id;
+    that.instanceClose();
+    let tempIndex = event.currentTarget.id.replace('rssSources', '');
     const { position, instance } = event.detail;
     switch (position) {
       case 'left':
@@ -177,6 +178,19 @@ Page({
     }
     instance.close();
   },
+
+  instanceClose(){
+    let that=this;
+    for(var i=0;i<that.data.showPosts.length;i++){
+      let ins = that.selectComponent('#showPosts'+i);
+      ins.close()
+    }
+    for(var i=0;i<that.data.rssSources.length;i++){
+      let ins = that.selectComponent('#rssSources'+i);
+      ins.close();
+    }
+  },
+  
 
   // ----------------修改皮肤OPEN----------------
   chooseBlackTheme: function(event) {
@@ -292,6 +306,7 @@ Page({
 
   onClick(event) {
     let that = this;
+    that.instanceClose();
     if (event.detail.index === 0) {
       if (that.data.isGetting) {
         // wx.showLoading({
@@ -302,7 +317,7 @@ Page({
       if (that.data.toDeleteRssUrl.length != 0) {
         for (let i = 0; i < that.data.toDeleteRssUrl.length; i++) {
           let tempDeleteRssUrl = that.data.toDeleteRssUrl[i].rssUrl;
-          let j = 0;
+          var j = 0;
           for (j = 0; j < that.data.newPosts.length; j++) {
             if (that.data.newPosts[j].rssUrl == tempDeleteRssUrl) {
               that.data.newPosts.splice(j, 1);
@@ -337,7 +352,8 @@ Page({
   },
 
   goToArticle(event) {
-    let tempIndex = event.currentTarget.id;
+    this.instanceClose();
+    let tempIndex = event.currentTarget.id.replace('goToArticle','');
     let tempPost = this.data.showPosts[tempIndex];
     // wx.hideLoading();
     this.loadHideModal();
@@ -347,7 +363,8 @@ Page({
   },
 
   goToBlog(event) {
-    let tempIndex = event.currentTarget.id;
+    this.instanceClose();
+    let tempIndex = event.currentTarget.id.replace('goToBlog', '');
     let tempRssSource = this.data.rssSources[tempIndex];
     // wx.hideLoading();
     this.loadHideModal();
@@ -358,6 +375,7 @@ Page({
 
 
   goToEdit() {
+    this.instanceClose();
     wx.navigateTo({
       url: '/pages/edit/edit',
     })
@@ -447,6 +465,9 @@ Page({
     if(that.data.starPosts.length == 0){
       that.data.starPosts=[]; 
     } 
+    if(that.data.hasReadPosts.length==0){
+      that.data.hasReadPosts=[];
+    }
     if (that.data.rssSources.length == 0) {
       that.data.rssSources = [];
       let oneRssSource = {
@@ -460,10 +481,12 @@ Page({
     }
     that.setData({
       starPosts:that.data.starPosts,
-      rssSources:that.data.rssSources
+      rssSources:that.data.rssSources,
+      hasReadPosts:that.data.hasReadPosts
     })
     wx.setStorageSync(that.data.starPostsKey, that.data.starPosts);
     wx.setStorageSync(that.data.rssSourcesKey, that.data.rssSources);
+    wx.setStorageSync(that.data.hasReadPostsKey, that.data.hasReadPosts);
     that.getNewPosts(that);
   },
 

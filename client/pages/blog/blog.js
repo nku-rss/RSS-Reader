@@ -71,10 +71,6 @@ Page({
         starPosts: that.data.starPosts
       })
       wx.setStorageSync(that.data.starPostsKey, that.data.starPosts);
-      // wx.showToast({
-      //   title: '收藏成功！',
-      //   icon: 'none',
-      // })
     }
   },
 
@@ -92,13 +88,11 @@ Page({
     // })
   },
 
-
   getPosts() {
     let that = this;
     // wx.showLoading({
     //   title: '正在更新博文',
     // });
-
     that.loadShowModal();
     wx.request({
       url: 'https://nkurss.potatobrother.cn/rssread/oneRssPosts',
@@ -127,9 +121,6 @@ Page({
         console.log("complete")
         // wx.hideLoading();
         that.loadHideModal();
-        that.setData({
-          isGetting: false
-        });
       }
     })
   },
@@ -198,6 +189,6 @@ Page({
   
   onHide(){
     // wx.hideLoading();
-    that.loadHideModal();
+    this.loadHideModal();
   }
 });

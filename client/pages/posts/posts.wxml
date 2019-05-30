@@ -11,14 +11,25 @@
   module.exports.judge_star = judge_star;
 </wxs>
 
-<view class="page" style="background-color: {{bkColor}};height:{{pageHeight}}px;" id="{{skin}}">
+<scroll-view scroll-y class="page" style="background-color: {{bkColor}};" id="{{skin}}">
+    <view class='button-holder-left'>
+        <button class="change-skin-button" bindtap="skinShowModal" plain>
+            <van-icon name="gift" color="white"/>
+        </button>
+    </view>
+    <view class='button-holder-right'>
+        <button class="add-rss-button" bindtap="goToEdit" plain>
+            <van-icon name="plus" color="white"/>
+        </button>
+    </view>
+    
     <van-tabs type="card" bind:click="onClick" active="0" tab-class="tab-class" nav-class="nav-class"
               tab-active-class="tab-active-class">
 
         <van-tab title="博文" class="test">
             <view class="rss-posts">
                 <view class="cell-with-margin" wx:for="{{showPosts}}" wx:key="{{index}}">
-                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="{{index}}" async-close bind:close="onSlidePost">
+                    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="showPosts{{index}}" async-close bind:close="onSlidePost">
                         <view slot="left" wx:if="{{judge.judge_star(starPosts,showPosts,index)}}">
                             <van-icon name="star"/>
                         </view>
@@ -27,7 +38,7 @@
                         </view>
                         <!-- <view slot="left">收藏</view> -->
                         <van-cell-group border="{{false}}">
-                            <van-cell bindtap="goToArticle" id="{{index}}" custom-class="one-rss" title="{{showPosts[index].post.title}}" label="{{showPosts[index].post.author}}" size="large" border="{{false}}"/>
+                            <van-cell bindtap="goToArticle" id="goToArticle{{index}}" custom-class="one-rss" title="{{showPosts[index].post.title}}" label="{{showPosts[index].post.author}}" size="large" border="{{false}}"/>
                         </van-cell-group>
                         <!-- <view slot="right">已读</view> -->
                         <view slot="right" wx:if="{{bottomIndex==1}}"><van-icon name="browsing-history-o" /></view>
@@ -40,10 +51,10 @@
         <van-tab title="栏目">
             <view class="rss-posts">
                 <view class="cell-with-margin" wx:for="{{rssSources}}" wx:key="{{index}}">
-                   <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="{{index}}"async-close bind:close="onSlideBlog">
+                   <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}" id="rssSources{{index}}"async-close bind:close="onSlideBlog">
                         <view slot="left"><van-icon name="arrow-up" /></view>
                         <van-cell-group border="{{false}}">
-                            <van-cell bindtap="goToBlog" id="{{index}}" custom-class="one-rss" title="{{rssSources[index].rssName}}" size="large" label="{{rssSources[index].rssUrl}}" border="{{false}}"/>
+                            <van-cell bindtap="goToBlog" id="goToBlog{{index}}" custom-class="one-rss" title="{{rssSources[index].rssName}}" size="large" label="{{rssSources[index].rssUrl}}" border="{{false}}"/>
                         </van-cell-group>
                         <view slot="right"><van-icon name="close" /></view>
                     </van-swipe-cell>
@@ -74,17 +85,7 @@
         </view>
     </view>
 
-    <view class="add-rss">
-        <button class="add-rss-button" bindtap="goToEdit" plain>
-            <van-icon name="plus" color="white"/>
-        </button>
-    </view>
 
-    <view class="change-skin">
-        <button class="change-skin-button" bindtap="skinShowModal" plain>
-            <van-icon name="gift" color="white"/>
-        </button>
-    </view>
 
 <!--    对话窗-->
 
@@ -129,4 +130,4 @@
     </view>
 
 
-</view>
+</scroll-view> 
