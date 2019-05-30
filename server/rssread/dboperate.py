@@ -4,6 +4,7 @@ import time
 import calendar
 import datetime
 from . import models
+from django.http import JsonResponse
 
 
 def get_rss_from_db():
@@ -102,3 +103,4 @@ def store_all_posts_to_db(url):
 def start_update():
     allUrl = get_rss_from_db()
     store_all_posts_to_db(allUrl)
+    return JsonResponse({'res':'ok'})
