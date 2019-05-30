@@ -58,13 +58,15 @@ Page({
         success(res){
           // wx.hideLoading();
           that.loadHideModal();
-          if(res.data.test=='error'){
+          if(!res.dat.res || res.data.res=='error'){
             wx.showToast({
               title: 'RSS源地址有误！',
               icon :'none'
             })
+            console.log("error add rss");
           }
           else{
+            console.log("success add rss");
             let pages = getCurrentPages();
             let previousPage = pages[pages.length - 2];
             previousPage.setData({
@@ -74,6 +76,9 @@ Page({
               delta: 1
             })
           }
+        },
+        fail:function(res){
+          console.log("fail add rss");
         },
         complete(){
           // wx.hideLoading();

@@ -35,11 +35,8 @@ Page({
     newRssSource: {},
     isGetting: false,
     bottomIndex: 1,
-
-
-    lastTime: "",
-    segment:0,
-
+    newPostsSegment:1,
+    allPostsSegment:1,
 
     active: 0,
     idx: true,
@@ -115,7 +112,6 @@ Page({
     }
   },
 
-
   onSlidePost(event) {
     let that = this;
     that.instanceClose();
@@ -133,11 +129,11 @@ Page({
         break;
       case 'right':
         if (that.data.bottomIndex == 1) {
-          let tempSimplePost = {
-            rssUrl:that.data.newPosts[tempIndex].rssUrl,
-            postId:that.data.newPosts[tempIndex].postId
-          };
-          that.data.hasReadPosts.push(tempSimplePost);
+          // let tempSimplePost = {
+          //   rssUrl:that.data.newPosts[tempIndex].rssUrl,
+          //   postId:that.data.newPosts[tempIndex].postId
+          // };
+          that.data.hasReadPosts.push(that.data.newPosts[tempIndex].postId);
           that.data.newPosts.splice(tempIndex, 1);
           that.setData({
             hasReadPosts: that.data.hasReadPosts,
@@ -194,36 +190,23 @@ Page({
 
   // ----------------修改皮肤OPEN----------------
   chooseBlackTheme: function(event) {
-
     var app = getApp();
-
     app.globalData.skin = "skin-black";
     app.globalData.navBkColor = "#000000";
     app.globalData.bkColor = "#000000";
     app.globalData.rssFormLogo = "https://user-images.githubusercontent.com/31076337/58367987-bd193800-7f18-11e9-8abc-02edac1d76ee.png";
-
     this.skinHideModal();
-
     this.onShow();
-
-
-
   },
 
   chooseGreyTheme: function(event) {
-
     var app = getApp();
-
     app.globalData.skin = "skin-grey";
     app.globalData.navBkColor = "#403f3c";
     app.globalData.bkColor = "rgb(64, 63, 60)";
     app.globalData.rssFormLogo = "https://user-images.githubusercontent.com/31076337/58075941-80c59f00-7bdb-11e9-86c0-6c6b8b2de3f7.png";
-
     this.skinHideModal();
-
     this.onShow();
-
-
   },
   // ----------------修改皮肤CLOSE----------------
 
@@ -273,20 +256,15 @@ Page({
 
 
   skinHideModal: function () {
-
     this.setData({
-
       skinShowModal: false
-
     });
-
   },
 
   skinShowModal: function () {
     this.setData({
           skinShowModal: true
         }
-
     );
   },
 
@@ -315,6 +293,28 @@ Page({
         this.loadShowModal()
       }
       if (that.data.toDeleteRssUrl.length != 0) {
+        wx.request({
+          url: 'https://nkurss.potatobrother.cn/rssread/deleteRssSource',
+          method: 'GET',
+          data: {
+            rssUrls: that.data.toDeleteRssUrl
+          },
+          header: {
+            "content-type": "application/x-www-form-urlencoded"
+          },
+          success: function(res) {
+            let resPosts = res.data.newPosts;
+            if (resPosts && resPosts!='error') {
+              console.log("success delete rss");
+            }
+            else{
+              console.log("error delete rss");
+            }
+          },
+          fail:function(res){
+            console.log("fail delete rss");
+          }
+        });
         for (let i = 0; i < that.data.toDeleteRssUrl.length; i++) {
           let tempDeleteRssUrl = that.data.toDeleteRssUrl[i].rssUrl;
           var j = 0;
@@ -341,7 +341,6 @@ Page({
       that.setData({
         idx: true
       })
-
     } else {
       // wx.hideLoading();
       this.loadHideModal();
@@ -373,7 +372,6 @@ Page({
     })
   },
 
-
   goToEdit() {
     this.instanceClose();
     wx.navigateTo({
@@ -382,11 +380,72 @@ Page({
   },
 
 
+  getAllPosts(){
+    let that = this;
+    that.setData({
+      isGetting:true
+    });
+    if(!that.data.idx){
+      // wx.showLoading({
+      //   title: '正在更新博文',
+      // });
+      that.loadShowModal();
+    }
+    let rssUrls = [];
+    for(var i =0;i<that.data.rssSources.length;i++){
+      rssUrls.push(that.data.rssSources[i].rssUrl);
+    }
+    wx.request({
+      url: 'https://nkurss.potatobrother.cn/rssread/allPosts',
+      method: 'GET',
+      data: {
+        rssUrls: rssUrls,
+        segment:that.data.allPostsSegment
+      },
+      header: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      success: function(res) {
+        let resPosts = res.data.newPosts;
+        if (resPosts && resPosts!='error') {
+          for(let i=0;i<res.data.newPosts.length;i++){
+            that.data.allPosts.push(res.data.newPosts[i])
+          }
+          that.data.allPostsSegment++;
+          that.setData({
+            allPostsSegment:that.allPostsSegment,
+            allPosts:that.data.allPosts,
+            showPosts:that.data.allPosts
+          })
+          console.log("success get all");
+        }
+        else{
+          console.log("error get all");
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '更新失败，请检查网络!',
+          icon:'none'
+        })
+        console.log("fail get all");
+      },
+      complete(){
+        // wx.hideLoading();
+        that.loadHideModal();
+        that.setData({
+          isGetting: false
+        });
+      }
+    })
+
+  },
   
   /**
    * 获取博文
    */
-  getNewPosts(that){
+  getNewPosts(){
+    let that = this;
     that.setData({
       isGetting:true
     });
@@ -396,34 +455,45 @@ Page({
       // });
       that.loadShowModal();
     }
+    let rssUrls = [];
+    for(var i =0;i<that.data.rssSources.length;i++){
+      rssUrls.push(that.data.rssSources[i].rssUrl);
+    }
     wx.request({
-      url: 'https://nkurss.potatobrother.cn/rssread/newPosts',
+      url: 'https://nkurss.potatobrother.cn/rssread/unreadPosts',
       method: 'GET',
       data: {
-        rssSources: that.data.rssSources,
+        rssUrls: rssUrls,
+        segment:that.data.newPostsSegment,
+        hasReadPostsId:that.data.hasReadPosts
       },
       header: {
         "content-type": "application/x-www-form-urlencoded"
       },
       success: function(res) {
-        if (res.data.newPosts) {
-          let tempAllPosts = [];
+        let resPosts = res.data.newPosts;
+        if (resPosts && resPosts!='error') {
           for(let i=0;i<res.data.newPosts.length;i++){
-            tempAllPosts.push(res.data.newPosts[i])
+            that.data.newPosts.push(res.data.newPosts[i])
           }
+          that.data.newPostsSegment++;
           that.setData({
-            allPosts:tempAllPosts,
-            newPosts: res.data.newPosts,
-            showPosts: res.data.newPosts
+            newPostsSegment:that.data.newPostsSegment,
+            newPosts: that.data.newPosts,
+            showPosts: that.data.newPosts
           })
-          console.log("success");
+          console.log("success get new");
+        }
+        else{
+          console.log("error get new");
         }
       },
       fail: function (res) {
         wx.showToast({
           title: '更新失败，请检查网络!',
           icon:'none'
-        })
+        });
+        console.log("fail get new");
       },
       complete(){
         // wx.hideLoading();
@@ -482,12 +552,14 @@ Page({
     that.setData({
       starPosts:that.data.starPosts,
       rssSources:that.data.rssSources,
-      hasReadPosts:that.data.hasReadPosts
+      hasReadPosts:that.data.hasReadPosts,
+      newPostsSegment:1,
+      allPostsSegment:1
     })
     wx.setStorageSync(that.data.starPostsKey, that.data.starPosts);
     wx.setStorageSync(that.data.rssSourcesKey, that.data.rssSources);
     wx.setStorageSync(that.data.hasReadPostsKey, that.data.hasReadPosts);
-    that.getNewPosts(that);
+    that.getNewPosts();
   },
 
   
@@ -528,7 +600,7 @@ Page({
       that.setData({
         newRssSource:{}
       });
-      that.getNewPosts(that);
+      that.getNewPosts();
     }   
   },
 
@@ -550,21 +622,36 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    if (this.data.idx){
+      this.setData({
+        newPostsSegment:1
+      })
+      this.getNewPosts();
+    }
+    else{
+      this.setData({
+        allPostsSegment:1
+      })
+      this.getAllPosts();
+    }
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.idx){
+      this.getNewPosts();
+    }
+    else{
+      this.getAllPosts();
+    }
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
     return {
       title: 'Say a \'Hi\' to RSS',
       path: 'pages/posts/posts', //这里设定都是以"/page"开头,并拼接好传递的参数
@@ -576,9 +663,7 @@ Page({
         // 转发失败
       }
     }
-
   },
-
 
 
   clickStar: function() {
@@ -592,7 +677,6 @@ Page({
       bottomIndex:0,
       showPosts:that.data.starPosts
     });
-
   },
 
   clickBrowse: function() {
@@ -620,9 +704,8 @@ Page({
     that.setTabbarState();
     // ------------
     that.setData({
-      bottomIndex:2,
-      showPosts: that.data.allPosts
+      bottomIndex:2
     });
-
+    that.getAllPosts();
   },
 })

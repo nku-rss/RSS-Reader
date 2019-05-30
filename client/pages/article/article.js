@@ -98,7 +98,7 @@ Page({
       url:    'https://nkurss.potatobrother.cn/rssread/onePost',
       method: 'GET',
       data: {
-        rssUrl: that.data.rssUrl,
+        // rssUrl: that.data.rssUrl,
         postId: that.data.postId
       },
       header: {
@@ -106,7 +106,7 @@ Page({
       },
       success: function (res) {
         //console.log(res)
-        var tempOnePost = res.data.onePost
+        var tempOnePost = res.data.res
 
         // ----remove useless value
         // var description_value
@@ -147,16 +147,13 @@ Page({
             // published: tempOnePost.published ? util.formatDate("yyyy-MM-dd HH:mm:ss", tempOnePost.published) : '',
             //----change close----
           })
-          console.log("success");
+          console.log("success get article");
           // 调用富文本转化方法 html
           WxParse.wxParse('article', 'html', that.data.description, that, 5);
         }
       },
       fail: function (res) {
-        console.log('fail');
-      },
-      complete: function (res) {
-        console.log('complete');
+        console.log('fail get article');
       }
     })
   },

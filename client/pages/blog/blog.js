@@ -15,6 +15,7 @@ Page({
     rssLogo:'',
     showPosts:[],
     starPosts:[],
+    segment:1,
     
   },
 
@@ -98,17 +99,21 @@ Page({
       url: 'https://nkurss.potatobrother.cn/rssread/oneRssPosts',
       method: 'GET',
       data: {
-        rssUrl: that.data.rssUrl
+        rssUrl: that.data.rssUrl,
+        segment: that.data.segment
       },
       header: {
         "content-type": "application/x-www-form-urlencoded"
       },
       success: function (res) {
-        if (res.data.oneRssPosts) {
+        if (res.data.res && res.data.res!='error') {
           that.setData({
-            showPosts:res.data.oneRssPosts
+            showPosts:res.data.res
           })
-          console.log("success");
+          console.log("success get blog posts");
+        }
+        else{
+          console.log("error get blog posts");
         }
       },
       fail: function (res) {
@@ -116,9 +121,9 @@ Page({
           title: '更新失败，请检查网络!',
           icon: 'none'
         })
+        console.log("fail get blog posts");
       },
       complete() {
-        console.log("complete")
         // wx.hideLoading();
         that.loadHideModal();
       }

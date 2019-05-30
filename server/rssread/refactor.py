@@ -141,16 +141,23 @@ def test_rss_source(request):
 
 @require_http_methods(["GET"])  
 def delete_rss_source(request):
-    rssUrl = request.GET.get('rssUrl','')
-    if not rssUrl:
+    rssUrls = request.GET.get('rssUrls','')
+    if not rssUrls:
         return JsonResponse({'res':'error'})
-    hasSaved = models.RssSources.object.filter(rss_url=rssUrl)
+    hasSaved = models.RssSources.object.filter(rss_url__in=rssUrls)
     if not hasSaved:
         return JsonResponse({'res':'error'})
-    if hasSaved[0].user_number==1:
-        hasSaved[0].delete()
-        models.Posts.object.filter(rss_url=rssUrl).delete()
-    else:
-        hasSaved[0].user_number -=1
-        hasSaved[0].save()
+    for i in range(len(hasSaved)):
+        if hasSaved[i].user_number==1:
+            deleteRssUrl = hasSaved[i].rss_url
+            hasSaved[i].delete()
+            models.Posts.object.filter(rss_url=deleteRssUrl).delete()
+        else:
+            hasSaved[i].user_number -=1
+            hasSaved[i].save()
     return JsonResponse({'res':'ok'})
+
+
+# 立即获取
+
+

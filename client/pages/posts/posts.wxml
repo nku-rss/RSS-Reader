@@ -38,7 +38,7 @@
                         </view>
                         <!-- <view slot="left">收藏</view> -->
                         <van-cell-group border="{{false}}">
-                            <van-cell bindtap="goToArticle" id="goToArticle{{index}}" custom-class="one-rss" title="{{showPosts[index].post.title}}" label="{{showPosts[index].post.author}}" size="large" border="{{false}}"/>
+                            <van-cell bindtap="goToArticle" id="goToArticle{{index}}" custom-class="one-rss" title="{{showPosts[index].title}}" label="{{showPosts[index].author}}" size="large" border="{{false}}"/>
                         </van-cell-group>
                         <!-- <view slot="right">已读</view> -->
                         <view slot="right" wx:if="{{bottomIndex==1}}"><van-icon name="browsing-history-o" /></view>

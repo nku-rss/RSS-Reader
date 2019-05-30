@@ -1,16 +1,15 @@
 {
   "pages": [
     "pages/posts/posts",
-    "pages/demo/demo",
     "pages/blog/blog",
     "pages/edit/edit",
-    "pages/article/article",
-    "pages/index/index"
+    "pages/article/article"
   ],
   "window": {
     "navigationBarTitleText": "RSS Reader"
   },
   "sitemapLocation": "sitemap.json",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "van-tab": "dist/tab/index",
     "van-tabs": "dist/tabs/index",
