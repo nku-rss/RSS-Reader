@@ -14,7 +14,7 @@
 
 ## 扫码体验
 
-![小程序码](https://user-images.githubusercontent.com/31076337/58698126-4b843280-83cd-11e9-96a5-c5cecac462b2.jpg)
+![小程序码](https://user-images.githubusercontent.com/31076337/58698840-a9fde080-83ce-11e9-92d1-e971b334edcd.jpg)
 
 ## 贡献者
 
