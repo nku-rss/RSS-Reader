@@ -6,7 +6,7 @@
 
 ## 项目架构
 
-![项目架构](https://user-images.githubusercontent.com/31076337/58697280-e2e88600-83cb-11e9-9aaf-3f6714e2c375.png)
+![项目架构](https://user-images.githubusercontent.com/31076337/58698381-c0576c80-83cd-11e9-99e9-03c2b6a5bf74.png)
 
 ## 操作流程
 
