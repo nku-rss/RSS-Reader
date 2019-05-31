@@ -277,7 +277,7 @@ button::after {
   border: white 2rpx solid;
 }
 
-#skin-black .skin-choose-btn-black {
+#skin-black .skin-choose-btn-grey {
   background-color: var(--black-page-bk);
   border: 0px !important;
   color: var(--black-cell-title);

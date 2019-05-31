@@ -88,16 +88,28 @@ def store_all_posts_to_db(url):
                         re_value = re.sub('SRC','src',value)
                         post['post_content']=re_value
             posts.append(post)
+
+    save_posts = models.Posts.objects.filter()
+
+    save_posts_id = []
+
+    for i in save_posts:
+        save_posts_id.append(i.post_id)
+
+
     for one in posts:
-        tempRecord = models.Posts.objects.create(
-            rss_url=one['rss_url'],
-            post_id=one['post_id'],
-            post_author=one['post_author'],
-            post_title=one['post_title'],
-            post_time=one['post_time'],
-            post_content=one['post_content'],
-            time_stamp=one['time_stamp'])
-        tempRecord.save()
+        if one['post_id'] in save_posts_id:
+            continue
+        else:
+            tempRecord = models.Posts.objects.create(
+                rss_url=one['rss_url'],
+                post_id=one['post_id'],
+                post_author=one['post_author'],
+                post_title=one['post_title'],
+                post_time=one['post_time'],
+                post_content=one['post_content'],
+                time_stamp=one['time_stamp'])
+            tempRecord.save()
 
 
 def start_update():
